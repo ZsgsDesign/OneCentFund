@@ -5,10 +5,11 @@ date_default_timezone_set('PRC');
 
 $config = array(
 	'rewrite' => array(
-		'admin/index.html' => 'admin/main/index',
-		'admin/<c>_<a>.html'    => 'admin/<c>/<a>', 
-		'<a>'          => 'main/<a>',
-		'/'                => 'main/index',
+		'admin/index.html' 	=> 'admin/main/index',
+		'admin/<c>_<a>.html'=> 'admin/<c>/<a>', 
+		'api/<a>'						=> 'api/<a>',
+		'<a>'          			=> 'main/<a>',
+		'/'               	=> 'main/index',
 	),
 );
 
