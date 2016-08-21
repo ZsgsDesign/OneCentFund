@@ -11,4 +11,8 @@ class MainController extends BaseController {
 		$this->title="关于我们";
 	}
 	
+	function actionCredit() {
+		$this->url="credit";
+		$this->title="致谢";
+	}
 }
