@@ -1,0 +1,316 @@
+/*! 一分钱助学 网站通用层叠式样式表 */
+/* ==========================================================================
+   BUILD: 201607011258
+ ============================================================================ */
+/**
+ * 想要加入我们吗？发送邮件到johnzhang@1cf.co并注明是通过此途径【ocf.css】找到的就可以啦！
+ * 额你问我需要什么条件？会打CS1.6总没问题吧 ^_^
+ */
+ 
+/**
+ * 以下是一些通用的CSS代码
+ * 作者：LLAP & John Zhang
+ */
+hr {
+  border-top: 1px rgba(0,0,0,.1) solid;
+}
+legend {
+  border-bottom: 1px rgba(0,0,0,.1) solid;
+}
+.grantee-image {
+  width:100%;
+}
+
+.grantee-finished {
+  width:100%;
+}
+
+/* RadioBox重设 */
+.am-ucheck-icons {
+  color:#000;
+}
+.footer {
+  color: #aaa;
+  margin-top: 50px;
+  margin-left:0px;
+  margin-right:0px;
+  margin-bottom:0px;
+  background: rgba(238, 238, 238, 0.9);
+  border-top: 1px rgba(0,0,0,.1) solid;
+  /*position: absolute;
+  bottom: 0;
+  width: 100%;*/
+}
+	
+.ocf-panel-shadow {
+  -webkit-box-shadow: 0 5px 50px rgba(0,0,0,.5);
+  box-shadow: 0 5px 50px rgba(0,0,0,.5);
+}
+
+.ocf-blur {    
+  -webkit-filter: blur(10px); /* Chrome, Opera */
+   -moz-filter: blur(10px);
+    -ms-filter: blur(10px);    
+        filter: blur(10px);    
+}
+
+.cover.black {
+  background-color: rgba(0,0,0,.6);
+}
+
+.cover {
+  position: fixed;
+  opacity: 1;
+  background-color: rgba(0,0,0,.6);
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.am-icon-btn {
+  -webkit-transition: .15s;
+     -moz-transition: .15s;
+      -ms-transition: .15s;
+       -o-transition: .15s;
+          transition: .15s;
+}
+
+a:active.ocf-nbg .am-icon-btn {
+  background-color: #eee;
+}
+a:active.am-primary .am-icon-btn {
+  background-color: #0a628f;
+}
+a:hover.am-primary .am-icon-btn {
+  background-color: #0a628f;
+}
+a:focus.am-primary .am-icon-btn {
+  background-color: #0a628f;
+}
+/* 按钮透明 */
+.ocf-btn-transparent {
+  background-color: transparent;
+  border-color: transparent;
+}
+/* 彩色链接效果 */
+a:focus.am-text-danger, a:hover.am-text-danger{
+	color: #d7342e;
+}
+a:focus.am-text-success, a:hover.am-text-success{
+	color: #4aaa4a;
+}
+a:focus.am-text-warning, a:hover.am-text-warning{
+	color: #e0690c;
+}	
+a:focus.am-text-secondary, a:hover.am-text-secondary{
+	color: #19a7f0;
+}	
+/**
+ * 以下是导航栏的CSS代码
+ * 作者：John Zhang
+ */
+
+.ocf-topbar {
+  border-bottom: 1px rgba(0,0,0,.1) solid;
+  background: rgba(248, 248, 248, 0.9);
+}
+/**
+ * 以下是修正滚动检测导航样式的CSS代码
+ * 作者：John Zhang
+ */
+ 
+.ocf-scrollspy-navbar li {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid transparent;
+  border-color: #0e90d2;
+}
+.ocf-scrollspy-nav>li+li {
+  margin: 5px;
+}
+.ocf-scrollspy-nav li {
+  margin: 5px;
+}
+/**
+ * 以下是快速设置按钮的CSS代码
+ * 作者：John Zhang
+ */
+ 
+.ocf-btn-instant {
+  float: right;
+  background-color: transparent;
+  margin-left: 0.5rem;
+  padding: 1rem;
+}
+
+.ocf-instant-settings {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+/**
+ * 以下是Switch按钮的CSS代码，包含了目前使用的样式与淘汰的两种样式
+ * 作者：John Zhang
+ */
+.ocf-switch {
+  width: 52px;
+  height: 31px;
+  position: relative;
+  border: 1px solid #dfdfdf;
+  background-color: #fdfdfd;
+  box-shadow: #dfdfdf 0 0 0 0 inset;
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-clip: content-box;
+  display: inline-block;
+  -webkit-appearance: none;
+  user-select: none;
+  outline: none; 
+}
+
+.ocf-switch:before {
+  content: '';
+  width: 29px;
+  height: 29px;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); 
+}
+
+.ocf-switch:checked {
+  border-color: #64bd63;
+  box-shadow: #64bd63 0 0 0 16px inset;
+  background-color: #64bd63;
+}
+	
+.ocf-switch:checked:before {
+  left: 21px; 
+}
+
+.ocf-switch.ocf-switch-animbg {
+  transition: background-color ease 0.4s; 
+}
+
+.ocf-switch.ocf-switch-animbg:before {
+  transition: left 0.3s; 
+}
+
+.ocf-switch.ocf-switch-animbg:checked {
+  box-shadow: #dfdfdf 0 0 0 0 inset;
+  background-color: #64bd63;
+  transition: border-color 0.4s, background-color ease 0.4s; 
+}
+
+.ocf-switch.ocf-switch-animbg:checked:before {
+  transition: left 0.3s; 
+}
+
+.ocf-switch.ocf-switch-anim {
+  transition: border cubic-bezier(0, 0, 0, 1) 0.4s, box-shadow cubic-bezier(0, 0, 0, 1) 0.4s; 
+}
+
+.ocf-switch.ocf-switch-anim:before {
+  transition: left 0.3s; 
+}
+
+.ocf-switch.ocf-switch-anim:checked {
+  box-shadow: #64bd63 0 0 0 16px inset;
+  background-color: #64bd63;
+  transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s; 
+}
+
+.ocf-switch.ocf-switch-anim:checked:before {
+  transition: left 0.3s; 
+}
+
+/**
+ * 以下是为了适应图片背景而写的透明度CSS代码，强制所有am下的panel样式90%透明度，同时提供背景色透明的调用方式
+ * 作者：John Zhang
+ */
+ 
+.am-panel{
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.ocf-nbg {
+  background-color: transparent;
+}
+.ocf-nbd{
+  border: none;
+}
+.am-popup-inner {
+  background-color: #f8f8f8;
+}
+
+.ocf-ribbon {
+  display: inline-block;
+  width: 48%;
+  height: 188px;
+  position: relative;
+  float: left;
+  margin-bottom: 30px;
+  background: url(../grantee/1.jpg);
+  background-size: cover;
+  text-transform: uppercase;
+  color: white;
+}
+.ocf-ribbon-wrap {
+  width: 100%;
+  height: 188px;
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  overflow: hidden;
+}
+.ocf-ribbon-wrap:before {
+    content: "";
+    display: block;
+    border-radius: 8px 8px 0px 0px;
+    width: 40px;
+    height: 8px;
+    position: absolute;
+    right: 100px;
+    background: #4D6530;
+}
+.ocf-ribbon-wrap:after {
+    content: "";
+    display: block;
+    border-radius: 0px 8px 8px 0px;
+    width: 8px;
+    height: 40px;
+    position: absolute;
+    right: 0px;
+    top: 100px;
+    background: #4D6530;
+}
+.ocf-ribbon-effect {
+  display: inline-block;
+  text-align: center;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  top: 30px;
+  right: -50px;
+  z-index: 2;
+  overflow: hidden;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  border: 1px dashed;
+  box-shadow:0 0 0 3px #57DD43,  0px 21px 5px -18px rgba(0,0,0,0.6);
+ background: #57DD43;
+}
