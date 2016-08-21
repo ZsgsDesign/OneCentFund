@@ -9,3 +9,19 @@ function getIP() {
 	else $ip = "Unknown"; 
 	return $ip; 
 }
+function is_login() {
+	$is_login=1;
+ 	if (!isset($_SESSION['uid']) || !isset($_SESSION['name']) || !isset($_SESSION['pass'])) {
+		$is_login=0;
+	}
+	/*if ($is_login) {
+		$sql="select * from users where uid=".$_SESSION['uid'];
+		if ($rs = $db->query($sql)) {
+			$row=$rs->fetch();
+			if($row['pass']==$_SESSION['pass'])$is_login=1;
+			else $is_login=0;
+		} else {
+			$is_login=0;
+		}
+	}*/
+}

@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<?php if(!class_exists("View", false)) exit("no direct access allowed");?><!DOCTYPE html>
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title><{if @$title}><{$title}><{else}>404<{/if}> | 一分钱助学</title>
+  <title><?php if (@$title) : ?><?php echo htmlspecialchars($title, ENT_QUOTES, "UTF-8"); ?><?php else : ?>404<?php endif; ?> | 一分钱助学</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
@@ -23,8 +23,8 @@
   <script src="/i/js/amazeui.min.js"></script>
   <script src="/i/js/ocf.js"></script>
 </head>
-<{include file="topbar.html"}>
-<{include file=$__template_file}>
-<{include file="footer.html"}>
+<?php include $_view_obj->compile("topbar.html"); ?>
+<?php include $_view_obj->compile($__template_file); ?>
+<?php include $_view_obj->compile("footer.html"); ?>
 </body>
 </html>

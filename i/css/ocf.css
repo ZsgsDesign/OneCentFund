@@ -11,35 +11,130 @@
  * 以下是一些通用的CSS代码
  * 作者：LLAP & John Zhang
  */
-hr {
-  border-top: 1px rgba(0,0,0,.1) solid;
-}
-legend {
+
+/*Amaze UI部分重定义*/
+.am-container {max-width:1200px !important;}
+.am-topbar-btn {margin-top:9px;}
+.am-nav>li>a:focus, .am-nav>li>a:hover {text-decoration: none;background-color: #FFF;}
+
+ /*顶部导航栏*/
+.height-set {height:30px;}
+.am-topbar {
   border-bottom: 1px rgba(0,0,0,.1) solid;
+  background: #fff;
+  background: rgba(255,255,255,0.9);
 }
+
+/*底栏*/
+.ocf-footer {
+	margin-top:3rem;
+	background-color:#272727;
+	color:#939393;
+}
+.ocf-footer-box {padding:5rem 0 5rem 0;}
+.ocf-icon-share {
+	font-size:120%;
+	margin:0 1rem;
+	color:#666;
+	cursor:normal;
+	transition:All 1s;
+    -webkit-transition:All 1s;
+    -moz-transition:All 1s;
+    -o-transition:All 1s;
+}
+.ocf-icon-share:hover {color:#fff;cursor:pointer;}
+.ocf-icon-map {color:rgb(232,101,85);}
+.ocf-icon-phone {color:rgb(52,210,147);}
+.ocf-icon-envelope {color:rgb(58,176,226);}
+
+/*首页的信息按钮*/
+.ocf-btn-float {
+	position: fixed;
+	right: 2rem;
+	bottom: 2rem;
+	z-index: 999;
+}
+
+/*捐助对象*/
+.grantee {
+	color:#000;
+	padding:1rem 0;
+}
+
+.grantee-info {
+	margin-top:0;
+}
+
+@media screen and (max-width:640px) {
+	.grantee-info {
+		border-left:none;
+		padding-top:2rem;
+	}
+}
+
+.grantee-image-container {
+	overflow: hidden;
+	border: 1px rgba(0,0,0,.1) solid;
+}
+
 .grantee-image {
-  width:100%;
+	margin-top:0;
+  -webkit-transition:All 2s ease-in-out;
+     -moz-transition:All 2s ease-in-out;
+       -o-transition:All 2s ease-in-out;
+          transition:All 2s ease-in-out;
+	-webkit-filter: grayscale(0.7);
+		 -moz-filter: grayscale(0.7);
+			-ms-filter: grayscale(0.7);
+				  filter: grayscale(0.7);
+}
+
+.grantee-image:hover {
+  -webkit-transform:scale(1.15);
+     -moz-transform:scale(1.15);
+      -ms-transform:scale(1.15);
+       -o-transform:scale(1.15);
+          transform:scale(1.15);
+  -webkit-filter: none;
+		 -moz-filter: none;
+			-ms-filter: none;
+				  filter: none;
 }
 
 .grantee-finished {
   width:100%;
 }
 
+/*首页背景*/
+.ocf-cover-img {
+	background: url(/i/img/bing.png) top center no-repeat fixed;
+	background-size: cover;
+	height:100%;
+	color:#fff;
+	text-shadow: #000 2px 2px 2px;
+	padding:3rem;
+}
+.ocf-cover-name {
+	position:absolute;
+	text-align:left;
+	bottom:3rem;
+	left:3rem;
+}
+.ocf-cover-name > a {color:#fff; text-decoration:none;}
+.ocf-cover-name > a:hover {color:#fff; text-decoration:none;}
+.ocf-cover-name > a:active {color:#fff; text-decoration:none;}
+.ocf-cover-name > a:focus {color:#fff; text-decoration:none;}
+.ocf-cover-name > a:visited {color:#fff; text-decoration:none;}
+.ocf-cover-copyright {
+	position:absolute;
+	text-align:right;
+	bottom:3rem;
+	right:3rem;
+}
+
 /* RadioBox重设 */
 .am-ucheck-icons {
   color:#000;
-}
-.footer {
-  color: #aaa;
-  margin-top: 50px;
-  margin-left:0px;
-  margin-right:0px;
-  margin-bottom:0px;
-  background: rgba(238, 238, 238, 0.9);
-  border-top: 1px rgba(0,0,0,.1) solid;
-  /*position: absolute;
-  bottom: 0;
-  width: 100%;*/
 }
 	
 .ocf-panel-shadow {
@@ -107,15 +202,7 @@ a:focus.am-text-warning, a:hover.am-text-warning{
 a:focus.am-text-secondary, a:hover.am-text-secondary{
 	color: #19a7f0;
 }	
-/**
- * 以下是导航栏的CSS代码
- * 作者：John Zhang
- */
 
-.ocf-topbar {
-  border-bottom: 1px rgba(0,0,0,.1) solid;
-  background: rgba(248, 248, 248, 0.9);
-}
 /**
  * 以下是修正滚动检测导航样式的CSS代码
  * 作者：John Zhang

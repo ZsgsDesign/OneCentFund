@@ -1,10 +1,12 @@
 <?php
 class BaseController extends Controller{
-	
+	public $layout = "layout.html";
 	function init(){
 		session_start();
 		header("Content-type: text/html; charset=utf-8");
 		require(APP_DIR.'/protected/include/functions.php');
+		$this->islogin=is_login();
+		$this->url="";
 	}
 
     function tips($msg, $url){
@@ -19,6 +21,8 @@ class BaseController extends Controller{
 	
 	public static function err404($controller_name, $action_name){
 		header("HTTP/1.0 404 Not Found");
+		$controlObj = new Controller;
+		$controlObj->display("404/index.html");
 		exit;
 	}
 } 

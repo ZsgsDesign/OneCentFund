@@ -1,9 +1,14 @@
 <?php
 class MainController extends BaseController {
-	// 首页
-	function actionIndex(){
-		// 连个hello world都木有？
-		// 回答：页面自动输出，请看main_index.html
+	
+	function actionIndex(){ //首页
+		$this->url="index"; //非常重要 用于导航栏
+		$this->title="快速模式"; //标题
+	}
+	
+	function actionAbout() {
+		$this->url="about";
+		$this->title="关于我们";
 	}
 	
 }
