@@ -9,19 +9,55 @@ function getIP() {
 	else $ip = "Unknown"; 
 	return $ip; 
 }
+
 function is_login() {
 	$is_login=1;
- 	if (!isset($_SESSION['uid']) || !isset($_SESSION['name']) || !isset($_SESSION['pass'])) {
+  if ($loginid=arg("loginid")) {
+    $this->loginid=$loginid;
+    $is_login=validate_loginid($loginid,"app");
+  } else if (!@$_SESSION['loginid']) {
 		$is_login=0;
+	} else {
+    $is_login=validate_loginid($_SESSION['loginid'],"browser");
+    $this->loginid=$_SESSION['loginid'];
+  }
+  return $is_login;
+}
+
+function validateapi($time='',$secret='') {
+  $task=arg("a");
+	if(!$task || !$time || !$secret) {
+		$output=array(
+      'status'=>0,
+      'info'=>"Invalid post."
+    );
+    echo json_encode($output);
+		exit;
 	}
-	/*if ($is_login) {
-		$sql="select * from users where uid=".$_SESSION['uid'];
-		if ($rs = $db->query($sql)) {
-			$row=$rs->fetch();
-			if($row['pass']==$_SESSION['pass'])$is_login=1;
-			else $is_login=0;
-		} else {
-			$is_login=0;
-		}
-	}*/
+	$secret2=sha1($task."7d3cfe8c4ecbdad6539e0b8d50d91215".$time);
+	if ($secret!=$secret2) {
+		$output=array(
+      'status'=>0,
+      'info'=>"Unauthorized post."
+    );
+    echo json_encode($output);
+		exit;
+	}
+}
+function validate_loginid($loginid,$mode='browser') {
+  $user_db=new Model("users");
+  $result=$user_db->find(array("loginid = :loginid", 
+															":loginid" => $loginid
+												));
+	if (empty($result)) {
+    if ($mode=="app") {
+      $output=array(
+        'status'=>0,
+        'info'=>'invalid loginid'
+      );
+      echo json_encode($output);
+      exit;
+    } else return 0;
+  }
+  else return 1;
 }

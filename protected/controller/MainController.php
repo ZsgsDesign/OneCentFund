@@ -15,4 +15,9 @@ class MainController extends BaseController {
 		$this->url="credit";
 		$this->title="致谢";
 	}
+
+	function actionHelp() {
+		$this->url="help";
+		$this->title="帮助中心";
+	}
 }

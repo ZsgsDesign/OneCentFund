@@ -16,7 +16,7 @@
 .am-container {max-width:1200px !important;}
 .am-topbar-btn {margin-top:9px;}
 .am-nav>li>a:focus, .am-nav>li>a:hover {text-decoration: none;background-color: #FFF;}
-
+legend>h1, legend>h2, legend>h3, legend>h4 {margin-bottom:0;}
  /*顶部导航栏*/
 .height-set {height:30px;}
 .am-topbar {
