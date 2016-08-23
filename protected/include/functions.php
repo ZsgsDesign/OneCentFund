@@ -13,13 +13,12 @@ function getIP() {
 function is_login() {
 	$is_login=1;
   if ($loginid=arg("loginid")) {
-    $this->loginid=$loginid;
+    $_SESSION['loginid']=$loginid;
     $is_login=validate_loginid($loginid,"app");
   } else if (!@$_SESSION['loginid']) {
 		$is_login=0;
 	} else {
     $is_login=validate_loginid($_SESSION['loginid'],"browser");
-    $this->loginid=$_SESSION['loginid'];
   }
   return $is_login;
 }

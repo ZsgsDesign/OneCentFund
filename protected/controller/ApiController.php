@@ -120,4 +120,112 @@ class ApiController extends BaseController {
 		}
 	}
 	
+	function actionVerifyaccount() {
+		if($loginid=arg("loginid")) {
+			$db=new Model("users");
+			$result=$db->find(array("loginid=:loginid",
+												":loginid"=>$loginid));
+			if (empty($result)) $json=null;
+			else $json=$result;
+			$output=array(
+				'status'=>1,
+				'json'=>$json
+			);
+		} else {
+			$output=array(
+				'status'=>0,
+				'json'=>null
+			);
+		}
+		echo json_encode($output);
+	}
+
+	function actionRegister() {
+		$db=new Model("users");
+		if(arg("name") && arg("pass") && arg("email")) {
+			$result=$db->find(array("name=:name",
+															":name"=>arg("name")));
+			if (!empty($result)) {
+				$output=array(
+					'status'=>0,
+					'info'=>"username"
+				);
+				echo json_encode($output);
+				exit;
+			}
+			$result=$db->find(array("email=:email",
+															":email"=>arg("email")));
+			if (!empty($result)) {
+				$output=array(
+					'status'=>0,
+					'info'=>"email"
+				);
+				echo json_encode($output);
+				exit;
+			}
+			$ip=getIP();
+			$rtime=date("Y-m-d H:i:s");
+			$loginid=sha1(arg("email")."1cf.co".arg("pass"));
+			$user=array(
+				'rtime'=>$rtime,
+				'name'=>arg("name"),
+				'pass'=>arg("pass"),
+				'email'=>arg("email"),
+				'ip'=>$ip,
+				'loginid'=>$loginid
+			);
+			$json=$db->create($user);
+			$output=array(
+				'status'=>1,
+				'uid'=>$json
+			);
+		} else {
+			$output=array(
+				'status'=>0,
+				'info'=>null
+			);
+		}
+		echo json_encode($output);
+	}
+
+	function actionCheckin() {
+		if (!$this->islogin) {
+			$output=array(
+				'status'=>0,
+				'info'=>'invalid loginid'
+			);
+			echo json_encode($output);
+			exit;
+		}
+		$date=date("Y-m-d");
+		$time=date("H:i:s");
+		$previous=date("Y-m-d",strtotime("-1 day"));
+		$db=new Model("checkin");
+		$loginid=$_SESSION['loginid'];
+		$reward=1;
+		$result=$db->find(array("date = date=:date and loginid=:loginid",
+														":date"=>$date,
+														":loginid" => $loginid));
+		if (!empty($result)) {
+			$output=array(
+				'status'=>0,
+				'info'=>'already checked in'
+			);
+			echo json_encode($output);
+			exit;
+		}
+		$result=$db->find(array("date=:date and loginid=:loginid",
+														":date" => $previous,
+														":loginid" => $loginid));
+		if (!empty($result)) $reward=intval($result['reward'])+1;
+		$checkin=array(
+			'loginid' => $loginid,
+			'date' => $date,
+			'time' => $time,
+			'reward' => $reward
+		);
+		$result=$db->create($checkin);
+		$user_db=new Model("users");
+		/////还没写加积分的
+	}
 }
