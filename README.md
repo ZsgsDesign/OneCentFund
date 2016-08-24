@@ -95,7 +95,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |num|题目数|string|
 |date|最后更新日期|string|
 
-##Getgrantees 获取受众列表(有s)
+##Getgrantees 获取受众列表
 ###传入参数
 无
 ###传出参数
@@ -112,7 +112,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |status|是否完成(0,1)|int|
 |rate|完成率(%)|int|
 
-##Getgrantee 获取单个受众信息(无s)
+##Getgranteeinfo 获取单个受众信息
 ###传入参数
 |参数名|描述|类型|
 |---|---|---|
