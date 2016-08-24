@@ -54,7 +54,7 @@ class ApiController extends BaseController {
 							":tid" => $problem[0]),
 				array("ans" => "ans+1")
 			);
-			if ($islogin) {
+			if ($this->islogin) {
 				$user_db->update(
 					array("loginid = :loginid",
 								":loginid" => $this->loginid),
@@ -121,17 +121,19 @@ class ApiController extends BaseController {
 			$db=new Model("users");
 			$result=$db->find(array("loginid=:loginid",
 												":loginid"=>$loginid));
-			if (empty($result)) $json=null;
-			else $json=$result;
-			$output=array(
-				'status'=>1,
-				'json'=>$json
-			);
-		} else {
-			$output=array(
-				'status'=>0,
-				'json'=>null
-			);
+			if (empty($result)) {
+				$output=array(
+					'result'=>0,
+					'info'=>null
+				);
+			}
+			else {
+				$json=$result;
+				$output=array(
+					'result'=>1,
+					'info'=>$json
+				);
+			}
 		}
 		echo json_encode($output);
 	}
@@ -143,7 +145,7 @@ class ApiController extends BaseController {
 															":name"=>arg("name")));
 			if (!empty($result)) {
 				$output=array(
-					'status'=>0,
+					'result'=>0,
 					'info'=>"username"
 				);
 				echo json_encode($output);
@@ -153,7 +155,7 @@ class ApiController extends BaseController {
 															":email"=>arg("email")));
 			if (!empty($result)) {
 				$output=array(
-					'status'=>0,
+					'result'=>0,
 					'info'=>"email"
 				);
 				echo json_encode($output);
@@ -172,13 +174,8 @@ class ApiController extends BaseController {
 			);
 			$json=$db->create($user);
 			$output=array(
-				'status'=>1,
+				'result'=>1,
 				'uid'=>$json
-			);
-		} else {
-			$output=array(
-				'status'=>0,
-				'info'=>null
 			);
 		}
 		echo json_encode($output);
@@ -259,6 +256,7 @@ class ApiController extends BaseController {
 			$db=new Model("grantee");
 			$result=$db->find(array("gid=:gid",
 															":gid"=>$gid));
+			$result['rate']=round($result['current']/$result['target']*100,2);
 			echo json_encode($result);
 		}
 	}
