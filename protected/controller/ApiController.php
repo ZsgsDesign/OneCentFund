@@ -228,4 +228,42 @@ class ApiController extends BaseController {
 		$user_db=new Model("users");
 		/////还没写加积分的
 	}
+
+	function actionGetranklist() {
+		$db=new Model("users");
+		$result=$db->findAll(null,"credit desc,name asc","uid,name,avatar,credit",20);
+		$result[0]['rank']=1;
+		for ($i=1;$i<count($result);$i++) {
+			if ($result[$i]['credit']==$result[$i-1]['credit']) $result[$i]['rank']=$result[$i-1]['rank'];
+			else $result[$i]['rank']=$i;
+		}
+		echo json_encode($result);
+		//dump($result);
+	}
+
+	function actionGetbases() {
+		$db=new Model("problems_cats");
+		$result=$db->findAll(null,"bid asc");
+		echo json_encode($result);
+	}
+
+	function actionGetgrantees() {
+		$db=new Model("grantee");
+		$result=$db->findAll(null,"gid asc","gid,name,sponsor,img,target,current,status");
+		//dump($result);
+		for ($i=0;$i<count($result);$i++) {
+			$result[$i]['rate']=round($result[$i]['current']/$result[$i]['target']*100,2);
+		}
+		//dump($result);
+		echo json_encode($result);
+	}
+
+	function actionGetgrantee() {
+		if ($gid=arg("gid")) {
+			$db=new Model("grantee");
+			$result=$db->find(array("gid=:gid",
+															":gid"=>$gid));
+			echo json_encode($result);
+		}
+	}
 }
