@@ -23,7 +23,7 @@ class ApiController extends BaseController {
 			$o[$temp1]=$o[$temp2];
 			$o[$temp2]=$temp3;
 		}
-		$json=array(
+		$output=array(
 			'description'=>$row['description'], //题目描述
 			'opt1'=>$ans[$o[0]], //A选项
 			'opt2'=>$ans[$o[1]],
@@ -33,10 +33,6 @@ class ApiController extends BaseController {
 			'ans2'=>$tid.'#'.md5($ans[$o[1]]),
 			'ans3'=>$tid.'#'.md5($ans[$o[2]]),
 			'ans4'=>$tid.'#'.md5($ans[$o[3]])
-		);
-		$output=array(
-			'status' => 1,
-			'json' => $json
 		);
 		echo json_encode($output);
 	}
