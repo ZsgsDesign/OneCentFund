@@ -1,6 +1,12 @@
 #API说明
 ####请求地址：https://1cf.co/api/API名称
 注：如果请求不成功，则不会返回任何内容(null)
+##授权参数和Secret生成方式
+sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
+|参数名|描述|类型|
+|---|---|---|
+|time|请求时间(格式和生成sha1用的格式一样即可)|time|
+|secret|生成的sha1串|string|
 
 ##Getquestion
 ###传入参数
