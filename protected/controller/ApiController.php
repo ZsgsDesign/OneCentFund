@@ -240,7 +240,7 @@ class ApiController extends BaseController {
 		echo json_encode($result);
 	}
 
-	function actionGetgranteeinfo() {
+	function actionGetgrantees() {
 		$db=new Model("grantee");
 		$result=$db->findAll(null,"gid asc","gid,name,sponsor,img,target,current,status");
 		//dump($result);
@@ -251,7 +251,7 @@ class ApiController extends BaseController {
 		echo json_encode($result);
 	}
 
-	function actionGetgrantee() {
+	function actionGetgranteeinfo() {
 		if ($gid=arg("gid")) {
 			$db=new Model("grantee");
 			$result=$db->find(array("gid=:gid",
