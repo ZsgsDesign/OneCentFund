@@ -9,7 +9,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |time|请求时间(格式和生成sha1用的格式一样即可)|time|
 |secret|生成的sha1串|string|
 
-##Getquestion
+##Getquestion 抽题
 ###传入参数
 |参数名|描述|类型|
 |---|---|---|
@@ -27,7 +27,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |ans3|C选项对应的ans代码（回答时用）|string|
 |ans4|D选项对应的ans代码（回答时用）|string|
 
-##Getanswer（未完成）
+##Getanswer（未完成） 答题
 ###传入参数
 |参数名|描述|类型|
 |---|---|---|
@@ -38,7 +38,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |result|判断结果(0,1)|int|
 |ans|正确答案|int|
 
-##Verifyaccount
+##Verifyaccount 验证loginid有效性
 ###传入参数
 |参数名|描述|类型|
 |---|---|---|
@@ -49,7 +49,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |result|有效性(0,1)|int|
 |info|用户信息(无效loginid则为null)|array|
 
-##Register
+##Register 注册
 ###传入参数
 |参数名|描述|类型|
 |---|---|---|
@@ -63,9 +63,9 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |info|username/email: 用户名/邮箱被占用(仅result=0时)|string|
 |uid|新用户uid(result=1时)|int|
 
-##Checkin(未完成)
+##Checkin(未完成) 签到
 
-##Getranklist
+##Getranklist 获取排行榜
 ###传入参数
 无
 ###传出参数
@@ -79,7 +79,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |credit|爱心值|int|
 |rank|排名数|int|
 
-##Getbases
+##Getbases 获取题库
 ###传入参数
 无
 ###传出参数
@@ -95,7 +95,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |num|题目数|string|
 |date|最后更新日期|string|
 
-##Getgrantees
+##Getgrantees 获取受众列表(有s)
 ###传入参数
 无
 ###传出参数
@@ -112,7 +112,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |status|是否完成(0,1)|int|
 |rate|完成率(%)|int|
 
-##Getgrantee
+##Getgrantee 获取单个受众信息(无s)
 ###传入参数
 |参数名|描述|类型|
 |---|---|---|
