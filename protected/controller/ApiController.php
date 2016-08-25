@@ -355,7 +355,11 @@ class ApiController extends BaseController {
 							fwrite($newFile,$return_content); //写入二进制流到文件
 							fclose($newFile); //关闭文件
 							$delete = @unlink ($filename); //删除临时文件
-							echo "1";
+							$filename2=str_replace("/i/img/avatar/","",$filename2);
+							$result=$db->update(array("loginid=:loginid",
+																				":loginid"=>$loginid),
+																	array("avatar"=>$filename2));
+							echo $result;
 						}
 					}
 				}
@@ -363,6 +367,6 @@ class ApiController extends BaseController {
 		}
 	}
 
-	
+
 }
 
