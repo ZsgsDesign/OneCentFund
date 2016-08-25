@@ -325,4 +325,44 @@ class ApiController extends BaseController {
 			echo json_encode($result);
 		}
 	}
+
+	function actionChangeavatar() {
+		if (@$_SESSION['loginid']) {
+			$loginid=$_SESSION['loginid'];
+			$db=new Model("users");
+			$rs=$db->find(array("loginid=:loginid",
+													":loginid"=>$loginid),null,"uid");
+			$uid=$rs['uid'];
+			if ($base64_original=arg("avatar")) {
+				if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_original, $result)){
+					//dump($result);
+					$type = $result[2];
+					$filename = "/i/img/avatar/$uid.temp.{$type}";
+					echo $filename;
+					if (file_exists($filename)) {
+						$delete = @unlink ($filename);
+					}
+					if (file_put_contents($filename, base64_decode(substr(strstr($base64_original,','),1)))){
+						$tempimgurl="https://www.1cf.co".$filename;
+						$data = json_encode(array('url'=>$tempimgurl));   
+						list($return_code, $return_content) = get_thumbnail($data);  
+						if($return_code=='200') {
+							$filename2="/i/img/avatar/$uid.{$type}"; // 形如1.jpg
+							if (file_exists($filename2)) {
+								$delete = @unlink ($filename2);
+							}
+							$newFile = fopen($filename2,"w"); //打开文件准备写入
+							fwrite($newFile,$return_content); //写入二进制流到文件
+							fclose($newFile); //关闭文件
+							$delete = @unlink ($filename); //删除临时文件
+							echo "1";
+						}
+					}
+				}
+			}
+		}
+	}
+
+	
 }
+
