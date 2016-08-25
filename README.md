@@ -133,3 +133,20 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |status|是否完成|int|
 |link|tb链接|string|
 |rate|完成度(%)|int|
+
+##Modifyuserinfo 修改用户信息（不包括头像）
+###传入参数
+注：只需传入需要修改的内容
+
+|参数名|描述|类型|
+|---|---|---|
+|name|昵称(可选)|string|
+|sex|性别(可选)|int|
+|pass|密码md5(可选)|string|
+|real_name|真实姓名(可选)|string|
+|tel|电话(可选)|string|
+|qq|QQ号(可选)|string|
+|weibo|微博(可选)|string|
+|intro|自我介绍(可选)|string|
+###传出参数
+返回一个数字，代表修改成功的信息条数（如信息不变视为未修改）

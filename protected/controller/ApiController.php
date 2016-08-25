@@ -260,4 +260,69 @@ class ApiController extends BaseController {
 			echo json_encode($result);
 		}
 	}
+
+	function actionModifyuserinfo() {
+		if (@$_SESSION['loginid']) {
+			$db=new Model("users");
+			$loginid=$_SESSION['loginid'];
+			$result=0;
+			if ($name=arg("name")) {
+				$result+=$db->update(
+					array("loginid=:loginid",
+								":loginid"=>$loginid),
+					array("name"=>$name)
+				);
+			}
+			if ($sex=arg("sex")) {
+				$result+=$db->update(
+					array("loginid=:loginid",
+								":loginid"=>$loginid),
+					array("sex"=>$sex)
+				);
+			}
+			if ($pass=arg("pass")) {
+				$result+=$db->update(
+					array("loginid=:loginid",
+								":loginid"=>$loginid),
+					array("pass"=>$pass)
+				);
+			}
+			if ($real_name=arg("real_name")) {
+				$result+=$db->update(
+					array("loginid=:loginid",
+								":loginid"=>$loginid),
+					array("real_name"=>$real_name)
+				);
+			}
+			if ($tel=arg("tel")) {
+				$result+=$db->update(
+					array("loginid=:loginid",
+								":loginid"=>$loginid),
+					array("tel"=>$tel)
+				);
+			}
+			if ($qq=arg("qq")) {
+				$result+=$db->update(
+					array("loginid=:loginid",
+								":loginid"=>$loginid),
+					array("qq"=>$qq)
+				);
+			}
+			if ($weibo=arg("weibo")) {
+				$result+=$db->update(
+					array("loginid=:loginid",
+								":loginid"=>$loginid),
+					array("weibo"=>$weibo)
+				);
+			}
+			if ($intro=arg("intro")) {
+				$result+=$db->update(
+					array("loginid=:loginid",
+								":loginid"=>$loginid),
+					array("intro"=>$intro)
+				);
+			}
+			echo json_encode($result);
+		}
+	}
 }
