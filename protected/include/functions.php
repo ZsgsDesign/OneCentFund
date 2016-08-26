@@ -58,7 +58,10 @@ function validate_loginid($loginid,$mode='browser') {
       exit;
     } else return 0;
   }
-  else return 1;
+  else {
+		$_SESSION['uid']=$result['uid'];
+		return 1;
+	}
 }
 
 function get_thumbnail($data_string) {  

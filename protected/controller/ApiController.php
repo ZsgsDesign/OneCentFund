@@ -38,81 +38,65 @@ class ApiController extends BaseController {
 	}
 
 	function actionGetanswer() {
-		$ip = getIP();
-		$date = date("Y-m-d");
-		$time = date("Y-m-d H:i:s");
-		$user_db=new Model("users");
-		$db=new Model("problems");
-		$log_db=new Model("log");
-		$problem=explode("#",arg("ans"));
-		$rs=$db->find(array("tid = :tid",
-												":tid" => $problem[0])
-									);
-		if ($rs['ans']!=arg("ans")) { //如果答错
-			$db->update(
-				array("tid = :tid",
-							":tid" => $problem[0]),
-				array("ans" => "ans+1")
-			);
-			if ($this->islogin) {
-				$user_db->update(
-					array("loginid = :loginid",
-								":loginid" => $this->loginid),
-					array("ans" => "ans+1")
+		if (arg("ans")) {
+			$ip = getIP();
+			$date = date("Y-m-d");
+			$time = date("Y-m-d H:i:s");
+			$user_db=new Model("users");
+			$db=new Model("problems");
+			$log_db=new Model("log");
+			$problem=explode("#",arg("ans"));
+			$rs=$db->find(array("tid = :tid",
+													":tid" => $problem[0])
+										);
+										//dump($rs);exit;
+										//dump(arg("ans"));exit;
+			if ($rs['answer']!=arg("ans")) { //如果答错
+				$db->execute("update problems set ans=ans+1 where tid=:tid",
+											array(":tid"=>$problem[0]));
+				if ($this->islogin) {
+					$user_db->execute("update users set ans=ans+1 where loginid=:loginid",
+											array(":loginid" => $_SESSION['loginid']));
+				}
+				$log_db->create(
+					array(
+						"date" => $date,
+						"time" => $time,
+						"type" => "ans",
+						"uid" => $_SESSION['uid'],
+						"tid" => $problem[0],
+						"result" => 0,
+						"ip" => $ip
+					)
+				);
+				$output=array(
+					'result'=>0,
+					'answer'=>$rs['ans1']
+				);
+			} else { //如果答对
+				$db->execute("update problems set ans=ans+1, cor=cor+1 where tid=:tid",
+											array(":tid"=>$problem[0]));
+				if ($this->islogin) {
+					$user_db->execute("update users set ans=ans+1, cor=cor+1 where loginid=:loginid",
+											array(":loginid" => $_SESSION['loginid']));
+				}
+				$log_db->create(
+					array(
+						"date" => $date,
+						"time" => $time,
+						"type" => "ans",
+						"uid" => $_SESSION['uid'],
+						"tid" => $problem[0],
+						"result" => floor(@$_SESSION['reward']/5)*5+10,
+						"ip" => $ip
+					)
+				);
+				$output=array(
+					'result'=>1,
+					'answer'=>$rs['ans1']
 				);
 			}
-			$log_db->create(
-				array(
-					"date" => $date,
-					"time" => $time,
-					"type" => "ans",
-					"loginid" => $this->loginid,
-					"tid" => $problem[0],
-					"result" => 0,
-					"ip" => $ip
-				)
-			);
-			$json=array(
-				'result'=>0,
-				'answer'=>$rs['ans1']
-			);
-			$output=array(
-				'status'=>1,
-				'json' => $json
-			);
-		} else { //如果答对
-			$db->update(
-				array("tid = :tid",
-							":tid" => $problem[0]),
-				array("ans" => "ans+1",
-							"cor" => "cor+1")
-			);
-			if ($islogin) {
-				$user_db->update(
-					array("loginid = :loginid",
-								":loginid" => $this->loginid),
-					array("ans" => "ans+1",
-								"cor" => "cor+1")
-				);
-			}
-			$log_db->create(
-				array(
-					"date" => $date,
-					"time" => $time,
-					"type" => "ans",
-					"loginid" => $this->loginid,
-					"tid" => $problem[0],
-					"result" => floor(@$_SESSION['reward']/5)*5+10,
-					"ip" => $ip
-				)
-			);
-			$json=array(
-				'result'=>1
-			);
-			$output=array(
-				'status'=>1,
-				'json' => $json
-			);
+			echo json_encode($output);
 		}
 	}
 	

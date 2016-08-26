@@ -37,7 +37,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |参数名|描述|类型|
 |---|---|---|
 |result|判断结果(0,1)|int|
-|ans|正确答案|int|
+|ans|正确答案|string|
 
 ##Verifyaccount 验证loginid有效性
 ###传入参数
