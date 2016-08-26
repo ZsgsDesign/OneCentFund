@@ -29,6 +29,17 @@ $domain = array(
 
 		),
 	),
+	"1cf.co" => array( //线上配置
+		'debug' => 0,
+		'mysql' => array(
+				'MYSQL_HOST' => 'localhost',
+				'MYSQL_PORT' => '3306',
+				'MYSQL_USER' => 'root',
+				'MYSQL_DB'   => '1cf',
+				'MYSQL_PASS' => 't3dv95my',
+				'MYSQL_CHARSET' => 'utf8',
+		),
+	),
 	"www.1cf.co" => array( //线上配置
 		'debug' => 0,
 		'mysql' => array(
