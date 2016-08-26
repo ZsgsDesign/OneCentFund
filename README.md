@@ -112,6 +112,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |current|当前积分|int|
 |status|是否完成(0,1)|int|
 |rate|完成率(%)|int|
+|count|参与人数|int|
 
 ##Getgranteeinfo 获取单个受众信息
 ###传入参数

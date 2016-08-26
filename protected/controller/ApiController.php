@@ -244,8 +244,12 @@ class ApiController extends BaseController {
 		$db=new Model("grantee");
 		$result=$db->findAll(null,"gid asc","gid,name,sponsor,img,target,current,status");
 		//dump($result);
+		$gb=new Model("log");
 		for ($i=0;$i<count($result);$i++) {
 			$result[$i]['rate']=round($result[$i]['current']/$result[$i]['target']*100,2);
+			$count=$gb->query("select count(distinct(ip)) as count from log where gid=:gid",
+												array(":gid"=>$result[$i]['gid']));
+			$result[$i]['count'] = $count[0]['count'];
 		}
 		//dump($result);
 		echo json_encode($result);
