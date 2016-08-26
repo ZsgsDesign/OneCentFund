@@ -21,8 +21,9 @@ class BaseController extends Controller{
 	
 	public static function err404($controller_name, $action_name){
 		header("HTTP/1.0 404 Not Found");
-		$controlObj = new Controller;
-		$controlObj->display("404/index.html");
+		$controlObj = new BaseController;
+		//$controlObj->display("404/index.html");
+		$controlObj->jump("/");
 		exit;
 	}
 } 
