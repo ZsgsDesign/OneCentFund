@@ -326,7 +326,7 @@ class ApiController extends BaseController {
 					array("intro"=>$intro)
 				);
 			}
-			echo json_encode($result);
+			echo json_encode(array('result'=>$result));
 		}
 	}
 
@@ -363,7 +363,7 @@ class ApiController extends BaseController {
 							$result=$db->update(array("loginid=:loginid",
 																				":loginid"=>$loginid),
 																	array("avatar"=>$filename2));
-							echo $result;
+							echo json_encode(array('result'=>$result));
 						}
 					}
 				}
