@@ -29,7 +29,7 @@ $domain = array(
 
 		),
 	),
-	"1cf.co" => array( //线上配置
+	"www.1cf.co" => array( //线上配置
 		'debug' => 0,
 		'mysql' => array(
 				'MYSQL_HOST' => 'localhost',
