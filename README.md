@@ -106,12 +106,14 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |---|---|---|
 |gid|受众id|int|
 |name|受众名|string|
+|location|地点|string|
+|general|简介|string|
 |img|图片地址|string|
 |sponsor|赞助方|string|
 |target|目标积分|int|
 |current|当前积分|int|
 |status|是否完成(0,1)|int|
-|rate|完成率(%)|int|
+|rate|完成率(%)|float|
 |count|参与人数|int|
 
 ##Getgranteeinfo 获取单个受众信息
@@ -128,13 +130,20 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |sponsor_link|赞助方链接|string|
 |sponsor_img|赞助方图片|string|
 |sponsor_description|赞助方描述|string|
+|supervisor|监督方|string|
+|supervisor_link|监督方链接|string|
+|supervisor_img|监督方图片|string|
+|supervisor_description|监督方描述|string|
+|location|地点|string|
+|general|简介|string|
 |story|受众描述|string|
 |img|受众图片|string|
 |target|目标积分|int|
 |current|当前积分|int|
 |status|是否完成|int|
 |link|tb链接|string|
-|rate|完成度(%)|int|
+|rate|完成度(%)|float|
+
 
 ##Modifyuserinfo 修改用户信息（不包括头像）
 ###传入参数

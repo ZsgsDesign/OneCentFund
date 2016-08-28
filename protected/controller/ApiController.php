@@ -226,7 +226,7 @@ class ApiController extends BaseController {
 
 	function actionGetgrantees() {
 		$db=new Model("grantee");
-		$result=$db->findAll(null,"gid asc","gid,name,sponsor,img,target,current,status");
+		$result=$db->findAll(null,"gid asc","gid,name,location,general,img,target,current,status");
 		//dump($result);
 		$gb=new Model("log");
 		for ($i=0;$i<count($result);$i++) {
