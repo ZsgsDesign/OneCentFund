@@ -173,3 +173,4 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |参数名|描述|类型|
 |---|---|---|
 |result|状态(0,1)|int|
+|url|头像地址|string|

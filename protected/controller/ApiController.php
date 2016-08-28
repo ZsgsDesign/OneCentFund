@@ -226,7 +226,7 @@ class ApiController extends BaseController {
 
 	function actionGetgrantees() {
 		$db=new Model("grantee");
-		$result=$db->findAll(null,"gid asc","gid,name,location,general,img,target,current,status");
+		$result=$db->findAll(null,"gid desc","gid,name,location,general,img,target,current,status");
 		//dump($result);
 		$gb=new Model("log");
 		for ($i=0;$i<count($result);$i++) {
@@ -347,7 +347,7 @@ class ApiController extends BaseController {
 							$result=$db->update(array("loginid=:loginid",
 																				":loginid"=>$loginid),
 																	array("avatar"=>$filename2));
-							echo json_encode(array('result'=>$result));
+							echo json_encode(array('result'=>$result,'url'=>"https://www.1cf.co/i/img/avatar/$filename2"));
 						}
 					}
 				}
