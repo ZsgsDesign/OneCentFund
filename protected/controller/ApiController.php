@@ -325,7 +325,7 @@ class ApiController extends BaseController {
 				if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_original, $result)){
 					//dump($result);
 					$type = $result[2];
-					$filename = "/i/img/avatar/$uid.temp.{$type}";
+					$filename = "/www/web/1cf_co/public_html/i/img/avatar/$uid.temp.{$type}";
 					echo $filename;
 					if (file_exists($filename)) {
 						$delete = @unlink ($filename);
@@ -335,7 +335,7 @@ class ApiController extends BaseController {
 						$data = json_encode(array('url'=>$tempimgurl));   
 						list($return_code, $return_content) = get_thumbnail($data);  
 						if($return_code=='200') {
-							$filename2="/i/img/avatar/$uid.{$type}"; // 形如1.jpg
+							$filename2="/www/web/1cf_co/public_html/i/img/avatar/$uid.{$type}"; // 形如1.jpg
 							if (file_exists($filename2)) {
 								$delete = @unlink ($filename2);
 							}
@@ -343,7 +343,7 @@ class ApiController extends BaseController {
 							fwrite($newFile,$return_content); //写入二进制流到文件
 							fclose($newFile); //关闭文件
 							$delete = @unlink ($filename); //删除临时文件
-							$filename2=str_replace("/i/img/avatar/","",$filename2);
+							$filename2=str_replace("/www/web/1cf_co/public_html/i/img/avatar/","",$filename2);
 							$result=$db->update(array("loginid=:loginid",
 																				":loginid"=>$loginid),
 																	array("avatar"=>$filename2));
