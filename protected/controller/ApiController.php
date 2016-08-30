@@ -343,12 +343,12 @@ class ApiController extends BaseController {
 							$newFile = fopen($filename2,"w"); //打开文件准备写入
 							fwrite($newFile,$return_content); //写入二进制流到文件
 							fclose($newFile); //关闭文件
-							$delete = @unlink ($filename); //删除临时文件
+							$delete = @unlink ($path.$filename); //删除临时文件
 							$filename2=str_replace("/www/web/1cf_co/public_html/i/img/avatar/","",$filename2);
 							$result=$db->update(array("loginid=:loginid",
 																				":loginid"=>$loginid),
 																	array("avatar"=>$filename2));
-							echo json_encode(array('result'=>$result,'url'=>"https://www.1cf.co/i/img/avatar/$filename2"));
+							echo json_encode(array('result'=>$result,'url'=>"https://static.1cf.co/img/avatar/$filename2"));
 						}
 					}
 				}
