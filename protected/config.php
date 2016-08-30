@@ -30,7 +30,7 @@ $domain = array(
 		),
 	),
 	"1cf.co" => array( //线上配置
-		'debug' => 0,
+		'debug' => 1,
 		'mysql' => array(
 				'MYSQL_HOST' => 'localhost',
 				'MYSQL_PORT' => '3306',
@@ -41,7 +41,7 @@ $domain = array(
 		),
 	),
 	"www.1cf.co" => array( //线上配置
-		'debug' => 0,
+		'debug' => 1,
 		'mysql' => array(
 				'MYSQL_HOST' => 'localhost',
 				'MYSQL_PORT' => '3306',
