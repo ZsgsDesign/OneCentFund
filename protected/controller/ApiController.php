@@ -325,17 +325,18 @@ class ApiController extends BaseController {
 				if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_original, $result)){
 					//dump($result);
 					$type = $result[2];
-					$filename = "/www/web/1cf_co/public_html/i/img/avatar/$uid.temp.{$type}";
-					echo $filename;
+					$path="/www/web/1cf_co/public_html";
+					$filename = "/i/img/avatar/$uid.temp.{$type}";
+					//echo $filename;
 					if (file_exists($filename)) {
 						$delete = @unlink ($filename);
 					}
-					if (file_put_contents($filename, base64_decode(substr(strstr($base64_original,','),1)))){
+					if (file_put_contents($path.$filename, base64_decode(substr(strstr($base64_original,','),1)))){
 						$tempimgurl="https://www.1cf.co".$filename;
 						$data = json_encode(array('url'=>$tempimgurl));   
 						list($return_code, $return_content) = get_thumbnail($data);  
 						if($return_code=='200') {
-							$filename2="/www/web/1cf_co/public_html/i/img/avatar/$uid.{$type}"; // 形如1.jpg
+							$filename2=$path."/i/img/avatar/$uid.{$type}"; // 形如1.jpg
 							if (file_exists($filename2)) {
 								$delete = @unlink ($filename2);
 							}
