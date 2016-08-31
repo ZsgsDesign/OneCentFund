@@ -36,7 +36,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 ###传出参数
 |参数名|描述|类型|
 |---|---|---|
-|result|判断结果(0,1)|int|
+|result|积分变动(0即为答错)|int|
 |ans|正确答案|string|
 |reward|连续答对题数|int|
 
