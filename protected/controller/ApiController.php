@@ -69,9 +69,11 @@ class ApiController extends BaseController {
 						"ip" => $ip
 					)
 				);
+				@$_SESSION['reward']=0;
 				$output=array(
 					'result'=>0,
-					'answer'=>$rs['ans1']
+					'answer'=>$rs['ans1'],
+					'reward'=>$_SESSION['reward']
 				);
 			} else { //如果答对
 				$db->execute("update problems set ans=ans+1, cor=cor+1 where tid=:tid",
@@ -91,9 +93,11 @@ class ApiController extends BaseController {
 						"ip" => $ip
 					)
 				);
+				@$_SESSION['reward']++;
 				$output=array(
 					'result'=>1,
-					'answer'=>$rs['ans1']
+					'answer'=>$rs['ans1'],
+					'reward'=>$_SESSION['reward']
 				);
 			}
 			echo json_encode($output);
