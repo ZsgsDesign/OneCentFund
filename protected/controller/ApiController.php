@@ -82,6 +82,8 @@ class ApiController extends BaseController {
 					$user_db->execute("update users set ans=ans+1, cor=cor+1 where loginid=:loginid",
 											array(":loginid" => $_SESSION['loginid']));
 				}
+				$rewardscore=floor(@$_SESSION['reward']/5)*5+10;
+				if ($rewardscore>30) $rewardscore=30;
 				$log_db->create(
 					array(
 						"date" => $date,
@@ -89,13 +91,13 @@ class ApiController extends BaseController {
 						"type" => "ans",
 						"uid" => $_SESSION['uid'],
 						"tid" => $problem[0],
-						"result" => floor(@$_SESSION['reward']/5)*5+10,
+						"result" => $rewardscore,
 						"ip" => $ip
 					)
 				);
 				@$_SESSION['reward']++;
 				$output=array(
-					'result'=>floor((@$_SESSION['reward']-1)/5)*5+10,
+					'result'=>$rewardscore,
 					'answer'=>$rs['ans1'],
 					'reward'=>$_SESSION['reward']
 				);
