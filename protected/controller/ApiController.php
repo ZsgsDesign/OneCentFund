@@ -76,14 +76,16 @@ class ApiController extends BaseController {
 					'reward'=>$_SESSION['reward']
 				);
 			} else { //如果答对
+				$rewardscore=floor(@$_SESSION['reward']/5)*5+10;
+				if ($rewardscore>30) $rewardscore=30;
+
 				$db->execute("update problems set ans=ans+1, cor=cor+1 where tid=:tid",
 											array(":tid"=>$problem[0]));
 				if ($this->islogin) {
-					$user_db->execute("update users set ans=ans+1, cor=cor+1 where loginid=:loginid",
-											array(":loginid" => $_SESSION['loginid']));
+					$user_db->execute("update users set ans=ans+1, cor=cor+1, score=score+:score where loginid=:loginid",
+											array(":loginid" => $_SESSION['loginid'],
+														":score"=>$rewardscore));
 				}
-				$rewardscore=floor(@$_SESSION['reward']/5)*5+10;
-				if ($rewardscore>30) $rewardscore=30;
 				$log_db->create(
 					array(
 						"date" => $date,
@@ -214,7 +216,7 @@ class ApiController extends BaseController {
 
 	function actionGetranklist() {
 		$db=new Model("users");
-		$result=$db->findAll(null,"credit desc,name asc","uid,name,avatar,credit",20);
+		$result=$db->findAll(array("uid<>:uid1 and uid<>:uid2","uid1"=>1,"uid2"=>59),"credit desc,name asc","uid,name,avatar,credit",20);
 		$result[0]['rank']=1;
 		for ($i=1;$i<count($result);$i++) {
 			if ($result[$i]['credit']==$result[$i-1]['credit']) $result[$i]['rank']=$result[$i-1]['rank'];
