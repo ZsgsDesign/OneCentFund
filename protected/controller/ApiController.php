@@ -95,7 +95,7 @@ class ApiController extends BaseController {
 				);
 				@$_SESSION['reward']++;
 				$output=array(
-					'result'=>1,
+					'result'=>floor((@$_SESSION['reward']-1)/5)*5+10,
 					'answer'=>$rs['ans1'],
 					'reward'=>$_SESSION['reward']
 				);
