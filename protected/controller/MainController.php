@@ -20,4 +20,9 @@ class MainController extends BaseController {
 		$this->url="help";
 		$this->title="帮助中心";
 	}
+
+	function actionBase() {
+		$this->url="base";
+		$this->title="题库";
+	}
 }
