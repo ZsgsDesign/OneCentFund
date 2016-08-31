@@ -38,6 +38,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |---|---|---|
 |result|判断结果(0,1)|int|
 |ans|正确答案|string|
+|reward|连续答对题数|int|
 
 ##Verifyaccount 验证loginid有效性
 ###传入参数
