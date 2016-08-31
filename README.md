@@ -28,7 +28,7 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |ans3|C选项对应的ans代码（回答时用）|string|
 |ans4|D选项对应的ans代码（回答时用）|string|
 
-##Getanswer（未完成） 答题
+##Getanswer 答题
 ###传入参数
 |参数名|描述|类型|
 |---|---|---|
