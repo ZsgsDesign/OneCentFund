@@ -277,10 +277,12 @@ class ApiController extends BaseController {
 				);
 			}
 			if ($pass=arg("pass")) {
+				$userinfo=$db->find(array("loginid=:loginid",":loginid"=>$loginid));
+				$email=$userinfo['email'];
 				$result+=$db->update(
 					array("loginid=:loginid",
 								":loginid"=>$loginid),
-					array("pass"=>$pass)
+					array("pass"=>$pass,"loginid"=>sha1($email."1cf.co".$pass))
 				);
 			}
 			if ($real_name=arg("real_name")) {
