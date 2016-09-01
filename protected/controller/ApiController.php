@@ -227,7 +227,7 @@ class ApiController extends BaseController {
 	}
 
 	function actionGetbases() {
-		$db=new Model("problems_cats");
+		$db=new Model("bases");
 		$result=$db->findAll(null,"bid asc");
 		echo json_encode($result);
 	}
