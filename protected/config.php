@@ -19,14 +19,12 @@ $domain = array(
 	"1cf" => array( // 调试配置
 		'debug' => 1,
 		'mysql' => array(
-
 				'MYSQL_HOST' => 'localhost',
 				'MYSQL_PORT' => '3306',
 				'MYSQL_USER' => 'root',
 				'MYSQL_DB'   => '1cf',
 				'MYSQL_PASS' => 't3dv95my',
 				'MYSQL_CHARSET' => 'utf8',
-
 		),
 	),
 	"1cf.co" => array( //线上配置
