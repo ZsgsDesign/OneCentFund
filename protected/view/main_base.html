@@ -1,0 +1,76 @@
+<style>
+.searchfield{
+  float:right;
+  width:30%;
+}
+.filter{
+  margin: 1.6rem;
+}
+.radius{
+  border-radius: 30px;
+  margin: 0.5rem;
+  border: none;
+}
+.can-see {
+	visibility:auto;
+}
+.wrong {
+  background-color: rgba(221, 81, 76, 0.9);
+}
+.base {
+	padding:1rem;
+	background:none;
+	color:#000;
+}
+.base:hover {
+	background:#eee;
+}
+@media screen and (max-width:640px) {
+	.searchfield {
+	  width:100%;
+	  margin-top: 1.5rem;
+	}
+	.can-see {
+		display:none;
+	}
+}
+</style>
+<div class="am-g am-container">
+	<div>	
+	<ul class="am-nav am-nav-pills filter">
+		<li class="base-filter am-active" cata="0"><a href="javascript:;">全部</a></li>
+		<li class="base-filter" cata="1"><a href="javascript:;">基本</a></li>
+		<li class="base-filter" cata="2"><a href="javascript:;">拓展</a></li>
+		<li class="base-filter" cata="3"><a href="javascript:;"><span class="can-see">第</span>三方</a></li>
+		<li class="base-filter" cata="4"><a href="javascript:;">用户<span class="can-see">上传</span></a></li>
+		<form action="base.php" method="GET" class="am-form searchfield">
+			<div class="am-form-group am-form-icon am-form-feedback">
+				<input type="text" name="search" id="search" class="am-form-field am-radius" placeholder="搜索">
+				<span class="am-icon-search"></span>
+			</div>
+		</form>
+		
+	</ul>
+	</div>
+	<{foreach $result as $r}>
+		<a href="javascript:;" class="am-u-sm-12 am-u-md-6 am-u-end base base-cata-<{$r['cata']}>">
+			<div class="am-u-sm-3">
+				<img src="/i/img/base/<{$r['icon']}>" class="am-img-responsive"/>
+			</div>
+			<div class="am-u-sm-9">
+				<h2><{$r['name']}></h2>
+				<p>共有<{$r['num']}>题<br><{$r['date']}>更新</p>
+			</div>
+		</a>
+	<{/foreach}>
+</div>
+<script>
+$(".base").hide();
+$(".base-cata-0").show();
+$(".base-filter").on("click",function() {
+	$(".base-filter").removeClass("am-active");
+	$(this).addClass("am-active");
+	$(".base").hide();
+	$(".base-cata-" + $(this).attr("cata")).show();
+});
+</script>
