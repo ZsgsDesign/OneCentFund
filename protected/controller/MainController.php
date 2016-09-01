@@ -24,5 +24,26 @@ class MainController extends BaseController {
 	function actionBase() {
 		$this->url="base";
 		$this->title="题库";
+		setcookie("pre", "0","86400000000","/","1cf.co");
+		$db=new Model("bases");
+		$this->result=$db->findAll(
+			null,
+			"cata ASC, bid ASC",
+			"*"
+		);
+	}
+
+	function actionRank() {
+		$this->url="rank";
+		$this->title="排行榜";
+		$db=new Model("users");
+		$result=$db->findAll(array("uid<>:uid1 and uid<>:uid2","uid1"=>1,"uid2"=>59),"credit desc,name asc","uid,name,avatar,credit",20);
+		$result[0]['rank']=1;
+		for ($i=1;$i<count($result);$i++) {
+			if ($result[$i]['credit']==$result[$i-1]['credit']) $result[$i]['rank']=$result[$i-1]['rank'];
+			else $result[$i]['rank']=$i;
+		}
+		//dump($result);
+		$this->result=$result;
 	}
 }
