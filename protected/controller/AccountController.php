@@ -78,7 +78,7 @@ class AccountController extends BaseController {
 				$result=$db->update(
 					array(
 						"uid=:uid",
-						":uid"=>uid
+						":uid"=>$uid
 					),
 					array(
 						"emailok"=>1
