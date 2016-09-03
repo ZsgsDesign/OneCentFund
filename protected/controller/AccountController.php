@@ -2,8 +2,8 @@
 class AccountController extends BaseController {
 	
 	function actionLogin(){
-		$this->url="index";
-		$this->title="快速模式";
+		$this->url="login";
+		$this->title="注册/登录";
 	}
 	
 }
