@@ -1,0 +1,95 @@
+<style>
+.login-form, .am-topbar {
+  background: rgba(255, 255, 255, 0.8);
+}
+body {
+  background: url(https://static.1cf.co/img/bing.png) no-repeat scroll top center;
+  background-size: cover;
+}
+.ocf-login-toggle {
+  margin-top:1.5rem;
+  padding:1rem;
+  background:#ccc;
+  color:#444;
+}
+.ocf-login-toggle:hover {
+  cursor:pointer;
+  background:#aaa;
+  color:#fff;
+}
+</style>
+<div class="am-hide-sm-only">
+  <br><br><br>
+</div>
+
+<div class="am-g am-container">
+  <div class="am-u-md-7 am-hide-sm-only">
+    
+  </div>
+  
+  <div class="login-form am-u-md-5 am-u-sm-12 am-panel am-panel-default">
+    <div class="am-panel-bd" id="login-form">
+      <p class="am-text-xl">登录</p>
+      <form method="post" class="am-form login">
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+          <input type="text" class="am-form-field" placeholder="用户名">
+        </div>
+        <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+          <input type="password" class="am-form-field" placeholder="密码">
+        </div>
+        <br>
+        <label class="am-checkbox">
+          <input type="checkbox" value="" data-am-ucheck> 记住我（公用电脑请勿勾选）
+        </label>
+        <div class="am-cf" style="margin-top: 2rem;">
+          <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
+          <input type="button" name="" value="忘记密码 ^_^? " class="am-btn am-btn-secondary am-btn-sm am-fr">
+        </div>
+      </form>
+      <div class="am-text-center ocf-login-toggle"><i class="am-icon-fw am-icon-angle-down"></i> 我是新用户</div>
+    </div>
+
+    <div class="am-panel-bd" id="register-form" style="display:none;">
+      <div class="am-text-center ocf-login-toggle"><i class="am-icon-fw am-icon-angle-up"></i> 我是老用户</div>
+      <p class="am-text-xl">注册</p>
+      <form method="post" class="am-form register">
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+          <input type="text" class="am-form-field" placeholder="用户名">
+        </div>
+        <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+          <input type="password" class="am-form-field" placeholder="密码">
+        </div>
+        <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-envelope am-icon-fw"></i></span>
+          <input type="email" class="am-form-field" placeholder="邮箱">
+        </div>
+        <br>
+        <label class="am-checkbox">
+          <input type="checkbox" value="" data-am-ucheck> 我已阅读<a href="javascript:;">服务条款</a>
+        </label>
+        <div class="am-cf" style="margin-top: 2rem;">
+          <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
+          <input type="button" name="" value="忘记密码 ^_^? " class="am-btn am-btn-secondary am-btn-sm am-fr">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="am-hide-sm-only">
+  <br><br><br>
+</div>
+</div>
+
+<script>
+$(".ocf-login-toggle").on("click",function() {
+  $("#login-form").slideToggle(500);
+  $("#register-form").slideToggle(500);
+});
+</script>
