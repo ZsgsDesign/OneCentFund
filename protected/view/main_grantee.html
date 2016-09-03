@@ -1,0 +1,77 @@
+<div class="am-g am-container">
+    <{foreach $result as $r}>
+      <div class="am-panel am-panel-default am-cf grantee" style="padding:1em;">
+        <div class="am-u-sm-12 am-u-md-4 am-u-lg-3">
+          <img src="<{$r['img']}>" class="am-img-thumbnail"/>
+        </div>
+        <div class="am-u-sm-12 am-u-md-6 am-u-lg-7">
+          <h1><{$r['name']}></h1>
+          <div>
+            <span class="am-badge am-badge-secondary am-text-sm"><{$r['location']}></span>
+            <span><{$r['general']}></span>
+          </div>
+          <div class="am-hide-sm-only" style="margin-top:0.5rem;">
+            <div class="am-fl">
+              <div class="am-text-center am-text-xl"><{if $r['count']>=1000}><{round($r['count']/1000,2)}>K<{else}><{$r['count']}><{/if}></div>
+              <div class="am-text-center">参与人数</div>
+            </div>
+            <div class="am-fl" style="margin-left:1em;">
+              <div class="am-text-center am-text-xl"><{round($r['target']/1000,2)}>K</div>
+              <div class="am-text-center">目标积分</div>
+            </div>
+            <div class="am-fl" style="margin-left:1em;">
+              <div class="am-text-center am-text-xl"><{$r['rate']}>%</div>
+              <div class="am-text-center">完成度</div>
+            </div>
+          </div>
+          <div class="am-show-sm-only">
+            <div class="am-u-sm-4">
+              <div class="am-text-center am-text-xl"><{if $r['count']>=1000}><{round($r['count']/1000,2)}>K<{else}><{$r['count']}><{/if}></div>
+              <div class="am-text-center">参与人数</div>
+            </div>
+            <div class="am-u-sm-4">
+              <div class="am-text-center am-text-xl"><{round($r['target']/1000,2)}>K</div>
+              <div class="am-text-center">目标积分</div>
+            </div>
+            <div class="am-u-sm-4">
+              <div class="am-text-center am-text-xl"><{$r['rate']}>%</div>
+              <div class="am-text-center">完成度</div>
+            </div>
+            <div class="am-u-sm-12">&nbsp;</div>
+          </div>
+        </div>
+
+
+        <div class="am-u-sm-12 am-u-md-2 am-u-lg-2">
+          <button class="am-btn am-btn-primary am-btn-block" onclick="granteeToggle(<{$r['gid']}>)">查看详情</button>
+          <{if $r['rate']>=100}>
+          <button class="am-btn am-btn-success am-btn-block">已完成</button>
+          <{else}>
+          <button class="am-btn am-btn-warning am-btn-block" onclick="Donate(<{$r['gid']}>)">立即捐助</button>
+          <{/if}>
+        </div>
+
+
+        
+        <div class="am-u-sm-12 grantee-detail" id="grantee-<{$r['gid']}>" style="margin-top:2rem;">
+          <div class="am-article-bd">
+            <p class="am-article-lead">
+              捐助方：<{$r['sponsor']}>
+              <br>监督方：<{$r['supervisor']}>
+            </p>
+            <{htmlspecialchars_decode($r['story'])}>
+          </div>
+        </div>
+      </div>
+    <{/foreach}>
+
+
+</div>
+<script>
+$(document).ready(function() { 
+  $(".grantee-detail").hide();
+}); 
+function granteeToggle(gid) {
+  $("#grantee-" + gid).slideToggle(500);
+}
+</script>
