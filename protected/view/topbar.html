@@ -11,8 +11,8 @@
       <ul class="am-nav am-nav-pills am-topbar-nav">
         
 		
-		<li class="am-dropdown" data-am-dropdown="">
-        <a class="am-dropdown-toggle" data-am-dropdown-toggle="" href="javascript:;">
+		<!--<li class="am-dropdown" data-am-dropdown="">
+        <a id="index" class="am-dropdown-toggle" data-am-dropdown-toggle="" href="javascript:;">
           答题 
         </a>
         <ul class="am-dropdown-content">
@@ -21,8 +21,8 @@
           <li id="act"><a href="javascript:;"><i class="am-icon-gavel am-icon-fw"></i> 闯关模式</a></li>
           <li id="pk"><a href="javascript:;"><i class="am-icon-users am-icon-fw"></i> PK模式</a></li>
         </ul>
-      </li>
-	  
+    </li>-->
+	  <li id="index"><a href="/">答题</a></li>
 		<li id="base"><a href="/base">题库</a></li>
 		<li id="grantee"><a href="/grantee">捐助</a></li>
     <li id="rank"><a href="/rank">排行</a></li>
@@ -52,7 +52,7 @@
         </li>
 		</ul>
     <{else}>
-    <a class="am-btn am-btn-secondary am-topbar-btn am-btn-sm" href="/login" style="color:#fff;">登录</a>
+    <a class="am-btn am-btn-secondary am-topbar-btn am-btn-sm" href="/account/login" style="color:#fff;">注册/登录</a>
     <{/if}>
 	  </div>
     </div>
