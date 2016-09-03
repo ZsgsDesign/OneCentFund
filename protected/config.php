@@ -11,6 +11,7 @@ $config = array(
 		'user/<username>'		=> 'user/info',
 		'api/<a>'						=> 'api/<a>',
 		'ajax/<a>'					=> 'ajax/<a>',
+		'terms/<a>'				=> 'terms/<a>',
 		'<a>'          			=> 'main/<a>',
 		'/'               	=> 'main/index',
 	),
