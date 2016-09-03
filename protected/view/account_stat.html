@@ -1,0 +1,100 @@
+<div class="am-g am-container">
+	<div class="am-cf am-padding">
+	  <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">数据统计</strong> / <small>Statistics</small></div>
+	</div>
+
+	<hr/>
+	<div class="am-u-sm-12">
+		<div id="chart" style="width:100%; height:30rem;"></div>
+	</div>
+	
+	<div class="am-u-sm-12">
+	<br>
+	<p class="am-text-xl">总统计</p>
+		<table class="am-table am-table-striped am-table-hover">
+		  <thead>
+			<tr>
+			  <th>积分</th>
+			  <th>共答题</th>
+			  <th>正答</th>
+			  <th>正确率</th>
+			  <th>爱心值</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+			  <td><{$score}></td>
+			  <td><{$total}></td>
+			  <td><{$correct}></td>
+			  <td><{$rate}>%</td>
+			  <td><{$credit}></td>
+			</tr>
+		  </tbody>
+		</table>
+	</div>
+</div>
+
+<script src="https://static.1cf.co/js/echarts.min.js"></script>
+<script type="text/javascript">
+var myChart = echarts.init(document.getElementById('chart'));
+                
+var option = {
+    title : {
+        text: '答题情况统计',
+        subtext: '<{$userinfo['name']}>'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['回答正确','总回答数']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            saveAsImage: {}
+        }
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : [<{htmlspecialchars_decode($cnt_date)}>]
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: '{value} 题'
+            }
+        }
+    ],
+	dataZoom: [
+        {   
+            type: 'slider', 
+            start: 0,      // 左边在 0% 的位置。
+            end: 100         // 右边在 100% 的位置。
+        }
+    ],
+    series : [
+        {
+            name:'总回答数',
+            type:'line',
+			smooth:true,
+			areaStyle: {normal: {}},
+            data:[<{htmlspecialchars_decode($cnt_num)}>],
+        },
+        {
+            name:'回答正确',
+            type:'line',
+			smooth:true,
+			areaStyle: {normal: {}},
+            data:[<{htmlspecialchars_decode($cnt_correct)}>],
+            
+        }
+    ]
+};
+	myChart.setOption(option); 
+
+</script>

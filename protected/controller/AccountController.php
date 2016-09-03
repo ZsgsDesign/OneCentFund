@@ -36,6 +36,7 @@ class AccountController extends BaseController {
 						);
 						$json=$db->create($user);
 						$_SESSION['loginid']=$loginid;
+						sendactivatemail();
 						$this->jump("/");
 					}
 				}
@@ -86,6 +87,50 @@ class AccountController extends BaseController {
 				);
 			}
 		}
+	}
+
+	function actionStat() {
+		$this->title="数据统计";
+		$user_db=new Model("users");
+		$result=$user_db->find(
+			array(
+				"loginid=:loginid",
+				":loginid"=>$_SESSION['loginid']
+			)
+		);
+		$uid=$result['uid'];
+		$this->correct=$result['cor'];
+		$this->score=$result['score'];
+		$this->credit=$result['credit'];
+		$this->total=$result['ans'];
+		$this->rate=round($this->correct/$this->total*100,2);
+		
+		$log_db=new Model("log");
+		$result=$log_db->findAll(
+			array(
+				"uid=:uid and (type='ans' or type='donate')",
+				":uid"=>$uid
+			),null,"8",20
+		);
+		$this->log=$result;
+		$result=$log_db->query(
+			"SELECT date,count(result) 'total',sum(case when result > 9 then 1 else 0 end) 'correct' FROM `log` where uid=:uid group by date order by date ASC",
+			array(
+				":uid"=>$uid
+			)
+		);
+		$cnt_date="";
+		$cnt_num="";
+		$cnt_correct="";
+		foreach ($result as $row) {
+			$cnt_date.="'".$row['date']."',";
+			$cnt_num.=$row['total'].",";
+			$cnt_correct.=$row['correct'].",";
+		}
+		$this->cnt_date = rtrim($cnt_date,','); 
+		$this->cnt_num = rtrim($cnt_num,','); 
+		$this->cnt_correct = rtrim($cnt_correct,','); 
+
 	}
 	
 }
