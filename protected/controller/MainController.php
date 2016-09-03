@@ -4,6 +4,7 @@ class MainController extends BaseController {
 	function actionIndex(){ //首页
 		$this->url="index"; //非常重要 用于导航栏
 		$this->title="快速模式"; //标题
+		$_SESSION['reward']=0;
 	}
 	
 	function actionAbout() {
@@ -42,6 +43,22 @@ class MainController extends BaseController {
 		for ($i=1;$i<count($result);$i++) {
 			if ($result[$i]['credit']==$result[$i-1]['credit']) $result[$i]['rank']=$result[$i-1]['rank'];
 			else $result[$i]['rank']=$i;
+		}
+		//dump($result);
+		$this->result=$result;
+	}
+
+	function actionGrantee() {
+		$this->url="grantee";
+		$this->title="捐助";
+		$db=new Model("grantee");
+		$result=$db->findAll(null,"gid asc");
+		$gb=new Model("log");
+		for ($i=0;$i<count($result);$i++) {
+			$result[$i]['rate']=round($result[$i]['current']/$result[$i]['target']*100,2);
+			$count=$gb->query("select count(distinct(ip)) as count from log where gid=:gid",
+												array(":gid"=>$result[$i]['gid']));
+			$result[$i]['count'] = $count[0]['count'];
 		}
 		//dump($result);
 		$this->result=$result;
