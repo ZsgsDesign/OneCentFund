@@ -107,7 +107,7 @@ legend>h1, legend>h2, legend>h3, legend>h4 {margin-bottom:0;}
 
 /*首页背景*/
 .ocf-cover-img {
-	background: url(/i/img/bing.png) top center no-repeat fixed;
+	/*background: url(/i/img/bing.png) top center no-repeat fixed;*/
 	background-size: cover;
 	height:100%;
 	color:#fff;
