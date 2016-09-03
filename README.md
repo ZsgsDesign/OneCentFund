@@ -197,3 +197,19 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |rate|项目完成度|int|
 |score|用户积分余额|int|
 |credit|用户爱心值余额|int|
+
+##SendActivateMail 发送验证邮件
+###传入参数
+|参数名|描述|类型|
+|---|---|---|
+|loginid|40位的sha1串|string|
+###传出参数
+|参数名|描述|类型|
+|---|---|---|
+|result|发送结果(0,1)|int|
+|error|错误说明(仅在错误时)|string|
+
+错误信息：
+invalid loginid - loginid无效
+email verified - 邮箱已验证过
+

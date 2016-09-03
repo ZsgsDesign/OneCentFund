@@ -454,5 +454,8 @@ class ApiController extends BaseController {
 		}
 	}
 
+	function actionSendactivatemail() {
+		sendactivatemail();
+	}
 }
 
