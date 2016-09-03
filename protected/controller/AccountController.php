@@ -61,5 +61,36 @@ class AccountController extends BaseController {
 		session_destroy();
 		$this->jump("/");
 	}
+
+	function actionActivate() {
+		if (arg("id") && arg("act")) {
+			$uid=arg("id");
+			$act=arg("act");
+			$db=new Model("users");
+			$result=$db->find(
+				array(
+					"uid=:uid",
+					":uid"=>$uid
+				)
+			);
+			$email=$result['email'];
+			if(md5(md5($email))==$act){
+				$result=$db->update(
+					array(
+						"uid=:uid",
+						":uid"=>uid
+					),
+					array(
+						"emailok"=>1
+					)
+				);
+				echo "<div class=\"login\" style=\"text-align:center;\">";
+				echo "<h1>恭喜！您的邮箱已经被激活！</h1>";
+				if (@$_SESSION['loginid']) echo "<a href=\"/\">去答题</a><br>";
+				else echo "<a href=\"/account/login\">去登录</a><br>";
+				echo "</div>";
+			}
+		}
+	}
 	
 }
