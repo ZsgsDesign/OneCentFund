@@ -84,11 +84,6 @@ class AccountController extends BaseController {
 						"emailok"=>1
 					)
 				);
-				echo "<div class=\"login\" style=\"text-align:center;\">";
-				echo "<h1>恭喜！您的邮箱已经被激活！</h1>";
-				if (@$_SESSION['loginid']) echo "<a href=\"/\">去答题</a><br>";
-				else echo "<a href=\"/account/login\">去登录</a><br>";
-				echo "</div>";
 			}
 		}
 	}
