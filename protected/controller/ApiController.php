@@ -253,6 +253,10 @@ class ApiController extends BaseController {
 			$result=$db->find(array("gid=:gid",
 															":gid"=>$gid));
 			$result['rate']=round($result['current']/$result['target']*100,2);
+			$gb=new Model("log");
+			$count=$gb->query("select count(distinct(ip)) as count from log where gid=:gid",
+												array(":gid"=>$gid));
+			$result['count'] = $count[0]['count'];
 			echo json_encode($result);
 		}
 	}
