@@ -65,7 +65,15 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |info|username/email: 用户名/邮箱被占用(仅result=0时)|string|
 |uid|新用户uid(result=1时)|int|
 
-##Checkin(未完成) 签到
+##Checkin 签到
+###传入参数
+无
+###传出参数
+|参数名|描述|类型|
+|---|---|---|
+|result|积分变动|int|
+|reward|连续签到天数|int|
+
 
 ##Getranklist 获取排行榜
 ###传入参数
@@ -175,3 +183,17 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |---|---|---|
 |result|状态(0,1)|int|
 |url|头像地址|string|
+
+##Donate 捐助积分
+###传入参数
+|参数名|描述|类型|
+|---|---|---|
+|gid|项目id|int|
+|score|捐助积分(10的整数倍)|int|
+###传出参数
+|参数名|描述|类型|
+|---|---|---|
+|current|项目当前积分|int|
+|rate|项目完成度|int|
+|score|用户积分余额|int|
+|credit|用户爱心值余额|int|
