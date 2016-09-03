@@ -36,18 +36,18 @@
 	  	<ul class="am-nav am-nav-pills am-topbar-nav">
 		<li class="am-dropdown" data-am-dropdown="">
           <a class="am-dropdown-toggle" data-am-dropdown-toggle="" href="javascript:;">
-            <img id="avatar" src="/i/img/avatar/zyj.jpg" alt="" class="am-img-thumbnail am-circle height-set"> 下午好，张佑杰！ <span class="am-icon-caret-down"></span>
+            <img id="avatar" src="https://static.1cf.co/img/avatar/<{$userinfo['avatar']}>" alt="" class="am-img-thumbnail am-circle height-set"> <{$greeting}>，
+            <{if $userinfo['real_name']}><{$userinfo['real_name']}><{else}><{$userinfo['name']}><{/if}>！ <span class="am-icon-caret-down"></span>
           </a>
           <ul class="am-dropdown-content">
             <li class="am-dropdown-header"> 用户菜单</li>
-            <li id="account"><a href="/account"><i class="am-icon-dashboard am-icon-fw"></i> 用户中心</a></li>
-            <li id="profile"><a href="/profile"><i class="am-icon-info-circle am-icon-fw"></i> 我的资料</a></li>
-            <li id="notifications"><a href="/notifications"><i class="am-icon-inbox am-icon-fw"></i> 通知中心</a></li>
-            <li id="stat"><a href="/stat"><i class="am-icon-bar-chart am-icon-fw"></i> 数据统计</a></li>
-            <li id="security"><a href="/security"><i class="am-icon-shield am-icon-fw"></i> 账户安全</a></li>
-            <li id="settings"><a href="/settings"><i class="am-icon-gears am-icon-fw"></i> 高级设置</a></li>
+            <li id="account"><a href="/account/index"><i class="am-icon-dashboard am-icon-fw"></i> 用户中心</a></li>
+            <li id="profile"><a href="/account/profile"><i class="am-icon-info-circle am-icon-fw"></i> 我的资料</a></li>
+            <li id="stat"><a href="/account/stat"><i class="am-icon-bar-chart am-icon-fw"></i> 数据统计</a></li>
+            <li id="security"><a href="/account/security"><i class="am-icon-shield am-icon-fw"></i> 账户安全</a></li>
+            <li id="settings"><a href="/account/settings"><i class="am-icon-gears am-icon-fw"></i> 高级设置</a></li>
             <li class="am-nav-divider"></li>
-            <li id="logout"><a href="/logout" style="color: #dd514c; margin: 0.9em!important;"><i class="am-icon-power-off am-icon-fw"></i> 退出登录</a></li>
+            <li id="logout"><a href="/account/logout" style="color: #dd514c; margin: 0.9em!important;"><i class="am-icon-power-off am-icon-fw"></i> 退出登录</a></li>
           </ul>
         </li>
 		</ul>

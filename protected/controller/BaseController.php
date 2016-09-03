@@ -7,6 +7,14 @@ class BaseController extends Controller{
 		require(APP_DIR.'/protected/include/functions.php');
 		$this->islogin=is_login();
 		$this->url="";
+		if ($this->islogin) $this->userinfo=getuserinfo(@$_SESSION['loginid']);
+		$current_hour=date("H");
+    if ($current_hour<6) $this->greeting="凌晨了";
+    elseif ($current_hour<11) $this->greeting="早上好";
+    else if ($current_hour<13) $this->greeting="中午好";
+    else if ($current_hour<18) $this->greeting="下午好";
+    else if ($current_hour<22) $this->greeting="晚上好";
+    else $this->greeting="深夜了";
 	}
 
     function tips($msg, $url){
@@ -21,9 +29,10 @@ class BaseController extends Controller{
 	
 	public static function err404($controller_name, $action_name){
 		header("HTTP/1.0 404 Not Found");
-		$controlObj = new BaseController;
+		echo $controller_name."<br>".$action_name;
+		//$controlObj = new BaseController;
 		//$controlObj->display("404/index.html");
-		$controlObj->jump("/");
+		//$controlObj->jump("/");
 		exit;
 	}
 } 

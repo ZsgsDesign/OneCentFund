@@ -3,8 +3,29 @@ class MainController extends BaseController {
 	
 	function actionIndex(){ //首页
 		$this->url="index"; //非常重要 用于导航栏
-		$this->title="快速模式"; //标题
+		$this->title=""; //标题
 		$_SESSION['reward']=0;
+		$str = file_get_contents('http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN');
+		$array = json_decode($str);
+		//dump($array);exit;
+		$this->imgurl=$array->{"images"}[0]->{"url"};
+		$copyright=$array->{"images"}[0]->{"copyright"};
+		$imginfo=explode(" (",$copyright);
+		//dump($imginfo);exit;
+		$this->imgcopyright=trim(rtrim($imginfo[1],")"));
+		$imgname=explode("，",$imginfo[0]);
+		$this->imgname=$imgname[0];
+		$this->imglocation=$imgname[1];
+		$this->imgcopyrightlink= $array->{"images"}[0]->{"copyrightlink"};
+		$db=new Model("grantee");
+		$result=$db->find(array("gid=:gid",
+														":gid"=>2));
+		$result['rate']=round($result['current']/$result['target']*100,2);
+		$gb=new Model("log");
+		$count=$gb->query("select count(distinct(ip)) as count from log where gid=:gid",
+											array(":gid"=>2));
+		$result['count'] = $count[0]['count'];
+    $this->grantee=$result;
 	}
 	
 	function actionAbout() {
@@ -62,5 +83,13 @@ class MainController extends BaseController {
 		}
 		//dump($result);
 		$this->result=$result;
+		$user_db=new Model("users");
+		$result=$user_db->find(
+			array(
+				"loginid=:loginid",
+				":loginid"=>@$_SESSION['loginid']
+			)
+		);
+		$this->userscore=$result['score'];
 	}
 }

@@ -1,8 +1,10 @@
 <style>
 body{
-  background: url("/i/img/bing.png") 0 / cover fixed;
+  background: url(<{$imgurl}>) 0 / cover fixed;
 }
-
+.ocf-cover-img {
+	background: url(<{$imgurl}>) 0 / cover fixed;
+}
 .ocf-panel-question {
 	background:rgba(255,255,255,0.8);
 	padding:2.5rem;
@@ -64,10 +66,19 @@ body{
 				<div class="am-panel am-panel-default am-radius ocf-panel-options option4" ans="">
 				</div>
 				<div class="ocf-hint-left">
+					<{if $islogin}>
 					答对本题，您将得到<span class="combo">10</span>积分
+					<{else}>
+					答对本题，将捐助推荐项目<span class="combo">10</span>积分
+					<{/if}>
 				</div>
+				<{if !$islogin}>
 				<div class="ocf-hint-right">
-					当前积分：<span class="current-credit">870</span> <a href="/grantee">去捐助</a>
+					<a href="/account/login?register=1">注册用户以累计积分</a>
+				</div>
+				<{/if}>
+				<div class="ocf-hint-right" style="display:none;">
+					当前积分：<span class="current-credit">0</span> <a href="/grantee">去捐助</a>
 				</div>
 			</div>
 		</div>
@@ -83,15 +94,16 @@ body{
 						<center><div class="grantee-image-container"><img src="/i/img/grantee/1.jpg" class="grantee-image am-img-responsive" alt=""/></div></center>
 					</div>
 					<div align="center" class="am-u-sm-12 am-u-sm-centered am-text-lg grantee">
-						<p>仪征刘集中心小学</p>
-						<p class="am-text-sm">由<a href="http://www.mengxpx.com/" target="_blank" class="ocf-logo-mxpx">&nbsp;</a>捐助</p>
+						<p><{$grantee['name']}></p>
+						<p class="am-text-sm">由<a href="<{$grantee['sponsor_link']}>" target="_blank"><{$grantee['sponsor']}></a>捐助</p>
+						<p class="am-text-sm">由<a href="<{$grantee['supervisor_link']}>" target="_blank"><{$grantee['supervisor']}></a>监督</p>
 					</div>
 					<div class="am-u-sm-12">
 						<div class="am-progress am-progress-striped ocf-progress am-active">
 							<div class="am-progress-bar am-progress-bar-secondary" style="width: 0%;"></div>
 						</div>
-						<div class="am-text-sm am-u-sm-6 ocf-progress-text" style="text-align:left;"><span class="progress">0</span>%已达成</div>
-						<div class="am-text-sm am-u-sm-6 ocf-progress-text" style="text-align:right;">目标金额：5000RMB</div>
+						<div class="am-text-sm am-u-sm-6 ocf-progress-text" style="text-align:left;"><span class="progress"><{$grantee['rate']}></span>%已达成</div>
+						<div class="am-text-sm am-u-sm-6 ocf-progress-text" style="text-align:right;">目标积分：<{round($grantee['target']/1000,2)}>K</div>
 					</div>
 					<br><br>
 					<div class="am-u-sm-12">
@@ -112,15 +124,11 @@ body{
 <div class="am-popup" id="popup-1">
 	<div class="am-popup-inner">
 		<div class="am-popup-hd">
-			<h4 class="am-popup-title">仪征刘集中心小学</h4>
+			<h4 class="am-popup-title"><{$grantee['name']}></h4>
 			<span data-am-modal-close class="am-close">&times;</span>
 		</div>
 		<div class="am-popup-bd">
-			<p><center><img src="/i/img/grantee/1.jpg" class="am-radius am-img-responsive" alt=""/></center></p>
-			<h2>简介</h2>
-			<p>
-				有这样一个学校，“尚德 笃学”的校训，“健康 快乐 向上”的校风，“勤学 会学 乐学”的学风，“敬业 精业 创业”的教风。里面有着一群充满活力的孩子，他们求知若渴，像棵棵幼苗需要雨露的滋润，快快长大。他们没有优越的家庭条件，无法拥有舒适的学习环境，只能自己默默地承担这个年纪不该承受的苦。他们需要您的帮助，举手之劳。我们一起 汇聚微弱创造更多。
-			</p>
+			<{htmlspecialchars_decode($grantee['story'])}>
 		</div>
 	</div>
 </div>
@@ -136,11 +144,11 @@ body{
 		<div class="am-u-sm-12 ocf-cover-img">
 			<a href="javascript: void(0)" class="am-close" style="float:right; opacity:0.8; color:#fff; font-size:1.5em;" data-am-modal-close>&times;</a>
 			<span class="ocf-cover-name">
-				<a href="javascript:;" class="am-text-xxl">特雷西塔海滩</a><br>
-				<text class="am-text-lg"><i class="am-icon-location-arrow am-icon-fw"></i> 圣克鲁斯-德特内里费，加那利群岛，西班牙</text>
+				<a href="<{$imgcopyrightlink}>" target="_blank" class="am-text-xxl"><{$imgname}></a><br>
+				<text class="am-text-lg"><i class="am-icon-location-arrow am-icon-fw"></i> <{$imglocation}></text>
 			</span>
 			<span class="ocf-cover-copyright">
-				&copy; Cornelia Doerr/age fotostock<br><i class="am-icon-windows am-icon-fw"></i> 由Bing&trade;今日美图提供
+				<{$imgcopyright}><br><i class="am-icon-windows am-icon-fw"></i> 由Bing&trade;今日美图提供
 			</span>
 			
 		</div>
@@ -166,9 +174,10 @@ body{
 <script>
 var step=10;
 var flag=1;
+var rate=<{$grantee['rate']}>;
 $(document).ready(function(){
-	//$('.am-progress-bar').css("width",rate.toFixed(2) + "%");
-	//$('.progress').html(rate.toFixed(2));
+	$('.am-progress-bar').css("width",rate.toFixed(2) + "%");
+	$('.progress').html(rate.toFixed(2));
 	getquestion();
 	$('.ocf-panel-options').click(function(){
 		if (flag==0) {
@@ -178,14 +187,23 @@ $(document).ready(function(){
 			$.post("/ajax/submit",{ans:answer},function(r){
 				var result=eval("("+r+")");
 				if (result['result']>0) {
-					$(ans_button).addClass("ocf-question-correct").html("连续答对" + result['reward'] + "题！积分+" + result['result']);
+					<{if $islogin}>
+						$(ans_button).addClass("ocf-question-correct").html("连续答对" + result['reward'] + "题！积分+" + result['result']);
+					<{else}>
+						$(ans_button).addClass("ocf-question-correct").html("连续答对" + result['reward'] + "题！向推荐项目捐助了" + result['result'] + "积分！");
+					<{/if}>
 				} else {
 					$(ans_button).addClass("ocf-question-incorrect").html("回答错误！正确答案是：" + result['answer']);
 				}
 				step=Math.floor(result['reward']/5)*5+10;
+				<{if $islogin}>
+					$('.current-credit').html(result['score']);
+					$('.ocf-hint-right').show();
+				<{/if}>
+
 			});
 			if (step>30) step=30;
-			//$('.current-credit').html(credit);
+			//
 			setTimeout("getquestion()",3000); 
 		}
     });

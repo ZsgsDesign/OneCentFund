@@ -64,6 +64,17 @@ function validate_loginid($loginid,$mode='browser') {
 	}
 }
 
+function getuserinfo($loginid) {
+	$user_db=new Model("users");
+  $result=$user_db->find(
+		array(
+			"loginid = :loginid",
+			":loginid" => $loginid
+		)
+	);
+	return $result;
+}
+
 function get_thumbnail($data_string) {  
   $ch = curl_init();  
 	curl_setopt($ch, CURLOPT_POST, 1);  
@@ -83,4 +94,4 @@ function get_thumbnail($data_string) {
 	  
 	$return_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);  
 	return array($return_code, $return_content);  
-		} 
+}

@@ -188,10 +188,10 @@ class ApiController extends BaseController {
 		$db=new Model("checkin");
 		$loginid=$_SESSION['loginid'];
 		$reward=1;
-		$result=$db->find(array("date = date=:date and loginid=:loginid",
+		$result=$db->find(array("date=:date and loginid=:loginid",
 														":date"=>$date,
 														":loginid" => $loginid));
-		if (!empty($result)) {
+		if ($result) {
 			$output=array(
 				'status'=>0,
 				'info'=>'already checked in'
@@ -211,7 +211,18 @@ class ApiController extends BaseController {
 		);
 		$result=$db->create($checkin);
 		$user_db=new Model("users");
-		/////还没写加积分的
+		//1-5天：10积分 6-10天：15积分 11-15天：20积分 16-20天：25积分……30积分封顶
+		$rewardscore=floor($reward/5)*5+10;
+		if ($rewardscore>30) $rewardscore=30;
+		$user_db->execute("update users set score=score+:score where loginid=:loginid",
+											array(":loginid" => $_SESSION['loginid'],
+														":score"=>$rewardscore));
+		echo json_encode(
+			array(
+				"result"=>$rewardscore,
+				"reward"=>$reward
+			)
+		);
 	}
 
 	function actionGetranklist() {
@@ -370,6 +381,78 @@ class ApiController extends BaseController {
 		}
 	}
 
+	function actionDonate() {
+		if (arg("gid") && arg("score")) {
+			$gid=arg("gid");
+			$score=arg("score");
+			$score=floor($score/10)*10;
+			$user_db=new Model("users");
+			$grantee_db=new Model("grantee");
+			$log_db=new Model("log");
+			$result=$user_db->find(
+				array(
+					"loginid=:loginid",
+					":loginid"=>@$_SESSION['loginid']
+				)
+			);
+			if ($score>$result['score']) exit;
+			$credit=floor($score/10);
+			$user_db->execute(
+				"update users set score=score-:score , credit=credit+:credit where loginid=:loginid",
+				array(
+					":score"=>$score,
+					":credit"=>$credit,
+					":loginid"=>@$_SESSION['loginid']
+				)
+			);
+			$grantee_db->execute(
+				"update grantee set current=current+:score where gid=:gid",
+				array(
+					":score"=>$score,
+					":gid"=>$gid
+				)
+			);
+			$date=date("Y-m-d");
+			$time=date("Y-m-d H:i:s");
+			$ip=getIP();
+			$log_db->create(
+				array(
+					"date" => $date,
+					"time" => $time,
+					"type" => "donate",
+					"uid" => @$_SESSION['uid'],
+					"tid" => 0,
+					"gid" => $gid,
+					"result" => $score,
+					"ip" => $ip
+				)
+			);
+			$result=$user_db->find(
+				array(
+					"loginid=:loginid",
+					":loginid"=>@$_SESSION['loginid']
+				)
+			);
+			$score=$result['score'];
+			$credit=$result['credit'];
+			$result=$grantee_db->find(
+				array(
+					"gid=:gid",
+					":gid"=>$gid
+				)
+			);
+			$current=$result['current'];
+			$rate=round($result['current']/$result['target'],2);
+			echo json_encode(
+				array(
+					"current"=>$current,
+					"rate"=>$rate,
+					"score"=>$score,
+					"credit"=>$credit
+				)
+			);
+		}
+	}
 
 }
 

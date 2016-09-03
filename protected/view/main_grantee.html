@@ -47,13 +47,17 @@
           <{if $r['rate']>=100}>
           <button class="am-btn am-btn-success am-btn-block">已完成</button>
           <{else}>
-          <button class="am-btn am-btn-warning am-btn-block" onclick="Donate(<{$r['gid']}>)">立即捐助</button>
+            <{if $islogin}>
+            <button class="am-btn am-btn-warning am-btn-block" onclick="Donate(<{$r['gid']}>)">立即捐助</button>
+            <{else}>
+            <button class="am-btn am-btn-warning am-btn-block">登录以捐助</button>
+            <{/if}>
           <{/if}>
         </div>
 
 
         
-        <div class="am-u-sm-12 grantee-detail" id="grantee-<{$r['gid']}>" style="margin-top:2rem;">
+        <div class="am-u-sm-12 grantee-detail" id="grantee-<{$r['gid']}>" name="<{$r['name']}>" style="margin-top:2rem;">
           <div class="am-article-bd">
             <p class="am-article-lead">
               捐助方：<{$r['sponsor']}>
@@ -67,11 +71,55 @@
 
 
 </div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="donate">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">捐助积分到项目 <text class="grantee-name"></text></div>
+    <div class="am-modal-bd">
+      您现在共有<text class="current-score"><{$userscore}></text>积分<br>
+      请输入您想捐助的积分数目
+      <input type="text" placeholder="请输入10的倍数" class="am-modal-prompt-input">
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>捐助</span>
+    </div>
+  </div>
+</div>
+<div class="am-modal am-modal-alert" tabindex="-1" id="alert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">捐助成功</div>
+    <div class="am-modal-bd">
+      成功向<text class="grantee-name"></text>捐助<text class="donate-score"></text>积分！项目完成度达到<text class="grantee-rate"></text>%！<br>
+      剩余积分<text class="current-score"><{$userscore}></text> 爱心值<text class="current-credit"></text>
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn">确定</span>
+    </div>
+  </div>
+</div>
 <script>
 $(document).ready(function() { 
   $(".grantee-detail").hide();
 }); 
 function granteeToggle(gid) {
   $("#grantee-" + gid).slideToggle(500);
+}
+function Donate(gid) {
+  $(".grantee-name").html($("#grantee-"+gid).attr("name"));
+  $('#donate').modal({
+    relatedTarget: this,
+    onConfirm: function(e) {
+      if (parseInt(e.data)) {
+        $.post("/ajax/donate",{'gid':gid,'score':parseInt(e.data)},function(r){
+          var result=eval("("+r+")");
+          $(".donate-score").html(e.data);
+          $(".grantee-rate").html(result['rate']);
+          $(".current-score").html(result['score']);
+          $(".current-credit").html(result['credit']);
+          $("#alert").modal();
+        });
+      }
+    }
+  });
 }
 </script>

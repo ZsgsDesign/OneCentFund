@@ -64,6 +64,7 @@ class AjaxController extends BaseController {
 						"type" => "ans",
 						"uid" => @$_SESSION['uid'],
 						"tid" => $problem[0],
+						"gid" => 2,
 						"result" => 0,
 						"ip" => $ip
 					)
@@ -84,6 +85,10 @@ class AjaxController extends BaseController {
 					$user_db->execute("update users set ans=ans+1, cor=cor+1, score=score+:score where loginid=:loginid",
 											array(":loginid" => $_SESSION['loginid'],
 														":score"=>$rewardscore));
+				} else {
+					$grantee_db=new Model("grantee");
+					$grantee_db->execute("update grantee set current=current+10 where gid=:gid",
+											array(":gid" => 2));
 				}
 				$log_db->create(
 					array(
@@ -92,6 +97,7 @@ class AjaxController extends BaseController {
 						"type" => "ans",
 						"uid" => @$_SESSION['uid'],
 						"tid" => $problem[0],
+						"gid" => 2,
 						"result" => $rewardscore,
 						"ip" => $ip
 					)
@@ -103,7 +109,89 @@ class AjaxController extends BaseController {
 					'reward'=>$_SESSION['reward']
 				);
 			}
+			if ($this->islogin) {
+				$score=$user_db->find(
+					array(
+						"loginid=:loginid",
+						":loginid"=>@$_SESSION['loginid']
+					)
+				);
+				$output['score']=$score['score'];
+				}
 			echo json_encode($output);
+		}
+	}
+
+	function actionDonate() {
+		if (arg("gid") && arg("score")) {
+			$gid=arg("gid");
+			$score=arg("score");
+			$score=floor($score/10)*10;
+			$user_db=new Model("users");
+			$grantee_db=new Model("grantee");
+			$log_db=new Model("log");
+			$result=$user_db->find(
+				array(
+					"loginid=:loginid",
+					":loginid"=>@$_SESSION['loginid']
+				)
+			);
+			if ($score>$result['score']) exit;
+			$credit=floor($score/10);
+			$user_db->execute(
+				"update users set score=score-:score , credit=credit+:credit where loginid=:loginid",
+				array(
+					":score"=>$score,
+					":credit"=>$credit,
+					":loginid"=>@$_SESSION['loginid']
+				)
+			);
+			$grantee_db->execute(
+				"update grantee set current=current+:score where gid=:gid",
+				array(
+					":score"=>$score,
+					":gid"=>$gid
+				)
+			);
+			$date=date("Y-m-d");
+			$time=date("Y-m-d H:i:s");
+			$ip=getIP();
+			$log_db->create(
+				array(
+					"date" => $date,
+					"time" => $time,
+					"type" => "donate",
+					"uid" => @$_SESSION['uid'],
+					"tid" => 0,
+					"gid" => $gid,
+					"result" => $score,
+					"ip" => $ip
+				)
+			);
+			$result=$user_db->find(
+				array(
+					"loginid=:loginid",
+					":loginid"=>@$_SESSION['loginid']
+				)
+			);
+			$score=$result['score'];
+			$credit=$result['credit'];
+			$result=$grantee_db->find(
+				array(
+					"gid=:gid",
+					":gid"=>$gid
+				)
+			);
+			$current=$result['current'];
+			$rate=round($result['current']/$result['target'],2);
+			echo json_encode(
+				array(
+					"current"=>$current,
+					"rate"=>$rate,
+					"score"=>$score,
+					"credit"=>$credit
+				)
+			);
 		}
 	}
 }

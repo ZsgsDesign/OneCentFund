@@ -28,25 +28,28 @@ body {
   </div>
   
   <div class="login-form am-u-md-5 am-u-sm-12 am-panel am-panel-default">
+    
     <div class="am-panel-bd" id="login-form">
+    <{if !@$_GET['register']}>
       <p class="am-text-xl">登录</p>
-      <form method="post" class="am-form login">
+      <form method="post" action="/account/login" class="am-form login">
         <div class="am-input-group">
-          <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-          <input type="text" class="am-form-field" placeholder="用户名">
+          <span class="am-input-group-label"><i class="am-icon-envelope am-icon-fw"></i></span>
+          <input type="email" name="email" class="am-form-field" placeholder="邮箱" required>
         </div>
+        <span><{$msg1}></span>
         <br>
         <div class="am-input-group">
           <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
-          <input type="password" class="am-form-field" placeholder="密码">
+          <input type="password" name="pass" class="am-form-field" placeholder="密码" required>
         </div>
-        <br>
+        <!--<br>
         <label class="am-checkbox">
           <input type="checkbox" value="" data-am-ucheck> 记住我（公用电脑请勿勾选）
-        </label>
+        </label>-->
         <div class="am-cf" style="margin-top: 2rem;">
           <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
-          <input type="button" name="" value="忘记密码 ^_^? " class="am-btn am-btn-secondary am-btn-sm am-fr">
+          <!--<input type="button" name="" value="忘记密码 ^_^? " class="am-btn am-btn-secondary am-btn-sm am-fr">-->
         </div>
       </form>
       <div class="am-text-center ocf-login-toggle"><i class="am-icon-fw am-icon-angle-down"></i> 我是新用户</div>
@@ -54,29 +57,31 @@ body {
 
     <div class="am-panel-bd" id="register-form" style="display:none;">
       <div class="am-text-center ocf-login-toggle"><i class="am-icon-fw am-icon-angle-up"></i> 我是老用户</div>
+    <{/if}>
       <p class="am-text-xl">注册</p>
-      <form method="post" class="am-form register">
+      <form method="post" action="/account/login?register=1" class="am-form register">
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-envelope am-icon-fw"></i></span>
+          <input type="email" name="email" class="am-form-field" value="<{arg('email')}>" placeholder="邮箱" minlength="6" maxlength="20" required>
+        </div>
+        <span><{$msg1}></span>
+        <br>
         <div class="am-input-group">
           <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
-          <input type="text" class="am-form-field" placeholder="用户名">
+          <input type="text" name="name" class="am-form-field" value="<{arg('name')}>" placeholder="用户名" minlength="3" maxlength="15" required>
         </div>
+        <span><{$msg2}></span>
         <br>
         <div class="am-input-group">
           <span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
-          <input type="password" class="am-form-field" placeholder="密码">
-        </div>
-        <br>
-        <div class="am-input-group">
-          <span class="am-input-group-label"><i class="am-icon-envelope am-icon-fw"></i></span>
-          <input type="email" class="am-form-field" placeholder="邮箱">
+          <input type="password" name="pass" class="am-form-field" value="<{arg('pass')}>" placeholder="密码" minlength="6" maxlength="20" required>
         </div>
         <br>
         <label class="am-checkbox">
-          <input type="checkbox" value="" data-am-ucheck> 我已阅读<a href="javascript:;">服务条款</a>
+          <input type="checkbox" value="" data-am-ucheck required> 我已阅读并同意<a href="/terms/privacy" target="_blank">隐私条款</a>
         </label>
         <div class="am-cf" style="margin-top: 2rem;">
-          <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
-          <input type="button" name="" value="忘记密码 ^_^? " class="am-btn am-btn-secondary am-btn-sm am-fr">
+          <input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
         </div>
       </form>
     </div>
