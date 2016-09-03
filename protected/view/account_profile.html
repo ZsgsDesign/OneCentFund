@@ -1,0 +1,108 @@
+<div class="am-g am-container">
+  <div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">我的资料</strong> / <small>Personal information</small></div>
+  </div>
+  <hr/>
+  <div class="am-u-sm-12 am-u-md-8">
+    <form action="profile.php" method="POST" class="am-form am-form-horizontal">
+      <div class="am-form-group">
+        <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
+        <div class="am-u-sm-9">
+          <input type="text" name="real_name" id="user-name" value="<{$userinfo['real_name']}>" placeholder="姓名 / Name">
+          <small>输入你的名字，让我们记住你。</small>
+        </div>
+      </div>
+
+      <div class="am-form-group">
+        <label for="user-sex" class="am-u-sm-3 am-form-label">性别 / Sex</label>
+        <div class="am-u-sm-9 sex">
+          <label class="am-radio-inline">
+					<input type="radio" name="sex" id="sex" value="1" data-am-ucheck <{if $userinfo['sex']==1}>checked<{/if}>> 男
+				</label>
+          <label class="am-radio-inline">
+					<input type="radio" name="sex" id="sex" value="2" data-am-ucheck <{if $userinfo['sex']==2}>checked<{/if}>> 女
+				</label>
+          <label class="am-radio-inline">
+					<input type="radio" name="sex" id="sex" value="0" data-am-ucheck <{if $userinfo['sex']==0}>checked<{/if}>> 未知
+				</label>
+        </div>
+      </div>
+
+      <div class="am-form-group">
+        <label for="user-email" class="am-u-sm-3 am-form-label">电子邮件 / Email</label>
+        <div class="am-u-sm-9">
+          <input type="email" id="user-email" value="<{$userinfo['email']}>" placeholder="输入你的电子邮件 / Email" disabled>
+          <small>注册邮箱不可更改</small>
+        </div>
+      </div>
+
+      <div class="am-form-group">
+        <label for="user-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
+        <div class="am-u-sm-9">
+          <input type="tel" name="tel" id="user-phone" value="<{$userinfo['tel']}>" placeholder="输入你的电话号码 / Telephone">
+        </div>
+      </div>
+
+      <div class="am-form-group">
+        <label for="user-QQ" class="am-u-sm-3 am-form-label">QQ</label>
+        <div class="am-u-sm-9">
+          <input type="text" name="qq" id="user-QQ" value="<{$userinfo['qq']}>" placeholder="输入你的QQ号码">
+        </div>
+      </div>
+
+
+      <div class="am-form-group">
+        <label for="user-weibo" class="am-u-sm-3 am-form-label">微博 / Twitter</label>
+        <div class="am-u-sm-9">
+          <div class="am-form-group am-form-icon">
+            <i class="am-icon-at"></i>
+            <input class="am-form-field" type="text" name="weibo" id="user-weibo" value="<{$userinfo['weibo']}>" placeholder="输入你的微博 / Twitter"
+             >
+          </div>
+        </div>
+      </div>
+
+      <div class="am-form-group">
+        <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
+        <div class="am-u-sm-9">
+          <textarea class="text" name="intro" rows="5" id="user-intro" placeholder="输入个人简介"><{$userinfo['intro']}></textarea>
+          <small>250字以内写出你这个人...</small>
+        </div>
+      </div>
+
+      <div class="am-form-group">
+        <div class="am-u-sm-9 am-u-sm-push-3">
+          <button type="submit" class="am-btn am-btn-primary">保存修改</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <div class="am-u-sm-12 am-u-md-4 am-hide-sm-only">
+
+    <div class="am-panel am-panel-default">
+      <div class="am-panel-bd">
+        <div class="am-g">
+          <iframe src="/account/uploadavatar" height="183px" width="100%" frameborder="no" border="0" marginwidth="0" marginheight="10"
+            scrolling="no" allowtransparency="yes"></iframe>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!--<div class="am-panel am-panel-default">
+      <div class="am-panel-bd">
+        <div class="user-info">
+          <p>安全信息</p>
+
+          <div class="am-progress am-progress-sm">
+            <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
+          </div>
+          <p class="user-info-order">安全状况：正常 安全指数：<strong>80</strong></p>
+        </div>
+      </div>
+    </div>-->
+  </div>
+</div>

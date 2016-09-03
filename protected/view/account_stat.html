@@ -32,6 +32,35 @@
 		  </tbody>
 		</table>
 	</div>
+
+  <div class="am-u-sm-12">
+	<p class="am-text-xl">积分操作日志 <span class="am-text-sm">只显示最近的20条记录</span></p>
+		<table class="am-table am-table-striped am-table-hover">
+		  <thead>
+			<tr>
+			  <th>时间</th>
+			  <th>操作</th>
+			  <th>变化</th>
+			  <th>IP地址</th>
+			</tr>
+		  </thead>
+		  <tbody>
+<{foreach $log as $l}>
+<tr>
+	<td><{$l['time']}></td>
+  <{if $l['type']=='ans'}>
+	<td>答题</td>
+	<td>积分+<{$l['result']}></td>
+  <{else}>
+  <td>捐助</td>
+	<td>积分-<{$l['result']}></td>
+  <{/if}>
+	<td><{$l['ip_e'][0]}>.*.*.<{$l['ip_e'][3]}></td>
+</tr>
+<{/foreach}>
+      </tbody>
+		</table>
+	</div>
 </div>
 
 <script src="https://static.1cf.co/js/echarts.min.js"></script>

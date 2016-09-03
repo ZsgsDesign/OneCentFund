@@ -1,0 +1,143 @@
+<div class="am-g am-container" style="margin-top:1.6rem;">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd am-cf setting-item" id="p0" data-am-collapse="{target: '#s0'}">外观设置<span class="am-icon-chevron-down am-fr"></span></div>
+    <div class="am-panel-bd am-collapse am-in am-cf" id="s0">
+      <div class="am-panel am-panel-default mt">
+        <div class="am-panel-bd am-cf">
+          <p>主题<br><small>您可以自定义您喜欢的样式。</small></p>
+          <div class="am-u-md-2 am-u-sm-4">
+            <a href="javascript:;" onclick="SetTheme('default')" class="am-thumbnail">
+              <img class="am-img-thumbnail am-radius" src="https://static.1cf.co/img/theme/thumb/default-t.jpg" alt="" />
+              <figcaption class="am-thumbnail-caption am-text-center">简约</figcaption>
+            </a>
+          </div>
+          <div class="am-u-md-2 am-u-sm-4">
+            <a href="javascript:;" onclick="SetTheme('default-1')" class="am-thumbnail">
+              <img class="am-img-thumbnail am-radius" src="https://static.1cf.co/img/theme/thumb/default-1-t.jpg" alt="" />
+              <figcaption class="am-thumbnail-caption am-text-center">水彩</figcaption>
+            </a>
+          </div>
+          <div class="am-u-md-2 am-u-sm-4 am-u-end">
+            <a href="javascript:;" onclick="SetTheme('default-2')" class="am-thumbnail">
+              <img class="am-img-thumbnail am-radius" src="https://static.1cf.co/img/theme/thumb/default-2-t.jpg" alt="" />
+              <figcaption class="am-thumbnail-caption am-text-center">云雾</figcaption>
+            </a>
+          </div>
+          <p class="am-fr">当前主题：<span class="current_theme">
+            <{if $usersetting['per_theme']=="default"}>
+            简约
+            <{else if $usersetting['per_theme']=="default-1"}>
+            水彩
+            <{else}>
+            云雾
+            <{/if}></span>
+          </p>
+        </div>
+      </div>
+      <div class="am-panel am-panel-default mt">
+        <div class="am-panel-bd am-cf">
+          <p class="am-fl">节日背景<br><small>开启后在一些节日将会使用节日主题。<br>默认：开启</small></p>
+          <form>
+            <input class="ocf-switch ocf-switch-anim am-fr" type="checkbox" name="per_festival" onclick="DianJiShiJian(this)" 
+              <{if $usersetting['per_festival']}> checked <{/if}>/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd am-cf setting-item" id="p1" data-am-collapse="{target: '#s1'}">快速模式<span class="am-icon-chevron-down am-fr"></span></div>
+    <div class="am-panel-bd am-collapse am-in am-cf" id="s1">
+
+      <div class="am-panel am-panel-default mt">
+        <div class="am-panel-bd am-cf">
+          <p class="am-fl">Bing&trade; 今日美图服务<br><small>该功能开启后在快速模式下倘若不指定题库网站背景将会使用Bing&trade;今日美图。<br>默认：开启</small></p>
+          <form action="settings.php" method="post">
+            <input class="ocf-switch ocf-switch-anim am-fr" type="checkbox" name="ans_bing_pic" onclick="DianJiShiJian(this)" 
+              <{if $usersetting['ans_bing_pic']}> checked <{/if}>>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd am-cf setting-item" id="p4" data-am-collapse="{target: '#s4'}">安全设置<span class="am-icon-chevron-down am-fr"></span></div>
+    <div class="am-panel-bd am-collapse am-in am-cf" id="s4">
+      <div class="am-panel am-panel-default mt">
+        <div class="am-panel-bd am-cf">
+          <p class="am-fl">登录异常时锁定账号并要求身份验证<br><small>开启后您的账户将会更加安全，但前提是您得确保安全邮箱或密保问题本身无误。<br>默认：关闭</small></p>
+          <form>
+            <input class="ocf-switch ocf-switch-anim am-fr" type="checkbox" name="sec_ip" onclick="DianJiShiJian(this)" 
+              <{if $usersetting['sec_ip']}> checked <{/if}>>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd am-cf setting-item" id="p5" data-am-collapse="{target: '#s5'}">通知设置<span class="am-icon-chevron-down am-fr"></span></div>
+    <div class="am-panel-bd am-collapse am-in am-cf" id="s5">
+
+      <div class="am-panel am-panel-default mt">
+        <div class="am-panel-bd am-cf">
+          <p class="am-fl">订阅网站<br><small>该选项使得您可以接受网站的更新推送。<br>默认：开启</small></p>
+          <form>
+            <input class="ocf-switch ocf-switch-anim am-fr" type="checkbox" name="info_subscribe" onclick="DianJiShiJian(this)" 
+              <{if $usersetting['info_subscribe']}> checked <{/if}>>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+    function SetTheme(theme) {
+			var value=theme
+			$.ajax({
+				type:'POST',
+				url:'/ajax/usersettings',
+				data:{
+						name:'per_theme',
+						value:value
+				},
+				success:function(data){
+					if (value=="default-2") {
+						$('.current_theme').html("云雾");
+						document.getElementsByTagName("body")[0].setAttribute("style","background: url(https://static.1cf.co/img/theme/default-2.jpg) top center no-repeat fixed;background-size: cover;");
+					}
+					else if (value=="default-1") {
+						$('.current_theme').html("水彩");
+						document.getElementsByTagName("body")[0].setAttribute("style","background: url(https://static.1cf.co/img/theme/default-1.jpg) top center no-repeat fixed;background-size: cover;");
+					}
+					else {
+						$('.current_theme').html("简约");
+						document.getElementsByTagName("body")[0].setAttribute("style","background: #fff;background-size: cover;");
+
+					}
+				}
+			});
+    }
+</script>
+<script type="text/javascript">
+  function DianJiShiJian(d){
+			var value=''
+			if($(d).attr("checked")=='checked'){
+				value=0;
+			}
+			else{ value=1 }
+			$.ajax({
+				type:'POST',
+				url:'/ajax/usersettings',
+				data:{
+						name:$(d).attr("name"),
+						value:value
+				},
+				success:function(data){
+				}
+			});
+		}
+</script>

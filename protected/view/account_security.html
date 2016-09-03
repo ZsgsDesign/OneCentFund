@@ -1,0 +1,119 @@
+  <style>	
+	.middle-bar {
+		margin-top:0;
+	}
+	
+	#vld-tooltip {
+    position: absolute;
+    z-index: 1000;
+    padding: 5px 10px;
+    background: #F37B1D;
+    min-width: 150px;
+    color: #fff;
+    transition: all 0.15s;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+    display: none;
+  }
+
+  #vld-tooltip:before {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -8px;
+    content: "";
+    border-width: 0 8px 8px;
+    border-color: transparent transparent #F37B1D;
+    border-style: none inset solid;
+  }
+	@media screen and (max-width:640px) {
+		.middle-bar {
+			margin-top:2rem;
+		}
+	}
+  </style>
+<div class="am-g am-container">
+	<div class="am-cf am-padding">
+	  <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">账户安全</strong> / <small>Security</small></div>
+	</div>
+	<div class="am-u-md-6 am-u-sm-12">
+		<form method="post" action="/account/security" class="am-form" id="form-with-tooltip">
+		  <fieldset>
+			<legend>修改密码</legend>
+			<div class="am-form-group">
+			  <label for="old_pass">旧密码</label>
+			  <input type="password" name="old_pass" id="old_pass" minlength="6" maxlength="25" 
+					 placeholder="旧密码" required/>
+			</div>
+
+			<div class="am-form-group">
+			  <label for="new_pass">新密码</label>
+			  <input type="password" name="new_pass" id="new_pass" placeholder="新密码（6-25字符）" minlength="6" maxlength="25" 
+				pattern="^(?![^a-zA-Z]+$)(?!\D+$).{6,25}$" data-foolish-msg="6-25字符，必须包含字母和数字" required/>
+			</div>
+			
+			<div class="am-form-group">
+			  <label for="new_repass">重复输入新密码</label>
+			  <input type="password" id="new_repass" placeholder="再次输入密码" 
+				data-equal-to="#new_pass" data-foolish-msg="两次密码输入要一致哦" required/>
+			</div>			
+			<button class="am-btn am-btn-secondary" type="submit" id="user-submit">修改密码</button>
+		  </fieldset>
+		</form>
+	</div>
+	<div class="am-u-md-6 am-u-sm-12">
+		<fieldset>
+			<legend>绑定邮箱</legend>
+      <{$userinfo['email']}>
+      <{if $userinfo['emailok']}>
+      <p>邮箱已成功验证</p>
+      <{else}>
+      <p>邮箱未验证</p>
+      <button class="am-btn am-btn-primary" id="sendactivatemail">发送验证邮件</button>
+      <{/if}>
+		</fieldset>
+	</div>
+	<div class="am-u-md-6 am-u-sm-12" style="margin-top:2rem;">
+		<fieldset>
+			<legend>密保问题</legend>
+			暂未设置<br><br>
+			<button class="am-btn am-btn-primary am-btn-md am-radius" disabled>密保功能将在近期开放</button>
+		</fieldset>
+	</div>
+</div>
+<script>
+$(function() {
+  var $form = $('#form-with-tooltip');
+  var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
+  $tooltip.appendTo(document.body);
+
+  $form.validator();
+
+  var validator = $form.data('amui.validator');
+
+  $form.on('focusin focusout', '.am-form-error input', function(e) {
+    if (e.type === 'focusin') {
+      var $this = $(this);
+      var offset = $this.offset();
+      var msg = $this.data('foolishMsg') || validator.getValidationMessage($this.data('validity'));
+
+      $tooltip.text(msg).show().css({
+        left: offset.left + 10,
+        top: offset.top + $(this).outerHeight() + 10
+      });
+    } else {
+      $tooltip.hide();
+    }
+  });
+});
+$("#sendactivatemail").on("click",function() {
+  $.getJSON("/ajax/sendactivatemail",function(result){
+    if (result['result']) {
+      $("#sendactivatemail").html("邮件已发送").addClass("am-disabled");
+    } else {
+      $("#sendactivatemail").html("错误：" + result['error']);
+    }
+	});
+});
+</script>

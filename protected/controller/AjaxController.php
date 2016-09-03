@@ -194,4 +194,31 @@ class AjaxController extends BaseController {
 			);
 		}
 	}
+
+	function actionSendactivatemail() {
+		sendactivatemail();
+	}
+
+	function actionUsersettings() {
+		$key=arg("name");
+		$db=new Model("users");
+		$result=$db->find(
+			array(
+				"loginid=:loginid",
+				":loginid"=>@$_SESSION['loginid']
+			)
+		);
+		$uid=$result['uid'];
+		$db=new Model("user_setting");
+		$value=arg('value');
+		$db->update(
+			array(
+				"uid=:uid",
+				":uid"=>$uid
+			),
+			array(
+				$key=>$value
+			)
+		);
+	}
 }

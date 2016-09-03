@@ -75,6 +75,25 @@ function getuserinfo($loginid) {
 	return $result;
 }
 
+function getusersettings($loginid) {
+	$user_db=new Model("users");
+  $result=$user_db->find(
+		array(
+			"loginid = :loginid",
+			":loginid" => $loginid
+		)
+	);
+	$uid=$result['uid'];
+	$user1_db=new Model("user_setting");
+  $result=$user1_db->find(
+		array(
+			"uid = :uid",
+			":uid" => $uid
+		)
+	);
+	return $result;
+}
+
 function get_thumbnail($data_string) {  
   $ch = curl_init();  
 	curl_setopt($ch, CURLOPT_POST, 1);  
