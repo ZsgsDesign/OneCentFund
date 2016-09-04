@@ -10,6 +10,7 @@ class UserController extends BaseController {
           ":name"=>$name
         )
       );
+      @$result['rate']=round($result['cor']/$result['ans']*100,2);
       $this->newuserinfo=$result;
     }
   }

@@ -72,6 +72,7 @@ function getuserinfo($loginid) {
 			":loginid" => $loginid
 		)
 	);
+	@$result['rate']=round($result['cor']/$result['ans']*100,2);
 	return $result;
 }
 
