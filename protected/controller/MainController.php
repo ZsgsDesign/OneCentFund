@@ -73,9 +73,8 @@ class MainController extends BaseController {
 		$db=new Model("users");
 		$result=$db->findAll(
 			array(
-				"uid<>:uid1 and uid<>:uid2",
-				"uid1"=>1,
-				"uid2"=>59
+				"uid<>:uid1",
+				"uid1"=>59
 			),
 			"credit desc,name asc",
 			"uid,name,avatar,credit",
