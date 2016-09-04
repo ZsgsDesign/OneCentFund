@@ -3,6 +3,12 @@ class AccountController extends BaseController {
 	function actionIndex() {
 		$this->title="资料卡";
 		$this->url="ucenter";
+		$log_db=new Model("log");
+		$result=$log_db->query(
+			"select count(distinct(gid)) 'cnt' from log where uid=:uid and gid<>0",
+			array(":uid"=>@$_SESSION['uid'])
+		);
+		$this->donatecount=$result[0]['cnt'];
 	}
 
 	function actionLogin(){
