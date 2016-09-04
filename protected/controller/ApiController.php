@@ -211,9 +211,9 @@ class ApiController extends BaseController {
 		);
 		$result=$db->create($checkin);
 		$user_db=new Model("users");
-		//1-5天：10积分 6-10天：15积分 11-15天：20积分 16-20天：25积分……30积分封顶
-		$rewardscore=floor($reward/5)*5+10;
-		if ($rewardscore>30) $rewardscore=30;
+		//1-5天：20积分 6-10天：25积分 11-15天：30积分 16-20天：35积分……50积分封顶
+		$rewardscore=floor($reward/5)*5+20;
+		if ($rewardscore>50) $rewardscore=50;
 		$user_db->execute("update users set score=score+:score where loginid=:loginid",
 											array(":loginid" => $_SESSION['loginid'],
 														":score"=>$rewardscore));
