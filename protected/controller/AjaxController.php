@@ -183,7 +183,7 @@ class AjaxController extends BaseController {
 				)
 			);
 			$current=$result['current'];
-			$rate=round($result['current']/$result['target'],2);
+			$rate=round($result['current']/$result['target']*100,2);
 			echo json_encode(
 				array(
 					"current"=>$current,
