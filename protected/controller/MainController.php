@@ -5,10 +5,11 @@ class MainController extends BaseController {
 		$this->url="index"; //非常重要 用于导航栏
 		$this->title=""; //标题
 		$_SESSION['reward']=0;
+		$this->cat="";
 		$str = file_get_contents('http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN');
 		$array = json_decode($str);
 		//dump($array);exit;
-		$this->imgurl=$array->{"images"}[0]->{"url"};
+		$this->imgurl="http://s.cn.bing.net/".$array->{"images"}[0]->{"url"};
 		$copyright=$array->{"images"}[0]->{"copyright"};
 		$imginfo=explode(" (",$copyright);
 		//dump($imginfo);exit;
@@ -17,6 +18,17 @@ class MainController extends BaseController {
 		$this->imgname=$imgname[0];
 		$this->imglocation=$imgname[1];
 		$this->imgcopyrightlink= $array->{"images"}[0]->{"copyrightlink"};
+		if (arg("cat")) {
+			$this->cat=arg("cat");
+			$base_db=new Model("bases");
+			$base=$base_db->find(
+				array(
+					"name=:name",
+					":name"=>arg("cat")
+				)
+			);
+			$this->imgurl="https://static.1cf.co/img/base/bg/".$base['background'];
+		}
 		$db=new Model("grantee");
 		$result=$db->find(array("gid=:gid",
 														":gid"=>2));

@@ -38,11 +38,10 @@
 <div class="am-g am-container">
 	<div>	
 	<ul class="am-nav am-nav-pills filter">
-		<li class="base-filter am-active" cata="0"><a href="javascript:;">全部</a></li>
-		<li class="base-filter" cata="1"><a href="javascript:;">基本</a></li>
-		<li class="base-filter" cata="2"><a href="javascript:;">拓展</a></li>
-		<li class="base-filter" cata="3"><a href="javascript:;"><span class="can-see">第</span>三方</a></li>
-		<li class="base-filter" cata="4"><a href="javascript:;">用户<span class="can-see">上传</span></a></li>
+		<li class="base-filter am-active" cata="all"><a href="javascript:;">全部</a></li>
+		<li class="base-filter" cata="0"><a href="javascript:;">基本</a></li>
+		<li class="base-filter" cata="1"><a href="javascript:;">拓展</a></li>
+		<li class="base-filter" cata="2"><a href="javascript:;"><span class="can-see">第</span>三方</a></li>
 		<form action="base.php" method="GET" class="am-form searchfield">
 			<div class="am-form-group am-form-icon am-form-feedback">
 				<input type="text" name="search" id="search" class="am-form-field am-radius" placeholder="搜索">
@@ -53,7 +52,7 @@
 	</ul>
 	</div>
 	<{foreach $result as $r}>
-		<a href="javascript:;" class="am-u-sm-12 am-u-md-6 am-u-end base base-cata-<{$r['cata']}>">
+		<a href="/?cat=<{$r['name']}>" class="am-u-sm-12 am-u-md-6 am-u-end base base-cata-all base-cata-<{$r['cata']}>">
 			<div class="am-u-sm-3">
 				<img src="/i/img/base/<{$r['icon']}>" class="am-img-responsive"/>
 			</div>
@@ -65,8 +64,6 @@
 	<{/foreach}>
 </div>
 <script>
-$(".base").hide();
-$(".base-cata-0").show();
 $(".base-filter").on("click",function() {
 	$(".base-filter").removeClass("am-active");
 	$(this).addClass("am-active");

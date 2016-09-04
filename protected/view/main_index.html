@@ -1,9 +1,9 @@
 <style>
 body{
-  background: url(http://s.cn.bing.net/<{$imgurl}>) 0 / cover fixed;
+  background: url(<{$imgurl}>) 0 / cover fixed;
 }
 .ocf-cover-img {
-	background: url(http://s.cn.bing.net/<{$imgurl}>) 0 / cover fixed;
+	background: url(<{$imgurl}>) 0 / cover fixed;
 }
 .ocf-panel-question {
 	background:rgba(255,255,255,0.8);
@@ -134,10 +134,11 @@ body{
 </div>
 
 <!--信息按钮-->
+<{if !$cat}>
 <div class="ocf-btn-float am-print-hide" id="ocf-btn-float">
 	<a href="javascript:;" data-am-modal="{target: '#info'}" title="图片信息" class="ocf-panel-shadow am-icon-btn am-primary am-icon-arrows-alt info"></a>
 </div>
-
+<{/if}>
 <!--modals-->
 <div class="am-modal" tabindex="-1" id="info">
 	<div class="am-modal-dialog" style="width:99%; height:99%;">
@@ -219,7 +220,7 @@ function emphasize(q) {
 	}
 }
 function getquestion() {
-	$.getJSON("/ajax/getquestion",function(result){
+	$.getJSON("/ajax/getquestion?cat=<{$cat}>",function(result){
 		$('.ocf-panel-options').removeClass("ocf-question-correct").removeClass("ocf-question-incorrect");
 		$('.question').html(result['description']);
 		$('.option1').html(result['opt1']);
