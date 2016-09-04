@@ -1,27 +1,96 @@
 <div class="am-g am-container">
   <div class="am-cf am-padding">
-	  <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">资料卡</strong> / <small>Profile</small></div>
-	</div>
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">我的资料卡</strong> / <small>Profile</small></div>
+  </div>
   <div class="am-u-sm-12 am-u-md-6">
     <div class="am-panel am-panel-default">
       <div class="am-panel-bd am-cf">
-        <div class="am-u-sm-4">
+        <div class="am-u-sm-6">
           <img src="https://static.1cf.co/img/avatar/<{$userinfo['avatar']}>" class="am-img-responsive am-img-thumbnail" />
         </div>
-        <div class="am-u-sm-8">
-          <div>注册时间：</div>
-          <div>用户名 : </div>
-					<div>性别 : </div>
-					<div>电子邮箱 : </div>
-					<div>注册时间 : </div>
+        <div class="am-u-sm-12" style="margin-top:2rem;">
+          <h1>
+            <{if $userinfo['real_name']}>
+              <{$userinfo['real_name']}>
+                <{else}>
+                  <{$userinfo['name']}>
+                    <{/if}>
+          </h1>
+          <div>用户名：
+            <{$userinfo['name']}>
+          </div>
+          <div>注册时间：
+            <{$userinfo['rtime']}>
+          </div>
+          <div>性别 :
+            <{if $userinfo['sex']==1}>男
+              <{else if $userinfo['sex']==2}>女
+                <{else}>保密
+                  <{/if}>
+          </div>
+          <div>电子邮箱 :
+            <{$userinfo['email']}>
+          </div>
+        </div>
+        <div class="am-u-sm-12">&nbsp;</div>
+        <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+          <a class="am-btn am-btn-default am-btn-block" href="/account/profile" style="padding:1.5rem 0;"><i class="am-icon-info-circle am-icon-md"></i><br>修改资料</a>
+        </div>
+        <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+          <a class="am-btn am-btn-default am-btn-block" href="/account/stat" style="padding:1.5rem 0;"><i class="am-icon-bar-chart am-icon-md"></i><br>数据统计</a>
+        </div>
+        <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+          <a class="am-btn am-btn-default am-btn-block" href="/account/security" style="padding:1.5rem 0;"><i class="am-icon-shield am-icon-md"></i><br>账户安全</a>
+        </div>
+        <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+          <a class="am-btn am-btn-default am-btn-block" href="/account/settings" style="padding:1.5rem 0;"><i class="am-icon-gears am-icon-md"></i><br>高级设置</a>
         </div>
       </div>
     </div>
   </div>
   <div class="am-u-sm-12 am-u-md-6">
     <div class="am-panel am-panel-default">
-        <div class="am-panel-bd">这是一个基本的面板组件。</div>
+      <div class="am-panel-bd am-cf">
+        <div class="am-u-sm-6 am-text-center">
+          <div class="am-text-xl">
+            <{$userinfo['ans']}>
+          </div>
+          <div>回答</div>
+        </div>
+        <div class="am-u-sm-6 am-text-center">
+          <div class="am-text-xl">
+            <{round($userinfo['cor']/$userinfo['ans']*100,2)}>%</div>
+          <div>正答</div>
+        </div>
+        <div class="am-u-sm-12">&nbsp;</div>
+        <div class="am-u-sm-6 am-text-center">
+          <div class="am-text-xl">
+            <{$userinfo['score']}>
+          </div>
+          <div>积分</div>
+        </div>
+        <div class="am-u-sm-6 am-text-center">
+          <div class="am-text-xl">
+            <{$userinfo['credit']}>
+          </div>
+          <div>爱心值</div>
+        </div>
+      </div>
     </div>
   </div>
-
+  <div class="am-u-sm-12 am-u-md-6">
+    <div class="am-panel am-panel-default">
+      <div class="am-panel-bd am-cf">
+        <div class="am-u-sm-12">
+          <h3>积分获得说明：</h3>
+          <p>积分：每答对一题您将得到10积分，</p>
+          <p>连续答对5题，每再答对一题您将得到15积分</p>
+          <p>连续答对10题，每再答对一题您将得到25积分</p>
+          <p>每题最多奖励30积分</p>
+          <h3>爱心值</h3>
+          <p>向受众捐助10积分，即可获得1点爱心值，排行榜以爱心值作为排序对象</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -3,14 +3,14 @@
     <{if $r['rank']==1}>
       <div class="am-panel am-panel-default am-animation-scale-up">
         <div class="am-panel-bd">
-          <p class="am-text-truncate" style="margin: 0px;"><span class="am-text-middle"><a href="https://www.1cf.co/user.php?uid=<{$r['uid']}>"><img src="/i/img/avatar/<{$r['avatar']}>" alt="" class="am-img-thumbnail am-circle ocf-msg-thumbnail" style="height:96px;margin-right:.625em;"></a><span class="am-badge am-badge-success am-text-default">1</span>&nbsp&nbsp&nbsp<{$r['name']}>
-          <a href="https://www.1cf.co/user.php?uid=<{$r['uid']}>"><button class="am-btn am-btn-default ocf-btn-transparent" style="float: right;margin-top: 29.5px;"><i class="am-icon-check-circle am-icon-fw"></i> <span class="ocf-hide-sm-only">爱心值</span><{$r['credit']}></button></a></p>
+          <p class="am-text-truncate" style="margin: 0px;"><span class="am-text-middle"><a href="/user/<{$r['name']}>"><img src="https://static.1cf.co/img/avatar/<{$r['avatar']}>" alt="" class="am-img-thumbnail am-circle ocf-msg-thumbnail" style="height:96px;margin-right:.625em;"></a><span class="am-badge am-badge-success am-text-default">1</span>&nbsp&nbsp&nbsp<{$r['name']}>
+          <a href="/user/<{$r['name']}>"><button class="am-btn am-btn-default ocf-btn-transparent" style="float: right;margin-top: 29.5px;"><i class="am-icon-check-circle am-icon-fw"></i> <span class="ocf-hide-sm-only">爱心值</span><{$r['credit']}></button></a></p>
         </div>
       </div>
     <{else}>
       <div class="ocf-rank">
-        <p class="am-text-truncate"><span class="am-text-middle"><a href="https://www.1cf.co/user.php?uid=<{$r['uid']}>"><img src="/i/img/avatar/<{$r['avatar']}>" alt="" class="am-img-thumbnail am-circle ocf-msg-thumbnail" style="height:64px;margin-right:.625em;"></a><span class="am-badge am-badge-success am-text-default"><{$r['rank']}></span>&nbsp&nbsp&nbsp<{$r['name']}>
-          <a href="https://www.1cf.co/user.php?uid=<{$r['uid']}>"><button class="am-btn am-btn-default ocf-btn-transparent" style="float: right;margin-top: 13.5px;"><i class="am-icon-check-circle am-icon-fw"></i> <span class="ocf-hide-sm-only">爱心值</span><{$r['credit']}></button></a></p>
+        <p class="am-text-truncate"><span class="am-text-middle"><a href="/user/<{$r['name']}>"><img src="https//static.1cf.co/img/avatar/<{$r['avatar']}>" alt="" class="am-img-thumbnail am-circle ocf-msg-thumbnail" style="height:64px;margin-right:.625em;"></a><span class="am-badge am-badge-success am-text-default"><{$r['rank']}></span>&nbsp&nbsp&nbsp<{$r['name']}>
+          <a href="/user/<{$r['name']}>"><button class="am-btn am-btn-default ocf-btn-transparent" style="float: right;margin-top: 13.5px;"><i class="am-icon-check-circle am-icon-fw"></i> <span class="ocf-hide-sm-only">爱心值</span><{$r['credit']}></button></a></p>
       </div>
     <{/if}>
   <{/foreach}>

@@ -2,6 +2,7 @@
 class AccountController extends BaseController {
 	function actionIndex() {
 		$this->title="资料卡";
+		$this->url="ucenter";
 	}
 
 	function actionLogin(){
