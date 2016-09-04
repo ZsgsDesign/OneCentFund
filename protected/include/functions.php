@@ -64,6 +64,16 @@ function validate_loginid($loginid,$mode='browser') {
 	}
 }
 
+function link_urldecode($url) {
+  $uri = '';
+  $cs = unpack('C*', $url);
+  $len = count($cs);
+  for ($i=1; $i<=$len; $i++) {
+    $uri .= $cs[$i] > 127 ? '%'.strtoupper(dechex($cs[$i])) : $url{$i-1};
+  }
+  return $uri;
+}
+
 function getuserinfo($loginid) {
 	$user_db=new Model("users");
   $result=$user_db->find(

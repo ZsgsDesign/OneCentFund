@@ -1,13 +1,13 @@
 <?php
 class UserController extends BaseController {
   function actionInfo() {
-    if (arg("username")) {
-      $name=arg("username");
+    if (arg("uid")) {
+      $uid=arg("uid");
       $db=new Model("users");
       $result=$db->find(
         array(
-          "name=:name",
-          ":name"=>$name
+          "uid=:uid",
+          ":uid"=>$uid
         )
       );
       @$result['rate']=round($result['cor']/$result['ans']*100,2);
