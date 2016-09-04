@@ -373,7 +373,7 @@ class ApiController extends BaseController {
 							$result=$db->update(array("loginid=:loginid",
 																				":loginid"=>$loginid),
 																	array("avatar"=>$filename2));
-							echo json_encode(array('result'=>$result,'url'=>"https://static.1cf.co/img/avatar/$filename2"));
+							echo json_encode(array('result'=>1,'url'=>"https://static.1cf.co/img/avatar/$filename2"));
 						}
 					}
 				}
