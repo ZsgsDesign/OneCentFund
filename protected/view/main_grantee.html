@@ -50,7 +50,7 @@
             <{if $islogin}>
             <button class="am-btn am-btn-warning am-btn-block" onclick="Donate(<{$r['gid']}>)">立即捐助</button>
             <{else}>
-            <button class="am-btn am-btn-warning am-btn-block">登录以捐助</button>
+            <a href="/account/login" class="am-btn am-btn-warning am-btn-block">登录以捐助</a>
             <{/if}>
           <{/if}>
         </div>
