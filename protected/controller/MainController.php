@@ -13,11 +13,11 @@ class MainController extends BaseController {
 		$copyright=$array->{"images"}[0]->{"copyright"};
 		$imginfo=explode(" (",$copyright);
 		//dump($imginfo);exit;
-		$this->imgcopyright=trim(rtrim($imginfo[1],")"));
+		$this->imgcopyright=trim(rtrim(@$imginfo[1],")"));
 		$imgname=explode("，",$imginfo[0]);
-		$this->imgname=$imgname[0];
-		$this->imglocation=$imgname[1];
-		$this->imgcopyrightlink= $array->{"images"}[0]->{"copyrightlink"};
+		$this->imgname=@$imgname[0];
+		$this->imglocation=@$imgname[1];
+		$this->imgcopyrightlink=$array->{"images"}[0]->{"copyrightlink"};
 		if (arg("cat")) {
 			$this->cat=arg("cat");
 			$base_db=new Model("bases");
