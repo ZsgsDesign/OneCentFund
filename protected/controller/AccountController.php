@@ -208,6 +208,7 @@ class AccountController extends BaseController {
 				$newFile = fopen($path.$filename2,"w"); //打开文件准备写入
 				fwrite($newFile,$return_content); //写入二进制流到文件
 				fclose($newFile); //关闭文件
+				$db=new Model("users");
 				$result=$db->update(array("loginid=:loginid",
 																	":loginid"=>$loginid),
 														array("avatar"=>$filename2));
