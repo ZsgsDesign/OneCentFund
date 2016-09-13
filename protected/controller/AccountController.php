@@ -208,9 +208,10 @@ class AccountController extends BaseController {
 				$newFile = fopen($path.$filename2,"w"); //打开文件准备写入
 				fwrite($newFile,$return_content); //写入二进制流到文件
 				fclose($newFile); //关闭文件
-				$sql="update users set avatar='$filename2' where uid=".@$_SESSION['uid'].";";
-				$rs = $db->query($sql);
-				if (!$rs) exit("<center style=\"margin-top:10px;\"><span class=\"am-icon-lg am-icon-warning\" style=\"color:#F37B1D;font-size: xx-large;\"></span><br>上传失败, <a href=\"#\" onclick=\"location.replace(location.href);\">重试</a></center>");
+				$result=$db->update(array("loginid=:loginid",
+																	":loginid"=>$loginid),
+														array("avatar"=>$filename2));
+				if (!$result) exit("<center style=\"margin-top:10px;\"><span class=\"am-icon-lg am-icon-warning\" style=\"color:#F37B1D;font-size: xx-large;\"></span><br>上传失败, <a href=\"#\" onclick=\"location.replace(location.href);\">重试</a></center>");
 				else if (file_exists($path.$filename)) {
 					$delete = @unlink ($path.$filename);
 				}
