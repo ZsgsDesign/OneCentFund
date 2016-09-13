@@ -264,7 +264,7 @@ class AccountController extends BaseController {
 
 								<div class="am-u-sm-8">
 									<p>上传本地头像</p>
-									<form method="post" class="am-form" action="upload_avatar.php" enctype="multipart/form-data">
+									<form method="post" class="am-form" enctype="multipart/form-data">
 										<div class="am-form-group am-text-truncate am-form-file">
 											<button type="button" class="am-btn am-btn-default am-btn-sm am-radius">
 											<i class="am-icon-cloud-upload"></i> 选取图片</button>
