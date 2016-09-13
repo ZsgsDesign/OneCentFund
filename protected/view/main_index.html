@@ -6,7 +6,7 @@ body{
 	background: url(<{$imgurl}>) 0 / cover fixed;
 }
 .ocf-panel-question {
-	background:rgba(255,255,255,0.8);
+	background:rgba(255,255,255,0.9);
 	padding:2.5rem;
 }
 .ocf-panel-options {
@@ -20,7 +20,7 @@ body{
 					transition:All 1s;
 }
 .ocf-panel-options:hover {background:rgba(220,220,220,1);cursor:pointer;}
-.ocf-panel-recommend {background:rgba(255,255,255,0.8);}
+.ocf-panel-recommend {background:rgba(255,255,255,0.9);}
 .ocf-panel-recommend > .am-panel-bd {padding:2.5rem;}
 .ocf-progress {margin:0;}
 .ocf-progress-text {padding:0;}
@@ -82,14 +82,18 @@ body{
 				</div>
 			</div>
 		</div>
-		<div class="am-panel am-panel-default" style="background:rgba(255,255,255,0.8);">
+		<div class="am-panel am-panel-default am-hide-sm-only" style="background:rgba(255,255,255,0.9);">
 			<div class="am-panel-bd am-cf">
 				<div class="am-fl">
-					<a href="https://1cf.co/ocf1.0.3.apk"><img src="/i/img/qr.svg" height="100"/></a>
+					<a href="https://1cf.co/app"><img src="https://static.1cf.co/img/app/qrcode.png" height="100"/></a>
 				</div>
 				<div class="am-fl">
 					<h2 class="am-u-sm-12" style="margin-bottom:0;">一分钱助学安卓App已上线</h2>
-					<p class="am-u-sm-12" style="margin-bottom:0;">扫描或点击左侧二维码以下载<br>签到获取积分奖励</p>
+					<p class="am-u-sm-12" style="margin-bottom:0;">扫描或点击左侧二维码以下载<br>签到、运动、早起都可以获取积分啦！</p>
+					<!--
+					<a href="https://1cf.co/app"><button type="button" style="margin-top: 0.9rem;" class="am-btn am-btn-success am-btn-block am-radius am-show-sm-only"><i class="am-icon-android"></i> 下载一分钱助学APP</button></a>
+					<a href="ocf://?source=1cf.co"><button type="button" style="margin-top: 0.9rem;" class="am-btn am-btn-primary am-btn-block am-radius am-show-sm-only"><i class="am-icon-mobile-phone"></i> 已经安装了？打开APP</button></a>
+					-->
 				</div>
 			</div>
 		</div>
@@ -143,10 +147,23 @@ body{
 		</div>
 	</div>
 </div>
+<!--手机提示-->
+<div class="am-panel am-panel-default am-animation-slide-bottom am-animation-delay-2 am-show-sm-only" style="margin-bottom: 0px;background:rgba(255,255,255,1);position:fixed;left:0;right:0;bottom:0;z-index:999;box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.12), 0 -2px 10px 0 rgba(0, 0, 0, 0.12);border:none;" data-am-alert>
+	<div class="am-panel-bd">
+		<h2 class="am-u-sm-12" style="margin-bottom:1.25rem;">试试全新的App吧！<button type="button" class="am-close" style="float:right;">&times;</button></h2>
+		<div style="margin-bottom:1.25rem;">	
+			<a href="https://1cf.co/app"><img src="https://static.1cf.co/img/app/logo.png" style="width:20%;"/></a>
+			<p style="padding-left:10px;width:80%;float:right;margin:0;">使用Material Design设计标准设计的安卓APP就在这里。现在，签到、运动、早起都可以获取积分啦！</p>
+		</div>
+			<a href="https://1cf.co/app"><button type="button" class="am-btn am-btn-success am-btn-block am-radius"><i class="am-icon-android"></i> 下载一分钱助学APP</button></a>
+			<a href="ocf://?source=1cf.co"><button type="button" style="margin-top: 1.25rem;" class="am-btn am-btn-primary am-btn-block am-radius"><i class="am-icon-mobile-phone"></i> 已经安装了？打开APP</button></a>
 
+
+	</div>
+</div>
 <!--信息按钮-->
 <{if !$cat}>
-<div class="ocf-btn-float am-print-hide" id="ocf-btn-float">
+<div class="ocf-btn-float am-print-hide am-hide-sm-only" id="ocf-btn-float">
 	<a href="javascript:;" data-am-modal="{target: '#info'}" title="图片信息" class="ocf-panel-shadow am-icon-btn am-primary am-icon-arrows-alt info"></a>
 </div>
 <{/if}>

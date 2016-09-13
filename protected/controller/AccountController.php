@@ -35,11 +35,11 @@ class AccountController extends BaseController {
 					if (!$error) {
 						$ip=getIP();
 						$rtime=date("Y-m-d H:i:s");
-						$loginid=sha1(arg("email")."1cf.co".arg("pass"));
+						$loginid=sha1(arg("email")."1cf.co".md5(arg("pass")));
 						$user=array(
 							'rtime'=>$rtime,
 							'name'=>arg("name"),
-							'pass'=>arg("pass"),
+							'pass'=>md5(arg("pass")),
 							'email'=>arg("email"),
 							'ip'=>$ip,
 							'loginid'=>$loginid

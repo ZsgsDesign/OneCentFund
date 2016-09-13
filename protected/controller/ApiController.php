@@ -108,6 +108,41 @@ class ApiController extends BaseController {
 		}
 	}
 	
+	function actionAddscore() {
+		if (arg("score") && arg("action")) {
+			$score=arg("score");
+			$action=arg("action");
+			$ip = getIP();
+			$date = date("Y-m-d");
+			$time = date("Y-m-d H:i:s");
+			$user_db=new Model("users");
+			$log_db=new Model("log");
+				$output=array(
+					'result'=>0
+				);	
+				if ($this->islogin) {
+					$user_db->execute("update users set score=score+:score where loginid=:loginid",
+											array(":loginid" => $_SESSION['loginid'],
+														":score"=>$score));
+				
+					$log_db->create(
+						array(
+							"date" => $date,
+							"time" => $time,
+							"type" => $action,
+							"uid" => $_SESSION['uid'],
+							"result" => $score,
+							"ip" => $ip
+						)
+					);
+					$output=array(
+						'result'=>$score
+					);
+				}
+			echo json_encode($output);
+		}
+	}
+	
 	function actionVerifyaccount() {
 		if($loginid=arg("loginid")) {
 			$db=new Model("users");
@@ -173,10 +208,45 @@ class ApiController extends BaseController {
 		echo json_encode($output);
 	}
 
+	function actionCheckinstatus() {
+		if (!$this->islogin) {
+			$output=array(
+				'result'=>0
+			);
+			echo json_encode($output);
+			exit;
+		}
+		$date=date("Y-m-d");
+		$time=date("H:i:s");
+		$previous=date("Y-m-d",strtotime("-1 day"));
+		$db=new Model("checkin");
+		$loginid=$_SESSION['loginid'];
+		$reward=0;
+		$checked=0;
+		$result=$db->find(array("date=:date and loginid=:loginid",
+														":date"=>$date,
+														":loginid" => $loginid));
+		if ($result) {
+			$checked=1;
+		}
+		$result=$db->find(array("date=:date and loginid=:loginid",
+														":date" => $previous,
+														":loginid" => $loginid));
+		if (!empty($result)) $reward=intval($result['reward'])+1;
+		if ($checked==1)$reward=$reward+1;
+		echo json_encode(
+			array(
+				"result"=>1,
+				"reward"=>$reward,
+				"checked"=>$checked
+			)
+		);
+	}
+	
 	function actionCheckin() {
 		if (!$this->islogin) {
 			$output=array(
-				'status'=>0,
+				'result'=>0,
 				'info'=>'invalid loginid'
 			);
 			echo json_encode($output);
@@ -193,7 +263,7 @@ class ApiController extends BaseController {
 														":loginid" => $loginid));
 		if ($result) {
 			$output=array(
-				'status'=>0,
+				'result'=>0,
 				'info'=>'already checked in'
 			);
 			echo json_encode($output);
@@ -456,6 +526,33 @@ class ApiController extends BaseController {
 
 	function actionSendactivatemail() {
 		sendactivatemail();
+	}
+	
+	function actionFeedback() {
+		if (arg("uid") && arg("name") && arg("email") && arg("content")) {
+			$date=date("Y-m-d H:i:s");
+			$db=new Model("feedback");
+			$feedback=array(
+				'uid' => arg("uid"),
+				'name' => arg("name"),
+				'email' => arg("email"),
+				'date' => $date,
+				'content' => arg("content")
+			);
+			$result=$db->create($feedback);
+			echo json_encode(
+				array(
+					"result"=>1
+				)
+			);			
+		}else{
+			$output=array(
+				'result'=>0
+			);
+			echo json_encode($output);
+			exit;
+		}
+
 	}
 }
 
