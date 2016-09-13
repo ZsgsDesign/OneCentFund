@@ -215,6 +215,7 @@ class AccountController extends BaseController {
 				if (!$result) exit("<center style=\"margin-top:10px;\"><span class=\"am-icon-lg am-icon-warning\" style=\"color:#F37B1D;font-size: xx-large;\"></span><br>上传失败, <a href=\"#\" onclick=\"location.replace(location.href);\">重试</a></center>");
 				else if (file_exists($path.$filename)) {
 					$delete = @unlink ($path.$filename);
+					exit("<script>window.location.href='/account/uploadavatar';</script>");
 				}
 			} else {
 				//echo $return_code;
