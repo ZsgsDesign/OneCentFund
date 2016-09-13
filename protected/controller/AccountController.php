@@ -210,7 +210,7 @@ class AccountController extends BaseController {
 				fclose($newFile); //关闭文件
 				$db=new Model("users");
 				$result=$db->update(array("loginid=:loginid",
-																	":loginid"=>$loginid),
+																	":loginid"=>@$_SESSION['loginid']),
 														array("avatar"=>$filename2));
 				if (!$result) exit("<center style=\"margin-top:10px;\"><span class=\"am-icon-lg am-icon-warning\" style=\"color:#F37B1D;font-size: xx-large;\"></span><br>上传失败, <a href=\"#\" onclick=\"location.replace(location.href);\">重试</a></center>");
 				else if (file_exists($path.$filename)) {
