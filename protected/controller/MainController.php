@@ -114,4 +114,8 @@ class MainController extends BaseController {
 		);
 		$this->userscore=$result['score'];
 	}
+	
+	function actionApp() {
+		header("ocf1.1.1.apk");
+	}
 }
