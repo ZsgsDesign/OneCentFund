@@ -178,8 +178,9 @@ class AccountController extends BaseController {
 
 	function actionUploadavatar() {
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		$allow_file = explode("|","jpg|png|bmp"); 
-		$new_upload_file_ext = strtolower(end(explode(".", $_FILES['file']['name'])));
+		$allow_file = explode("|","jpg|png|bmp");
+		$new_upload_file_ext=explode(".", $_FILES['file']['name']);
+		$new_upload_file_ext = strtolower(end($new_upload_file_ext));
 		if (!in_array($new_upload_file_ext,$allow_file)) exit("<center style=\"margin-top:10px;\"><span class=\"am-icon-lg am-icon-warning\" style=\"color:#F37B1D;font-size: xx-large;\"></span><br>$new_upload_file_ext: 图片格式不符合, <a href=\"#\" onclick=\"location.replace(location.href);\">重试</a></center>");
 		if ($_FILES["file"]["error"] > 0) {
 				exit("<center style=\"margin-top:10px;\"><span class=\"am-icon-lg am-icon-warning\" style=\"color:#F37B1D;font-size: xx-large;\"></span><br>上传失败 错误: " . $_FILES["file"]["error"] . "<br><a href=\"#\" onclick=\"location.replace(location.href);\">重试</a></center>");
