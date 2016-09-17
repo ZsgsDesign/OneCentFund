@@ -5,7 +5,7 @@ class TermsController extends BaseController {
     $this->title="隐私条款";
   }
 
-  function actionServices(){
-    $this->title="用户协议";
+  function actionService(){
+    $this->title="服务条款";
   }
 }
