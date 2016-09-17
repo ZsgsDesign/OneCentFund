@@ -354,8 +354,12 @@ class ApiController extends BaseController {
 				$time = date("Y-m-d H:i:s");
 				$user_db=new Model("users");
 				$log_db=new Model("log");
-				$result=$user_db->find(array("uid=:uid",
-																":uid"=>$uid));
+				$result=$user_db->find(
+					array(
+						"uid=:uid",
+						":uid"=>$uid
+					)
+				);
 				if($result){			
 					$user_db->execute(
 						"update users set score=score+:score where uid=:uid",
