@@ -341,7 +341,72 @@ class ApiController extends BaseController {
 			echo json_encode($result);
 		}
 	}
-
+	
+	function actionAddreadscore() {
+		$i=0;
+		$data=json_decode($_POST['data']);
+		/*while(1){
+			if ($data[i]['uid'] && $data[i]['count']) {
+				$score=$data[i]['count']/10;
+				$uid=$data[i]['uid'];
+				$ip = getIP();
+				$date = date("Y-m-d");
+				$time = date("Y-m-d H:i:s");
+				$user_db=new Model("users");
+				$log_db=new Model("log");
+				$result=$user_db->find(array("uid=:uid",
+																":uid"=>$uid));
+				if($result){			
+					$user_db->execute(
+						"update users set score=score+:score where uid=:uid",
+						array(
+							":score"=>$score,
+							":uid"=>$uid
+						)
+					);
+					$log_db->create(
+						array(
+							"date" => $date,
+							"time" => $time,
+							"type" => 'read',
+							"uid" => $uid,
+							"result" => $score,
+							"ip" => $ip
+						)
+					);
+				}	
+			}else{
+				break;
+			}
+		}*/
+		//$output=array('result' => 1);
+		//echo json_encode($output);
+		dump($data);
+	}	
+	
+	function actionGetuserpublicinfo() {
+		if ($uid=arg("uid")) {
+			$db=new Model("users");
+			$result=$db->find(array("uid=:uid",
+															":uid"=>$uid));
+			if($result){
+				$publicinfo=array(
+					'result' => 1,
+					'uid' => $result['uid'],
+					'avatar' => $result['avatar'],
+					'name' => $result['name'],
+					'sex' => $result['sex']
+				);
+			}else{
+				$publicinfo=array(
+					'result' => 0
+				);				
+				
+			}
+			echo json_encode($publicinfo);
+		}
+	}
+	
 	function actionModifyuserinfo() {
 		if (@$_SESSION['loginid']) {
 			$db=new Model("users");
@@ -452,7 +517,7 @@ class ApiController extends BaseController {
 	}
 
 	function actionDonate() {
-		if (arg("gid") && arg("score")) {
+		if (arg("gid") && arg("score") && arg("score")>0) {
 			$gid=arg("gid");
 			$score=arg("score");
 			$score=floor($score/10)*10;

@@ -123,7 +123,7 @@ class AjaxController extends BaseController {
 	}
 
 	function actionDonate() {
-		if (arg("gid") && arg("score")) {
+		if (arg("gid") && arg("score") && arg("score")>0) {
 			$gid=arg("gid");
 			$score=arg("score");
 			$score=floor($score/10)*10;
