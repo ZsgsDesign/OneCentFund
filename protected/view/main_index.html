@@ -229,11 +229,10 @@ $(document).ready(function(){
 					$('.current-credit').html(result['score']);
 					$('.ocf-hint-right').show();
 				<{/if}>
-
+				setTimeout("getquestion()",3000); 
 			});
 			if (step>30) step=30;
-			//
-			setTimeout("getquestion()",3000); 
+			
 		}
     });
 });
