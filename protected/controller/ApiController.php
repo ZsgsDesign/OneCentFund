@@ -142,6 +142,28 @@ class ApiController extends BaseController {
 			echo json_encode($output);
 		}
 	}
+
+	function actionVerifyqq() {
+		if($qq_openid=arg("qq_openid")) {
+			$db=new Model("users");
+			$result=$db->find(array("qq_openid=:qq_openid",
+												":qq_openid"=>$qq_openid));
+			if (empty($result)) {
+				$output=array(
+					'result'=>0,
+					'info'=>null
+				);
+			}
+			else {
+				$json=$result;
+				$output=array(
+					'result'=>1,
+					'info'=>$json
+				);
+			}
+		}
+		echo json_encode($output);
+	}
 	
 	function actionVerifyaccount() {
 		if($loginid=arg("loginid")) {
@@ -156,6 +178,12 @@ class ApiController extends BaseController {
 			}
 			else {
 				$json=$result;
+				if($qq_openid=arg("qq_openid")) {
+					$db->execute("update users set qq_openid=:qq_openid where loginid=:loginid",
+											array(":loginid" => $loginid,
+														":qq_openid"=>$qq_openid));
+					
+				}
 				$output=array(
 					'result'=>1,
 					'info'=>$json
@@ -191,14 +219,28 @@ class ApiController extends BaseController {
 			$ip=getIP();
 			$rtime=date("Y-m-d H:i:s");
 			$loginid=sha1(arg("email")."1cf.co".arg("pass"));
-			$user=array(
-				'rtime'=>$rtime,
-				'name'=>arg("name"),
-				'pass'=>arg("pass"),
-				'email'=>arg("email"),
-				'ip'=>$ip,
-				'loginid'=>$loginid
-			);
+			if(arg("qq_openid") && arg("avatar")) {
+				$user=array(
+					'rtime'=>$rtime,
+					'name'=>arg("name"),
+					'pass'=>arg("pass"),
+					'email'=>arg("email"),
+					'qq_openid'=>arg("qq_openid"),
+					'avatar'=>arg("avatar"),
+					'ip'=>$ip,
+					'loginid'=>$loginid
+				);				
+				
+			}else{
+				$user=array(
+					'rtime'=>$rtime,
+					'name'=>arg("name"),
+					'pass'=>arg("pass"),
+					'email'=>arg("email"),
+					'ip'=>$ip,
+					'loginid'=>$loginid
+				);				
+			}
 			$json=$db->create($user);
 			$output=array(
 				'result'=>1,
