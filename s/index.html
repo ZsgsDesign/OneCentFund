@@ -9,6 +9,7 @@
   <link rel="alternate icon" type="image/png" href="/i/favicon.png">
   <title>知识竞赛？？？</title>
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="fonts/mdi/material-icons.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <style>
     body {
@@ -39,12 +40,12 @@
       <form class="col s12 index-form">
         <div class="row">
           <div class="input-field col s12 m6">
-            <!--<i class="mdi-action-account-circle prefix"></i>-->
+            <i class="material-icons prefix">account_circle</i>
             <input id="name" name="name" type="text" class="validate" required>
             <label for="name">姓名</label>
           </div>
           <div class="input-field col s12 m6">
-            <!--<i class="mdi-communication-phone prefix"></i>-->
+            <i class="material-icons prefix">phone</i>
             <input id="tel" type="tel" name="tel" class="validate" required>
             <label for="tel">手机</label>
           </div>
@@ -78,7 +79,7 @@
             <label>地区</label>
           </div>
           <div class="input-field col s12 m4">
-            <input id="school-name" type="text" placeholder="选择学校" class="validate" required disabled>
+            <input id="school-name" type="text" placeholder="筛选或输入学校名称" class="validate" required>
             <label for="school-name">学校名称</label>
           </div>
         </div>
@@ -741,26 +742,11 @@
     </div>
   </div>
 </main>
-<footer class="page-footer teal lighten-2">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">随便写点啥</h5>
-        <p class="grey-text text-lighten-4">啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">相关链接</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="http://www.ec.js.edu.cn/" target="_blank">江苏省教育厅</a></li>
-          <li><a class="grey-text text-lighten-3" href="https://1cf.co/">一分钱助学</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<footer class="page-footer teal lighten-2" style="padding-top:0;">
   <div class="footer-copyright teal lighten-1">
     <div class="container">
       © 2016 江苏省教育厅
-      <a class="grey-text text-lighten-4 right">技术支持：一分钱助学</a>
+      <a href="https://1cf.co/" target="_blank" class="grey-text text-lighten-4 right">技术支持：一分钱助学</a>
     </div>
   </div>
 </footer>
@@ -781,7 +767,11 @@ $(document).ready(function() {
     $(".school").hide();
     if (type && locate) $(".school-" + type + "-" + locate).show();
   });
-  $(".school-selector").on("click",function() {
+  $("#school-name").bind('input propertychange', function() {
+    $(".school-selector").hide();
+    $(".school-selector:contains(" + $(this).val() + ")").show();
+  });
+  $(".school-selector").on("click",function(){
     var selector=$(this).find("input");
     $("#school-name").val($(selector).val());
   });
