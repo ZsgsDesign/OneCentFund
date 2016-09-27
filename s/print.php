@@ -494,9 +494,9 @@ $cat[]="专科高校";
 $cat[]="专科高校";
 
 for ($i=0; $i<count($cat); $i++) {
-  echo htmlspecialchars("<div class=\"radio-field col s6 m4 l3 ".$cat[$i]." ".$locate[$i]."\">");
+  echo htmlspecialchars("<div class=\"radio-field col s6 m4 l3 school-selector school school-".$cat[$i]."-".$locate[$i]."\">");
   echo "<br>";
-  echo htmlspecialchars("<input class=\"with-gap\" name=\"school\" type=\"radio\" id=\"".$school[$i]."\" />");
+  echo htmlspecialchars("<input class=\"with-gap\" name=\"school\" type=\"radio\" id=\"".$school[$i]."\" value=\"".$school[$i]."\" />");
   echo "<br>";
   echo htmlspecialchars("<label for=\"".$school[$i]."\">".$school[$i]."</label>");
   echo "<br>";
