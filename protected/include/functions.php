@@ -108,7 +108,7 @@ function getusersettings($loginid) {
 function get_thumbnail($data_string) {  
   $ch = curl_init();  
 	curl_setopt($ch, CURLOPT_POST, 1);  
-	curl_setopt($ch, CURLOPT_URL, 'https://api.projectoxford.ai/vision/v1.0/generateThumbnail?width=256&height=256&smartCropping=true)');  
+	curl_setopt($ch, CURLOPT_URL, 'https://api.projectoxford.ai/vision/v1.0/generateThumbnail?width=100&height=100&smartCropping=true)');  
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);  
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array(  
 		'Content-Type: application/json; charset=utf-8',

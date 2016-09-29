@@ -1,15 +1,16 @@
-<div class="am-g am-container">
+<div class="am-g am-container" style="max-width:500px!important;">
   <div class="am-cf am-padding">
     <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"><{$newuserinfo['name']}>的资料卡</strong> / <small>Profile</small></div>
   </div>
-  <div class="am-u-sm-12 am-u-md-6">
+  <div class="am-u-sm-12 am-u-md-12">
     <div class="am-panel am-panel-default">
       <div class="am-panel-bd am-cf">
-        <div class="am-u-sm-6">
-          <img src="https://static.1cf.co/img/avatar/<{$newuserinfo['avatar']}>" class="am-img-responsive am-img-thumbnail" />
+        <div class="am-u-sm-6 am-u-sm-centered">
+          <img src="https://static.1cf.co/img/avatar/<{$newuserinfo['avatar']}>" class="am-img-responsive am-img-thumbnail am-circle" />
         </div>
         <div class="am-u-sm-12" style="margin-top:2rem;">
-          <h1>
+        <center>
+		  <h1>
             <{$newuserinfo['name']}>
           </h1>
           <div>注册时间：
@@ -21,17 +22,16 @@
                 <{else}>保密
                   <{/if}>
           </div>
-          <div>电子邮箱 :
-            <{$newuserinfo['email']}>
+          <div>
+            <{if $newuserinfo['intro']!=''}>自我介绍 :<{$newuserinfo['intro']}>
+			<{/if}>
           </div>
-          <div>自我介绍 :
-            <{$newuserinfo['intro']}>
-          </div>
+		</center>
         </div>
       </div>
     </div>
   </div>
-  <div class="am-u-sm-12 am-u-md-6">
+  <div class="am-u-sm-12 am-u-md-12">
     <div class="am-panel am-panel-default">
       <div class="am-panel-bd am-cf">
         <div class="am-u-sm-6 am-text-center">
