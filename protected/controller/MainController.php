@@ -9,7 +9,7 @@ class MainController extends BaseController {
 		$str = file_get_contents('http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN');
 		$array = json_decode($str);
 		//dump($array);exit;
-		$this->imgurl="http://s.cn.bing.net/".$array->{"images"}[0]->{"url"};
+		$this->imgurl="https://cn.bing.com/".$array->{"images"}[0]->{"url"};
 		$copyright=$array->{"images"}[0]->{"copyright"};
 		$imginfo=explode(" (",$copyright);
 		//dump($imginfo);exit;

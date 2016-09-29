@@ -242,6 +242,43 @@ class ApiController extends BaseController {
 				);				
 			}
 			$json=$db->create($user);
+			if(arg("avatar")){
+				$rs=$db->find(array("loginid=:loginid",
+									":loginid"=>$loginid),null,"uid");
+				$uid=$rs['uid'];
+				if ($base64_original=arg("avatar")) {
+					if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_original, $result2)){
+						//dump($result2);
+						$type = $result2[2];
+						$path="/www/web/1cf_co/public_html";
+						$filename = "/i/img/avatar/$uid.temp.{$type}";
+						//echo $filename;
+						if (file_exists($filename)) {
+							$delete = @unlink ($filename);
+						}
+						if (file_put_contents($path.$filename, base64_decode(substr(strstr($base64_original,','),1)))){
+							$tempimgurl="https://www.1cf.co".$filename;
+							$data = json_encode(array('url'=>$tempimgurl));   
+							list($return_code, $return_content) = get_thumbnail($data);  
+							if($return_code=='200') {
+								$filename2=$path."/i/img/avatar/$uid.{$type}"; // 形如1.jpg
+								if (file_exists($filename2)) {
+									$delete = @unlink ($filename2);
+								}
+								$newFile = fopen($filename2,"w"); //打开文件准备写入
+								fwrite($newFile,$return_content); //写入二进制流到文件
+								fclose($newFile); //关闭文件
+								$delete = @unlink ($path.$filename); //删除临时文件
+								$filename2=str_replace("/www/web/1cf_co/public_html/i/img/avatar/","",$filename2);
+								$result2=$db->update(array("loginid=:loginid",
+																				":loginid"=>$loginid),
+																	array("avatar"=>$filename2));
+								//echo json_encode(array('result'=>1,'url'=>"https://static.1cf.co/img/avatar/$filename2"));
+							}
+						}
+					}
+				}
+			}
 			$output=array(
 				'result'=>1,
 				'uid'=>$json
@@ -388,9 +425,9 @@ class ApiController extends BaseController {
 		$i=0;
 		$data=json_decode($_POST['data']);
 		/*while(1){
-			if ($data[i]['uid'] && $data[i]['count']) {
-				$score=$data[i]['count']/10;
-				$uid=$data[i]['uid'];
+			if ($data[$i]['uid'] && $data[$i]['count']) {
+				$score=$data[$i]['count']/10;
+				$uid=$data[$i]['uid'];
 				$ip = getIP();
 				$date = date("Y-m-d");
 				$time = date("Y-m-d H:i:s");
@@ -640,7 +677,7 @@ class ApiController extends BaseController {
 	}
 	
 	function actionFeedback() {
-		if (arg("uid") && arg("name") && arg("email") && arg("content")) {
+		if (arg("uid") && arg("name") && arg("email") && arg("content") && arg("version")) {
 			$date=date("Y-m-d H:i:s");
 			$db=new Model("feedback");
 			$feedback=array(
@@ -648,6 +685,7 @@ class ApiController extends BaseController {
 				'name' => arg("name"),
 				'email' => arg("email"),
 				'date' => $date,
+				'version' => arg("version"),
 				'content' => arg("content")
 			);
 			$result=$db->create($feedback);
