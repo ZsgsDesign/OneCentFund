@@ -423,10 +423,10 @@ class ApiController extends BaseController {
 	
 	function actionAddreadscore() {
 		$i=0;
-		$data=json_decode($_POST['data']);
+		$data=json_decode($_POST['data'],true);
 		if($_POST['providerSite']=='1cf'){
 			while(1){
-				if ($data[$i]['_id'] && $data[$i]['referViewToday']) {
+				if (@$data[$i]['_id'] && @$data[$i]['referViewToday']) {
 					$score=$data[$i]['referViewToday']/1*1;
 					$uid=$data[$i]['_id'];
 					$ip = getIP();
