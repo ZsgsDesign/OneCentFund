@@ -13,11 +13,14 @@ class MainController extends BaseController {
 			$secret=sha1("lalala".$openid);
 			if ($secret!=arg("secret")) exit("授权secret错误");
 			$user_db=new Model("s");
-			$rs=$user_db->findCount(array(
+			$rs=$user_db->find(array(
 				"openid=:openid",
 				":openid"=>$openid
 			));
-			if ($rs) $this->jump("/s/result?id=".$rs['id']);
+			if ($rs) {
+				$this->jump("/s/result?id=".$rs['id']);
+				exit;
+			}
 			$_SESSION['openid']=arg("openid");
 		} else {
 			$this->jump("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx34339a5251285069&redirect_uri=https%3a%2f%2fwww2.luogu.org%2f1cf%2fverify.php&response_type=code&scope=snsapi_base#wechat_redirect");
