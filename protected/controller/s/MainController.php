@@ -14,7 +14,7 @@ class MainController extends BaseController {
 				"openid=:openid",
 				":openid"=>$openid
 			));
-			if ($rs) $this->jump("/s/result");
+			if ($rs) $this->jump("/s/result?openid=".$openid);
 			$_SESSION['openid']=arg("openid");
 		} else {
 			exit;
@@ -30,11 +30,20 @@ class MainController extends BaseController {
 
 	}
 
-	function actionLanding() {
-
-	}
 	function actionResult() {
-
+		if (arg("openid")) {
+			$user_db=new Model("s");
+			$openid=arg("openid");
+			$rs=$user_db->find(array(
+				"openid=:openid",
+				":openid"=>$openid
+			));
+			if (!$rs) $this->jump("/s/?openid=".$openid);
+			$this->name=$rs['name'];
+			$this->school=$rs['school'];
+			$this->time=$rs['time'];
+			$this->score=$rs['score'];
+		}
 	}
 
 	function actionSubmit() {
@@ -117,7 +126,8 @@ class MainController extends BaseController {
 				'reuslt'=>0,
 				'name'=>$_SESSION['name'],
 				'school'=>$_SESSION['school'],
-				'score'=>$_SESSION['score']
+				'score'=>$_SESSION['score'],
+				'time'=>$time
 			);
 			echo json_encode($output);
 		}
