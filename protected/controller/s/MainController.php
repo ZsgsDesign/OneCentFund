@@ -135,6 +135,21 @@ class MainController extends BaseController {
 			echo json_encode($output);
 		}
 	}
+	function actionExec() {
+		$db=new Model("s_questions");
+		$rs=$db->findAll();
+		$success=0;
+		for ($i=0;$i<count($rs);$i++) {
+			$answer=$rs[$i]['tid']."#".md5($rs[$i]['ans1']);
+			$success+=$db->update(array(
+				"tid=:tid",
+				":tid"=>$rs[$i]['tid']
+			),array(
+				"answer"=>$answer
+			));
+		}
+		echo $success;
 
+	}
 	
 }
