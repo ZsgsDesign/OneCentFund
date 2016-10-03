@@ -53,7 +53,7 @@
     </div>
     
     <div class="row">
-      <h4 class="col s12 teal-text text-lighten-1 question">问题</h4>
+      <h4 class="col s12 teal-text text-lighten-1 question">题目加载中 请稍候…</h4>
       <div class="row">
         <div class="col s12 m5">
           <div class="card-panel waves-effect lighten-4 option option1" style="display:block !important;" ans="">
@@ -92,22 +92,22 @@
       <p>仅限江苏省高校学生参加</p>
     </div>
     <div class="row">
-      <form class="col s12 index-form">
+      <form class="col s12 index-form" method="POST">
         <div class="row">
           <div class="input-field col s12 m6">
             <i class="material-icons prefix">account_circle</i>
-            <input id="name" name="name" type="text" class="validate" required>
+            <input id="name" name="name" type="text" required>
             <label for="name">姓名</label>
           </div>
           <div class="input-field col s12 m6">
             <i class="material-icons prefix">school</i>
-            <input id="school-name" type="text" placeholder="筛选或输入学校名称" class="validate" required>
+            <input id="school-name" type="text" placeholder="请在下方列表中选择学校" disabled required>
             <label for="school-name">学校名称</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6 m6">
-            <select id="school-type" required>
+            <select id="school-type">
               <option value="" disabled selected>学校类型</option>
               <option value="本科高校">本科高校</option>
               <option value="专科高校">专科高校</option>
@@ -115,7 +115,7 @@
             <label>学校类型</label>
           </div>
           <div class="input-field col s6 m6">
-            <select id="school-locate" required>
+            <select id="school-locate">
               <option value="" disabled selected>地区</option>
               <option value="南京市">南京市</option>
               <option value="无锡市">无锡市</option>
@@ -788,7 +788,7 @@
           
         </div>
         <div class="row">
-          <button type="submit" class="col s12 m2 offset-m5 waves-effect waves-light btn btn-main-1">开始</button>
+          <button type="button" class="col s12 m2 offset-m5 waves-effect waves-light btn btn-main-1">开始</button>
         </div>
       </form>
     </div>
