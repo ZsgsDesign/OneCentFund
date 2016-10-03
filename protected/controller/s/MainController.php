@@ -9,6 +9,8 @@ class MainController extends BaseController {
 		}
 		if (arg("openid")) {
 			$openid=arg("openid");
+			$secret=sha1("lalala".$openid);
+			if ($secret!=arg("secret")) exit("授权secret错误");
 			$user_db=new Model("s");
 			$rs=$user_db->findCount(array(
 				"openid=:openid",
@@ -117,6 +119,7 @@ class MainController extends BaseController {
 				'name'	=> $_SESSION['name'],
 				'school'=> $_SESSION['school'],
 				'openid'=> $_SESSION['openid'],
+				'ip'=>getIP(),
 				'score'	=> intval($_SESSION['score']),
 				'date'	=> $date,
 				'time'	=> $time
