@@ -3,6 +3,9 @@ class BaseController extends Controller{
 	function init(){
 		session_start();
 		header("Content-type: text/html; charset=utf-8");
+		if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') === false ) {
+			exit("请用微信浏览器打开");
+		}
 	}
 
   function tips($msg, $url){
