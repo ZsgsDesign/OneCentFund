@@ -17,7 +17,7 @@ class MainController extends BaseController {
 				"openid=:openid",
 				":openid"=>$openid
 			));
-			if ($rs) $this->jump("/s/result?openid=".$openid);
+			if ($rs) $this->jump("/s/result?id=".$rs['id']);
 			$_SESSION['openid']=arg("openid");
 		} else {
 			$this->jump("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx34339a5251285069&redirect_uri=https%3a%2f%2fwww2.luogu.org%2f1cf%2fverify.php&response_type=code&scope=snsapi_base#wechat_redirect");
@@ -35,14 +35,14 @@ class MainController extends BaseController {
 	}
 
 	function actionResult() {
-		if (arg("openid")) {
+		if (arg("id")) {
 			$user_db=new Model("s");
-			$openid=arg("openid");
+			$id=arg("id");
 			$rs=$user_db->find(array(
-				"openid=:openid",
-				":openid"=>$openid
+				"id=:id",
+				":id"=>$id
 			));
-			if (!$rs) $this->jump("/s/?openid=".$openid);
+			if (!$rs) $this->jump("/s/");
 			$this->name=$rs['name'];
 			$this->school=$rs['school'];
 			$this->time=$rs['time'];
@@ -126,13 +126,10 @@ class MainController extends BaseController {
 				'date'	=> $date,
 				'time'	=> $time
 			);
-			$user_db->create($row);
+			$id=$user_db->create($row);
 			$output=array(
 				'reuslt'=>0,
-				'name'=>$_SESSION['name'],
-				'school'=>$_SESSION['school'],
-				'score'=>$_SESSION['score'],
-				'time'=>$time
+				'id'=>$id
 			);
 			echo json_encode($output);
 		}

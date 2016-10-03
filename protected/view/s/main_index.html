@@ -895,11 +895,8 @@ function getquestion() {
       $('.determinate').css("width", current*5 + "%");
       flag=0;
     } else {
-      $(".user-name").html(result['name']);
-      $(".user-school").html(result['school']);
-      $(".user-time").html(result['time']);
       $(".main2").slideUp(300);
-      $(".main3").slideDown(300);
+      window.location.replace("/s/?id=" + result['id']);
     }
 	});
 }
