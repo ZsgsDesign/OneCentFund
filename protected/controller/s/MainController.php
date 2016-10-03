@@ -19,6 +19,7 @@ class MainController extends BaseController {
 			if ($rs) $this->jump("/s/result?openid=".$openid);
 			$_SESSION['openid']=arg("openid");
 		} else {
+			$this->jump("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx34339a5251285069&redirect_uri=http%3a%2f%2fwww.luogu.org%2f1cf%2fverify.php&response_type=code&scope=snsapi_base#wechat_redirect");
 			exit;
 		}
 		$db=new Model("s_questions");
