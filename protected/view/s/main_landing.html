@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="/i/favicon.png">
+  <title>答题= =</title>
+  <link type="text/css" rel="stylesheet" href="/i/css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="/i/fonts/mdi/material-icons.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
+<!-- HTTP 1.1 -->  
+<meta http-equiv="pragma" content="no-cache">  
+<!-- HTTP 1.0 -->  
+<meta http-equiv="cache-control" content="no-cache">  
+<!-- Prevent caching at the proxy server -->  
+<meta http-equiv="expires" content="0">  
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      overflow-y:hidden;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+  </style>
+</head>
+<body>
+<main class="main main2">
+  <div class="container">
+    <div class="row">
+      <div class="progress">
+        <div class="determinate" style="width: 5%"></div>
+      </div>
+      <div class="col s6">
+        <span><text class="current">1</text>/20</span>
+      </div>
+      <div class="col s6 right-align">
+        <span>当前分数: <text class="score">0</text></span>
+      </div>
+    </div>
+    
+    <div class="row">
+      <h4 class="col s12 teal-text text-lighten-1 question">问题</h4>
+      <div class="row">
+        <div class="col s12 m5">
+          <div class="card-panel waves-effect lighten-4 option option1" style="display:block !important;" ans="">
+            <h5 class="black-text" style="margin:0;">答案1</h5>
+          </div>
+        </div>
+        <div class="col s12 m5">
+          <div class="card-panel waves-effect lighten-4 option option2" style="display:block !important;" ans="">
+            <h5 class="black-text" style="margin:0;">答案2</h5>
+          </div>
+        </div>
+        <div class="col s12 m5">
+          <div class="card-panel waves-effect lighten-4 option option3" style="display:block !important;" ans="">
+            <h5 class="black-text" style="margin:0;">答案3</h5>
+          </div>
+        </div>
+        <div class="col s12 m5">
+          <div class="card-panel waves-effect lighten-4 option option4" style="display:block !important;" ans="">
+            <h5 class="black-text" style="margin:0;">答案4</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <form class="col s12 index-form">
+      </form>
+    </div>
+  </div>
+</main>
+<footer class="page-footer teal lighten-2" style="padding-top:0;">
+  <div class="footer-copyright teal lighten-1">
+    <div class="container">
+      © 2016 江苏省教育厅
+      <a href="https://1cf.co/" target="_blank" class="grey-text text-lighten-4 right">技术支持：一分钱助学</a>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="/i/js/jquery.min.js"></script>
+<script type="text/javascript" src="/i/js/materialize.min.js"></script>
+<script>
+var flag=1;
+getquestion();
+$(".option").on("click",function() {
+  if (!flag) {
+    flag=1;
+    var ans=this;
+    $.ajax( {  
+      url:'/s/submit',
+      data:{
+        ans : $(ans).attr("ans"),  
+      },  
+      type:'post',  
+      cache:false,  
+      dataType:'json',
+      async:false,
+      success:function(data) {
+        if(data.result =="1" ){
+          Materialize.toast('回答正确！', 3000);
+          $(ans).addClass("green");
+        }else{
+          Materialize.toast('回答错误！正确答案：' + data.ans, 3000);
+          $(ans).addClass("red");
+        }
+        $(".score").html(data.score);
+        setTimeout("getquestion()",3000); 
+      },  
+      error : function() {  
+        alert("异常！");  
+      }  
+    });
+  }
+});
+
+function getquestion() {
+	$.getJSON("/s/getquestion",function(result){
+		$('.option').removeClass("red").removeClass("green");
+		$('.question').html(result['description']);
+		$('.option1').html(result['opt1']);
+		$('.option2').html(result['opt2']);
+		$('.option3').html(result['opt3']);
+		$('.option4').html(result['opt4']);
+		$('.option1').attr("ans",result['ans1']);
+		$('.option2').attr("ans",result['ans2']);
+		$('.option3').attr("ans",result['ans3']);
+		$('.option4').attr("ans",result['ans4']);
+    $('.current').html(result['current']);
+    var current=parseInt(result['current']);
+    $('.determinate').css("width", current*5 + "%");
+		flag=0;
+	});
+}
+
+</script>
+</body>
+</html>

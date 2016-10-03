@@ -7,9 +7,9 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="alternate icon" type="image/png" href="/i/favicon.png">
-  <title>标题 待定</title>
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
-  <link type="text/css" rel="stylesheet" href="fonts/mdi/material-icons.css" />
+  <title>长征胜利80周年知识问答</title>
+  <link type="text/css" rel="stylesheet" href="/i/css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="/i/fonts/mdi/material-icons.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <style>
     body {
@@ -27,13 +27,67 @@
 <body>
 <nav class="teal lighten-2">
   <div class="nav-wrapper container">
-  <a href="#" class="brand-logo">标题 待定</a>
+  <a href="#" class="brand-logo">长征胜利80周年知识问答</a>
   </div>
 </nav>
-<main>
+<main class="main main3">
+  <div class="container">
+    
+    <h5 class="center-align"><span class="user-school">学校</span> <span class="user-name">姓名</span></h5>
+    <p class="center-align">您在本次 知识竞赛 中 获得分数</p>
+    <h2 class="teal-text center-align score">00</h2>
+  </div>
+</main>
+
+<main class="main main2">
+  <div class="container">
+    <div class="row">
+      <div class="progress">
+        <div class="determinate" style="width: 5%"></div>
+      </div>
+      <div class="col s6">
+        <span><text class="current">1</text>/20</span>
+      </div>
+      <div class="col s6 right-align">
+        <span>当前分数: <text class="score">0</text></span>
+      </div>
+    </div>
+    
+    <div class="row">
+      <h4 class="col s12 teal-text text-lighten-1 question">问题</h4>
+      <div class="row">
+        <div class="col s12 m5">
+          <div class="card-panel waves-effect lighten-4 option option1" style="display:block !important;" ans="">
+            <h5 class="black-text" style="margin:0;">答案1</h5>
+          </div>
+        </div>
+        <div class="col s12 m5">
+          <div class="card-panel waves-effect lighten-4 option option2" style="display:block !important;" ans="">
+            <h5 class="black-text" style="margin:0;">答案2</h5>
+          </div>
+        </div>
+        <div class="col s12 m5">
+          <div class="card-panel waves-effect lighten-4 option option3" style="display:block !important;" ans="">
+            <h5 class="black-text" style="margin:0;">答案3</h5>
+          </div>
+        </div>
+        <div class="col s12 m5">
+          <div class="card-panel waves-effect lighten-4 option option4" style="display:block !important;" ans="">
+            <h5 class="black-text" style="margin:0;">答案4</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <form class="col s12 index-form">
+      </form>
+    </div>
+  </div>
+</main>
+
+<main class="main main1">
   <div class="container">
     <div class="row center-align">
-      <h5 class="col s12">标题 待定</h5>
       <p>请如实填写您的个人信息，您填写的信息将受到审核并会被严格保密</p>
       <p>您可以直接输入学校全名选择搜索结果，也可以通过筛选地区及类型选择学校</p>
       <p>仅限江苏省高校学生参加</p>
@@ -47,13 +101,12 @@
             <label for="name">姓名</label>
           </div>
           <div class="input-field col s12 m6">
-            <i class="material-icons prefix">mode_edit</i>
-            <input id="id" type="text" name="id" class="validate" required>
-            <label for="id">学号</label>
+            <input id="school-name" type="text" placeholder="筛选或输入学校名称" class="validate" required>
+            <label for="school-name">学校名称</label>
           </div>
         </div>
         <div class="row">
-          <div class="input-field col s6 m4">
+          <div class="input-field col s6 m6">
             <select id="school-type" required>
               <option value="" disabled selected>学校类型</option>
               <option value="本科高校">本科高校</option>
@@ -61,7 +114,7 @@
             </select>
             <label>学校类型</label>
           </div>
-          <div class="input-field col s6 m4">
+          <div class="input-field col s6 m6">
             <select id="school-locate" required>
               <option value="" disabled selected>地区</option>
               <option value="南京市">南京市</option>
@@ -80,13 +133,10 @@
             </select>
             <label>地区</label>
           </div>
-          <div class="input-field col s12 m4">
-            <input id="school-name" type="text" placeholder="筛选或输入学校名称" class="validate" required>
-            <label for="school-name">学校名称</label>
-          </div>
+          
         </div>
         <div class="row">
-          <button type="submit" class="col s12 m2 offset-m5 waves-effect waves-light btn">开始</button>
+          <button type="submit" class="col s12 m2 offset-m5 waves-effect waves-light btn btn-main-1">开始</button>
         </div>
         <div class="row">
           <div class="radio-field col s6 m4 l3 school-selector school school-本科高校-南京市">
@@ -752,11 +802,13 @@
     </div>
   </div>
 </footer>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="/i/js/jquery.min.js"></script>
+<script type="text/javascript" src="/i/js/materialize.min.js"></script>
 <script>
-var type="", locate="";
+var type="", locate="", flag=1;
 $(document).ready(function() {
+  $('.main2').hide();
+  $('.main3').hide();
   $('select').material_select();
   $('.school').hide();
   $("#school-type").change(function(){
@@ -778,6 +830,84 @@ $(document).ready(function() {
     $("#school-name").val($(selector).val());
   });
 });
+
+$('.btn-main-1').on("click",function() {
+  $.ajax({  
+    url:'/s/',
+    data:$(".index-form").serialize(),  
+    type:'post',  
+    cache:false,  
+    dataType:'json',
+    async:false,
+    success:function(data) {
+      getquestion();
+      $(".main1").slideUp(300);
+      $(".main2").slideDown(300);
+    },  
+    error : function() {  
+      alert("未填写完整！");  
+    }  
+  });
+});
+
+
+$(".option").on("click",function() {
+  if (!flag) {
+    flag=1;
+    var ans=this;
+    $.ajax( {  
+      url:'/s/submit',
+      data:{
+        ans : $(ans).attr("ans"),  
+      },  
+      type:'post',  
+      cache:false,  
+      dataType:'json',
+      async:false,
+      success:function(data) {
+        if(data.result =="1" ){
+          Materialize.toast('回答正确！', 3000);
+          $(ans).addClass("green");
+        }else{
+          Materialize.toast('回答错误！正确答案：' + data.ans, 3000);
+          $(ans).addClass("red");
+        }
+        $(".score").html(data.score);
+        setTimeout("getquestion()",3000); 
+      },  
+      error : function() {  
+        alert("异常！");  
+      }  
+    });
+  }
+});
+
+function getquestion() {
+	$.getJSON("/s/getquestion",function(result){
+    if (result['result']) {
+      $('.option').removeClass("red").removeClass("green");
+      $('.question').html(result['description']);
+      $('.option1').html(result['opt1']);
+      $('.option2').html(result['opt2']);
+      $('.option3').html(result['opt3']);
+      $('.option4').html(result['opt4']);
+      $('.option1').attr("ans",result['ans1']);
+      $('.option2').attr("ans",result['ans2']);
+      $('.option3').attr("ans",result['ans3']);
+      $('.option4').attr("ans",result['ans4']);
+      $('.current').html(result['current']);
+      var current=parseInt(result['current']);
+      $('.determinate').css("width", current*5 + "%");
+      flag=0;
+    } else {
+      $(".user-name").html(result['name']);
+      $(".user-school").html(result['school']);
+      $(".main2").slideUp(300);
+      $(".main3").slideDown(300);
+    }
+	});
+}
+
 </script>
 </body>
 </html>
