@@ -15,13 +15,4 @@ class BaseController extends Controller{
     exit;
   }
 	
-	public static function err404($controller_name, $action_name){
-		header("HTTP/1.0 404 Not Found");
-		//echo $controller_name."<br>".$action_name;
-		//echo "<BR>".arg("username");
-		$controlObj = new BaseController;
-		$controlObj->display("404/index.html");
-		//$controlObj->jump("/");
-		exit;
-	}
 } 
