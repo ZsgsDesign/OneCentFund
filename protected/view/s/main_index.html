@@ -189,8 +189,6 @@ var type="", locate="", flag=1;
 $(document).ready(function() {
   $('.main2').hide();
   $('.main3').hide();
-  $('select').material_select();
-  $('.school').hide();
   $('input.autocomplete').autocomplete({
     data: {
       "南京大学":null,
@@ -356,24 +354,6 @@ $(document).ready(function() {
       "江苏财会职业学院":null,
       "江苏城乡建设职业学院":null
     }
-  });
-  $("#school-type").change(function(){
-    type=$(this).val();
-    $(".school").hide();
-    if (type && locate) $(".school-" + type + "-" + locate).show();
-  });
-  $("#school-locate").change(function(){
-    locate=$(this).val();
-    $(".school").hide();
-    if (type && locate) $(".school-" + type + "-" + locate).show();
-  });
-  $("#school-name").bind('input propertychange', function() {
-    $(".school-selector").hide();
-    $(".school-selector:contains(" + $(this).val() + ")").show();
-  });
-  $(".school-selector").on("click",function(){
-    var selector=$(this).find("input");
-    $("#school-name").val($(selector).val());
   });
 });
 
