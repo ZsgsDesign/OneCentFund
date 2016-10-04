@@ -8,10 +8,36 @@
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="alternate icon" type="image/png" href="/i/favicon.png">
   <title>分数 | 纪念长征胜利80周年知识答题竞赛</title>
+  <script type="text/javascript" src="/i/js/pace.min.js"></script>
   <link type="text/css" rel="stylesheet" href="/i/css/materialize.min.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="/i/fonts/mdi/material-icons.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <style>
+    #preloader {
+        position: fixed;
+        z-index: 998;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition: all .9s;
+        transition: all .9s;
+    }
+    #preloader .logo {
+        position: absolute;
+        width: 120px;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        margin: -72px 0 0 -60px;
+    }
+    .pace-done #preloader, .pace-done #preloader .logo {
+        opacity: 0;
+        visibility: hidden;
+    }
     @font-face {
       font-family: 'yuweij632a6420169a5';
       src: url('/i/fonts/yuweij632a6420169a5/57f311a8f629d81494afb9f9.gif');
@@ -43,6 +69,51 @@
   </style>
 </head>
 <body>
+  <div id="preloader">
+	  <div class="logo">
+		<div class="preloader-wrapper big active">
+	      <div class="spinner-layer spinner-blue">
+	        <div class="circle-clipper left">
+	          <div class="circle"></div>
+	        </div><div class="gap-patch">
+	          <div class="circle"></div>
+	        </div><div class="circle-clipper right">
+	          <div class="circle"></div>
+	        </div>
+	      </div>
+	
+	      <div class="spinner-layer spinner-red">
+	        <div class="circle-clipper left">
+	          <div class="circle"></div>
+	        </div><div class="gap-patch">
+	          <div class="circle"></div>
+	        </div><div class="circle-clipper right">
+	          <div class="circle"></div>
+	        </div>
+	      </div>
+	
+	      <div class="spinner-layer spinner-yellow">
+	        <div class="circle-clipper left">
+	          <div class="circle"></div>
+	        </div><div class="gap-patch">
+	          <div class="circle"></div>
+	        </div><div class="circle-clipper right">
+	          <div class="circle"></div>
+	        </div>
+	      </div>
+	
+	      <div class="spinner-layer spinner-green">
+	        <div class="circle-clipper left">
+	          <div class="circle"></div>
+	        </div><div class="gap-patch">
+	          <div class="circle"></div>
+	        </div><div class="circle-clipper right">
+	          <div class="circle"></div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+  </div>
 <div class="ocf-background-wrap" style=""></div>
 <div class="ocf-background-wrap" style="background:rgba(0,0,0,0.2);z-index: -998;"></div>
 <main class="main main3"> 
