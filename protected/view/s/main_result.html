@@ -65,7 +65,12 @@
     main {
       flex: 1 0 auto;
     }
-
+		.img-cover {
+			position: absolute;
+			top: 0;left: 0;right: 0;bottom: 0;
+			background:-webkit-linear-gradient(top,rgba(0,0,0,0),rgba(0,0,0,0.4));
+			z-index: 0;
+		}
   </style>
 </head>
 <body>
@@ -130,6 +135,7 @@
     <div class="card">
       <div class="card-image">
         <img src="https://static.1cf.co/img/activity/cz80/ocf.png">
+        <div class="img-cover"></div>
         <span class="card-title">一分钱助学</span>
       </div>
       <div class="card-content">
