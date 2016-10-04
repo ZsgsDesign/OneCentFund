@@ -7,7 +7,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="alternate icon" type="image/png" href="/i/favicon.png">
-  <title>江苏省教育厅纪念长征胜利80周年知识答题竞赛</title>
+  <title>答题 | 纪念长征胜利80周年知识答题竞赛</title>
   <link type="text/css" rel="stylesheet" href="/i/css/materialize.min.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="/i/fonts/mdi/material-icons.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -115,11 +115,12 @@
           </div>
           <div class="input-field col s12 m6">
             <i class="material-icons prefix">school</i>
-            <input id="school-name" type="text" placeholder="请在下方列表中选择学校" disabled required>
+            <!--<input id="school-name" type="text" placeholder="请在下方列表中选择学校" disabled required>-->
+            <input id="school-name" type="text" class="autocomplete" placeholder="请输入学校全称" required>
             <label for="school-name">学校名称</label>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="display:none;">
           <div class="input-field col s6 m6">
             <select id="school-type">
               <option value="" disabled selected>学校类型</option>
@@ -149,7 +150,7 @@
           </div>
           
         </div>
-        <div class="row">
+        <div class="row" style="display:none;">
           <div class="radio-field col s6 m4 l3 school-selector school school-本科高校-南京市">
             <input class="with-gap" name="school" type="radio" id="南京大学" value="南京大学" required/>
             <label for="南京大学">南京大学</label>
@@ -827,6 +828,12 @@ $(document).ready(function() {
   $('.main3').hide();
   $('select').material_select();
   $('.school').hide();
+  $('input.autocomplete').autocomplete({
+    data: {
+      "扬州大学": null,
+      "南京大学": null
+    }
+  });
   $("#school-type").change(function(){
     type=$(this).val();
     $(".school").hide();
