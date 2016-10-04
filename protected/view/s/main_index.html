@@ -127,6 +127,10 @@
     </div>
     <div class="card-panel">
     <div class="row" style="margin-bottom:0px;">
+      <form class="hidden-form" method="POST" action="/s/">
+        <input type="hidden" name="openid" id="openid">
+        <input type="hidden" name="secret" id="secret">
+      </form>
       <form class="col s12 index-form" method="POST">
         <div class="row">
           <div class="input-field col s12 m6">
@@ -159,6 +163,27 @@
 <script type="text/javascript" src="/i/js/jquery.min.js"></script>
 <script type="text/javascript" src="/i/js/materialize.min.js"></script>
 <script>
+var $_GET = (function() {
+  var url = window.document.location.href.toString();
+  var u = url.split("?");
+  if (typeof(u[1]) == "string") {
+    u = u[1].split("&");
+    var get = {};
+    for (var i in u) {
+      var j = u[i].split("=");
+      get[j[0]] = j[1];
+    }
+    return get;
+  } else {
+    return {};
+  }
+})();
+
+if ($_GET['openid'] && $_GET['secret']) {
+  $("#openid").val($_GET['openid']);
+  $("#secret").val($_GET['secret']);
+  $(".hidden-form").submit();
+}
 
 var type="", locate="", flag=1;
 $(document).ready(function() {
@@ -426,6 +451,8 @@ function getquestion() {
     }
 	});
 }
+
+
 
 </script>
 </body>
