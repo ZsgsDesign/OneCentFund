@@ -21,10 +21,20 @@
     main {
       flex: 1 0 auto;
     }
-
+	  .ocf-background-wrap{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -999;
+      background: url(https://static.1cf.co/img/activity/cz80/bg.jpg) center center no-repeat fixed;
+      background-size: cover;
+    }
   </style>
 </head>
 <body>
+<div class="ocf-background-wrap" style=""></div>
 <main class="main main3">
   <div class="container">
     <h5 class="center-align"><span class="user-school">学校</span> <span class="user-name">姓名</span></h5>
@@ -41,12 +51,12 @@
       </div>
       <div style="padding-top: 8px;">
         <span><text class="current">1</text>/20</span>
-        <span style="padding-top:8px;">当前分数: <text class="score">0</text></span>
+        <span style="float:right;">当前分数: <text class="score">0</text></span>
       </div>
     </div>
     
     <div class="row" style="padding-top:30px;">
-      <div class="card-panel">
+      <div class="card-panel" style="box-shadow:none;">
         <h4 class="col s12 teal-text text-lighten-1 question">题目加载中 请稍候…</h4>
         <div class="row">
           <div class="col s12 m5">
