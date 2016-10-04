@@ -3,8 +3,8 @@ class MainController extends BaseController {
 	
 	function actionIndex(){ //首页
 		if (arg("name") && arg("school")) {
-			$_SESSION['name']=arg('name');
-			$_SESSION['school']=arg('school');
+			$_SESSION['name']=trim(arg('name'));
+			$_SESSION['school']=trim(arg('school'));
 			echo json_encode(array('result'=>1));
 			exit;
 		}
