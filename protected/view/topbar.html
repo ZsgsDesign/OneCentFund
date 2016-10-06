@@ -1,4 +1,11 @@
 <header class="am-topbar ocf-topbar am-print-hide" id="ocf-header">
+  <script>
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/ocf-full/i) == 'ocf-full'){
+          document.getElementById('ocf-header').style.cssText='display:none;';
+      }
+    }
+  </script>
   <div class="am-container ">
   <div class="am-vertical-align">
     <h1 class="am-topbar-brand am-vertical-align-middle">

@@ -1,4 +1,14 @@
-<footer class="ocf-footer am-print-hide">
+<footer class="ocf-footer am-print-hide" id="ocf-footer">
+<script>
+	var ua = window.navigator.userAgent.toLowerCase();
+	if(ua.match(/ocf-lite/i) == 'ocf-lite'){
+			document.getElementById('ocf-footer').style.cssText='display:none;';
+		}
+	}else if(ua.match(/ocf-full/i) == 'ocf-full'){
+			document.getElementById('ocf-footer').style.cssText='display:none;';
+		}
+	}
+</script>
 <div class="am-g am-container am-text-center">
 	<div class="am-u-md-3 ocf-footer-box">
 		<p><i class="am-icon-map-marker am-icon-lg ocf-icon-map"></i></p>
