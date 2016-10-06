@@ -21,6 +21,15 @@
   <![endif]-->
 </head>
 <body>
+<hr id="ocf-app-line">
+<script>
+  var ua = window.navigator.userAgent.toLowerCase();
+  if(ua.match(/ocf-lite/i) == 'ocf-lite'){
+    document.getElementById('ocf-app-line').style.cssText='';
+  }else if(ua.match(/ocf-full/i) == 'ocf-full'){
+    document.getElementById('ocf-app-line').style.cssText='';
+  }
+</script>
 <{include file="topbar.html"}>
 <{include file=$__template_file}>
 <{include file="footer.html"}>
