@@ -81,7 +81,7 @@ class MainController extends BaseController {
 				echo json_encode($output);
 			}
 		}
-	} //result, ans, score
+	}
 
 
 	function actionGetquestion() {
