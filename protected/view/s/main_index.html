@@ -93,6 +93,7 @@
   <script type="text/javascript" src="/i/js/pace.min.js"></script>
 </head>
 <body>
+<audio id="media" src="/i/music/bgm.mp3" autoplay proload="auto" loop="loop"></audio>
   <div id="preloader">
 	  <div class="logo">
 		<div class="preloader-wrapper big active">
@@ -142,9 +143,25 @@
 <div class="ocf-background-wrap" style="background:rgba(255,0,0,0.2);z-index: -998;"></div>
 <main class="main main3">
   <div class="container">
-    <h5 class="center-align red lighten-1"><span class="user-school">学校</span> <span class="user-name">姓名</span></h5>
-    <p class="center-align">在 <spnn class="user-time">时间</spnn><br>完成了本次知识问答 获得分数</p>
-    <h2 class="teal-text center-align score red-text lighten-2">分数</h2>
+    <div class="card-panel" style="margin-top:30px;">
+      <h1 class="center-align"><i class="material-icons red-text lighten-2" style="font-size: inherit;">person_pin</i></h1>
+      <h5 class="center-align red-text lighten-2"><span class="user-school"></span> <span class="user-name"></span></h5>
+      <p class="center-align">在 <span class="user-time"></span><br>完成了本次知识问答 获得分数</p> 
+      <h2 class="center-align score red-text lighten-2"></h2>
+    </div>
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="https://static.1cf.co/img/activity/cz80/logo.png">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>做生活中的小事也可以做公益？让天下不再有难做的公益，这，就是扬州中学生团队，一分钱助学，所做的事。</p>
+        </div>
+        <div class="card-action">
+          <a class="red-text" href="https://www.1cf.co">了解更多</a>
+        </div>
+      </div>
+    </div>
   </div>
 </main>
 
@@ -506,7 +523,6 @@ function getquestion() {
       $(".user-name").html(result['name']);
       $(".user-time").html(result['time']);
       $(".score").html(result['score']);
-      //window.location.replace("/s/result?id=" + result['id']);
       $("title").html("我在纪念长征胜利80周年知识竞赛中获得了" + result['score'] + "分，你也来试试！");
     }
 	});
