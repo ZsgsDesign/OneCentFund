@@ -271,7 +271,7 @@ if ($_GET['openid'] && $_GET['secret']) {
 var type="", locate="", flag=1;
 $(document).ready(function() {
   $('.main').hide();
-  $('.main1').delay(300).fadeIn(300);
+  $('.main1').delay(500).fadeIn(300);
   $('input.autocomplete').autocomplete({
     data: {
       "南京大学 ": null,
@@ -509,8 +509,8 @@ function getquestion() {
       $('.determinate').css("width", current*5 + "%");
       flag=0;
     } else {
-      $(".main2").fadeOut(300);
-      $(".main3").delay(300).fadeIn(300);
+      $(".main2").fadeOut(1000);
+      $(".main3").delay(1000).fadeIn(1000);
       $(".user-school").html(result['school']);
       $(".user-name").html(result['name']);
       $(".user-time").html(result['time']);
