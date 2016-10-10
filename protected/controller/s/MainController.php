@@ -132,7 +132,10 @@ class MainController extends BaseController {
 			$id=$user_db->create($row);
 			$output=array(
 				'reuslt'=>0,
-				'id'=>$id
+				'name'	=> $_SESSION['name'],
+				'school'=> $_SESSION['school'],
+				'score'	=> $_SESSION['score'],
+				'time'	=> $time
 			);
 			echo json_encode($output);
 		}

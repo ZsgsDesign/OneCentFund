@@ -7,7 +7,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="alternate icon" type="image/png" href="/i/favicon.png">
+<<<<<<< f2db44d929a557c63f25ad6de7d14d754cdd478a
   <title>纪念长征胜利80周年知识答题竞赛</title>
+=======
+  <title>答题 | 纪念长征胜利80周年知识竞赛</title>
+>>>>>>> update
   <link type="text/css" rel="stylesheet" href="/i/css/materialize.min.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="/i/fonts/mdi/material-icons.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -193,7 +197,7 @@
 <main class="main main1">
   <div class="container">
     <div class="row center-align white-text">
-      <h4 class="css632a6420169a5">纪念长征胜利80周年<br>知识答题竞赛</h4>
+      <h4 class="css632a6420169a5">纪念长征胜利80周年<br>知识竞赛</h4>
     </div>
     <div class="card-panel">
     <div class="row" style="margin-bottom:0px;">
@@ -257,8 +261,8 @@ if ($_GET['openid'] && $_GET['secret']) {
 
 var type="", locate="", flag=1;
 $(document).ready(function() {
-  $('.main2').hide();
-  $('.main3').hide();
+  $('.main').hide();
+  $('.main1').delay(300).fadeIn(300);
   $('input.autocomplete').autocomplete({
     data: {
       "南京大学 ": null,
@@ -496,8 +500,14 @@ function getquestion() {
       $('.determinate').css("width", current*5 + "%");
       flag=0;
     } else {
-      $(".main2").slideUp(300);
-      window.location.replace("/s/result?id=" + result['id']);
+      $(".main2").fadeOut(300);
+      $(".main3").delay(300).fadeIn(300);
+      $(".user-school").html(result['school']);
+      $(".user-name").html(result['name']);
+      $(".user-time").html(result['time']);
+      $(".score").html(result['score']);
+      //window.location.replace("/s/result?id=" + result['id']);
+      $("title").html("我在纪念长征胜利80周年知识竞赛中获得了" + result['score'] + "分，你也来试试！");
     }
 	});
 }
