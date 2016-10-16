@@ -234,7 +234,7 @@
 </main>
 <footer class="page-footer" style="background:none; padding-top:0;">
   <div class="container">
-    <button class="btn-floating" style="margin-bottom:0.5em; margin-left:0; border:2px solid #fff; background:rgba(0,0,0,0.8); padding:0;"><i class="material-icons">library_music</i></button>
+    <button class="btn-stop btn-floating" style="margin-bottom:0.5em; margin-left:-0.5em; border:2px solid #fff; background:rgba(0,0,0,0.8); padding:0;"><i class="material-icons">library_music</i></button>
   </div>
   <div class="footer-copyright red lighten-2">
     <div class="container">
@@ -246,6 +246,24 @@
 <script type="text/javascript" src="/i/js/jquery.min.js"></script>
 <script type="text/javascript" src="/i/js/materialize.min.js"></script>
 <script>
+var media = $('#media')[0];  
+$('.btn-stop').bind('click', function() {  
+		playAudio();  
+});   
+function playAudio() {  
+		if(media.paused) {  
+				play();  
+		} else {  
+				pause();  
+		}  
+}  
+function play() {  
+		media.play();  
+}  
+function pause() {  
+		media.pause();  
+}
+
 var $_GET = (function() {
   var url = window.document.location.href.toString();
   var u = url.split("?");
