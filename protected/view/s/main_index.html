@@ -157,7 +157,7 @@
     </div>
   </div>
 </main>
-
+<{if !$tested}>
 <main class="main main2">
   <div class="container">
     <div class="row" style="position: fixed;left: 0;right: 0;margin:0;">
@@ -232,6 +232,7 @@
     </div>
   </div>
 </main>
+<{/if}>
 <footer class="page-footer" style="background:none; padding-top:0;">
   <div class="container">
     <button class="btn-stop btn-floating" style="margin-bottom:0.5em; margin-left:-0.5em; border:2px solid #fff; background:rgba(0,0,0,0.8); padding:0;"><i class="material-icons">library_music</i></button>
@@ -245,6 +246,24 @@
 </footer>
 <script type="text/javascript" src="/i/js/jquery.min.js"></script>
 <script type="text/javascript" src="/i/js/materialize.min.js"></script>
+<{if !$tested}>
+<script>
+$(document).ready(function() {
+  $('.main').hide();
+  $('.main1').delay(500).fadeIn(300);
+});
+</script>
+<{else}>
+<script>
+$(document).ready(function() {
+  $(".user-school").html(<{$school}>);
+  $(".user-name").html(<{$name}>);
+  $(".user-time").html(<{$time}>);
+  $(".score").html(<{$score}>);
+  $("title").html("我在纪念长征胜利80周年知识竞赛中获得了" + <{$score}> + "分，你也来试试！");
+});
+</script>
+<{/if}>
 <script>
 var media = $('#media')[0];  
 $('.btn-stop').bind('click', function() {  
@@ -288,8 +307,6 @@ if ($_GET['openid'] && $_GET['secret']) {
 
 var type="", locate="", flag=1;
 $(document).ready(function() {
-  $('.main').hide();
-  $('.main1').delay(500).fadeIn(300);
   $('input.autocomplete').autocomplete({
     data: {
       "南京大学 ": null,

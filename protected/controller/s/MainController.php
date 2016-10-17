@@ -2,6 +2,11 @@
 class MainController extends BaseController {
 	
 	function actionIndex(){ //首页
+		$this->tested=0;
+		$this->school="";
+		$this->name="";
+		$this->time="";
+		$this->score=0;
 		if (arg("name") && arg("school")) {
 			$_SESSION['name']=trim(arg('name'));
 			$_SESSION['school']=trim(arg('school'));
@@ -18,7 +23,11 @@ class MainController extends BaseController {
 				":openid"=>$openid
 			));
 			if ($rs) {
-				$this->jump("/s/result?id=".$rs['id']);
+				$this->tested=1;
+				$this->school=$rs['school'];
+				$this->name=$rs['name'];
+				$this->score=$rs['score'];
+				$this->display("s/main_index.html");
 				exit;
 			}
 			$_SESSION['openid']=arg("openid");
