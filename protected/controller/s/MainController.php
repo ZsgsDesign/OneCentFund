@@ -26,6 +26,7 @@ class MainController extends BaseController {
 				$this->tested=1;
 				$this->school=$rs['school'];
 				$this->name=$rs['name'];
+				$this->time=$rs['time'];
 				$this->score=$rs['score'];
 				$this->display("s/main_index.html");
 				exit;
