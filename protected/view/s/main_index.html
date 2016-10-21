@@ -154,7 +154,12 @@
       </div>
     </div>
   </div>
+  <form class="hidden-form" method="POST" action="/s/">
+    <input type="hidden" name="openid" id="openid">
+    <input type="hidden" name="secret" id="secret">
+  </form>
 </main>
+
 <{if !$tested}>
 <main class="main main2">
   <div class="container">
@@ -205,10 +210,6 @@
     </div>
     <div class="card-panel" style="background:rgba(255,255,255,0.9);">
     <div class="row" style="margin-bottom:0px;">
-      <form class="hidden-form" method="POST" action="/s/">
-        <input type="hidden" name="openid" id="openid">
-        <input type="hidden" name="secret" id="secret">
-      </form>
       <form class="col s12 index-form" method="POST">
         <div class="row">
           <div class="input-field col s12 m6">
