@@ -144,12 +144,12 @@
       <h5 class="center-align red-text lighten-2"><span class="user-school"></span> <span class="user-name"></span></h5>
       <p class="center-align">在 <span class="user-time"></span><br>完成了本次知识问答 获得分数</p> 
       <h2 class="center-align score red-text lighten-2"></h2>
+      <h5 class="center-align">铭记红军丰功伟绩<br>弘扬伟大长征精神</h5>
     </div>
     <div class="card horizontal">
       <div class="card-stacked">
         <div class="card-content">
-          <h5 class="red-text lighten-2">技术支持</h5>
-          <p>一分钱助学 - 让天下不再有难做的公益</p>
+          <p>"一分钱助学" - 指尖上的公益</p>
         </div>
       </div>
     </div>
@@ -244,24 +244,6 @@
 </footer>
 <script type="text/javascript" src="/i/js/jquery.min.js"></script>
 <script type="text/javascript" src="/i/js/materialize.min.js"></script>
-<{if !$tested}>
-<script>
-$(document).ready(function() {
-  $('.main').hide();
-  $('.main1').delay(500).fadeIn(300);
-});
-</script>
-<{else}>
-<script>
-$(document).ready(function() {
-  $(".user-school").html("<{$school}>");
-  $(".user-name").html("<{$name}>");
-  $(".user-time").html("<{$time}>");
-  $(".score").html("<{$score}>");
-  $("title").html("我在纪念长征胜利80周年知识竞赛中获得了<{$score}>分，你也来试试！");
-});
-</script>
-<{/if}>
 <script>
 var media = $('#media')[0];  
 $('.btn-stop').bind('click', function() {  
@@ -552,9 +534,24 @@ function getquestion() {
     }
 	});
 }
-
-
-
 </script>
+<{if !$tested}>
+<script>
+$(document).ready(function() {
+  $('.main').hide();
+  $('.main1').delay(500).fadeIn(300);
+});
+</script>
+<{else}>
+<script>
+$(document).ready(function() {
+  $(".user-school").html("<{$school}>");
+  $(".user-name").html("<{$name}>");
+  $(".user-time").html("<{$time}>");
+  $(".score").html("<{$score}>");
+  $("title").html("我在纪念长征胜利80周年知识竞赛中获得了<{$score}>分，你也来试试！");
+});
+</script>
+<{/if}>
 </body>
 </html>
