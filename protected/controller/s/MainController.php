@@ -33,7 +33,7 @@ class MainController extends BaseController {
 			}
 			$_SESSION['openid']=arg("openid");
 		} else {
-			$this->jump("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx34339a5251285069&redirect_uri=https%3a%2f%2fwww2.luogu.org%2f1cf%2fverify.php&response_type=code&scope=snsapi_base#wechat_redirect");
+			$this->jump("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx34339a5251285069&redirect_uri=https%3a%2f%2fwww2.luogu.org%2f1cf%2fverify.php&response_type=code&scope=snsapi_userinfo#wechat_redirect");
 			exit;
 		}
 		$db=new Model("s_questions");
