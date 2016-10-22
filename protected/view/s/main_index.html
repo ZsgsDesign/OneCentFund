@@ -10,6 +10,7 @@
   <title>答题 | 纪念长征胜利80周年知识竞赛</title>
   <link type="text/css" rel="stylesheet" href="/i/css/materialize.min.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="/i/fonts/mdi/material-icons.css" />
+  <link type="text/css" rel="stylesheet" href="/i/fonts/flaticon/flaticon.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <style>
     #preloader {
@@ -141,7 +142,8 @@
   <div class="container">
     <div class="card-panel" style="margin-top:18px; padding-top:15px;">
       <h5 class="center-align red-text lighten-1">铭记红军丰功伟绩&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;弘扬伟大长征精神</h5>
-      <h1 class="center-align"><i class="material-icons red-text lighten-2" style="font-size: inherit;">person_pin</i></h1>
+      <h1 class="center-align"><!--<i class="material-icons red-text lighten-2" style="font-size: inherit;">person_pin</i>-->
+      <i class="flaticon-framed-portrait"></i></h1>
       <h5 class="center-align red-text lighten-2"><span class="user-school"></span> <span class="user-name"></span></h5>
       <p class="center-align">在 <span class="user-time"></span><br>完成了本次知识问答 获得分数</p> 
       <h4 class="center-align red-text lighten-2"><span class="score"></span>分</h4>
@@ -214,12 +216,14 @@
       <form class="col s12 index-form" method="POST">
         <div class="row">
           <div class="input-field col s12 m6">
-            <i class="material-icons prefix">account_circle</i>
+            <!--<i class="material-icons prefix">account_circle</i>-->
+            <i class="flaticon-round-account-button-with-user-inside"></i>
             <input id="name" name="name" type="text" required>
             <label for="name">姓名/昵称</label>
           </div>
           <div class="input-field col s12 m6">
-            <i class="material-icons prefix">school</i>
+            <!--<i class="material-icons prefix">school</i>-->
+            <i class="flaticon-create-new-pencil-button"></i>
             <input id="school-name" name="school" type="text" class="autocomplete" required>
             <label for="school-name">学校全称</label>
           </div>
