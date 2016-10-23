@@ -177,6 +177,7 @@ class MainController extends BaseController {
 		$rs=$db->query($sql,null);
 		foreach ($rs as $r) {
 			var_dump($r);
+			echo "<BR>";
 		}
 	}
 }
