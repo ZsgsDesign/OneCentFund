@@ -2,6 +2,7 @@
 class MainController extends BaseController {
 	
 	function actionIndex(){ //首页
+		weixinapp();
 		$this->tested=0;
 		$this->school="";
 		$this->name="";
@@ -48,6 +49,7 @@ class MainController extends BaseController {
 	}
 
 	function actionResult() {
+		weixinapp();
 		if (arg("id")) {
 			$user_db=new Model("s");
 			$id=arg("id");
@@ -64,6 +66,7 @@ class MainController extends BaseController {
 	}
 
 	function actionSubmit() {
+		weixinapp();
 		if (arg("ans")) {
 			$score=intval($_SESSION['score']);
 			$current=intval($_SESSION['current']);
@@ -95,6 +98,7 @@ class MainController extends BaseController {
 
 
 	function actionGetquestion() {
+		weixinapp();
 		$tid=json_decode($_SESSION['tid']);
 		$current=$_SESSION['current'];
 		if ($current<20) {

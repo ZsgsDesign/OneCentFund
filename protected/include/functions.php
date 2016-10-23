@@ -10,6 +10,12 @@ function getIP() {
 	return $ip; 
 }
 
+function weixinapp() {
+	if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') === false) {
+			exit("请用微信浏览器打开");
+		}
+}
+
 function is_login() {
 	$is_login=1;
   if ($loginid=arg("loginid")) {
