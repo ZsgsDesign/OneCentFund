@@ -175,6 +175,8 @@ class MainController extends BaseController {
 		$sql="SELECT school, count(*) 'count', max(score) 'max', min(score) 'min', sum(score)/count(*) 'avg' from s group by school order by count desc";
 		$db=new Model("s");
 		$rs=$db->query($sql,null);
-		var_dump($rs);
+		foreach ($rs as $r) {
+			var_dump($r);
+		}
 	}
 }
