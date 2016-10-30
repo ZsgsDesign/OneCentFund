@@ -221,4 +221,33 @@ class AjaxController extends BaseController {
 			)
 		);
 	}
+
+	function actionGetimmortalwork() {
+		$file=file_get_contents("http://immortal.work/api/restful/posts/hottest/10");
+		if ($file) {
+			$list=json_decode($file);
+			$db=new Model("read");
+			//dump($list);
+			//$db->delete(null);
+			$id=1;
+			foreach ($list->Posts as $p) {
+				$link="http://immortal.work/p/".$p->_id;
+				$title=$p->title;
+				$timetemp=explode("T",$p->postedAt);
+				$timetemp[1]=rtrim($timetemp[1],"Z");
+				$time=$timetemp[0]." ".$timetemp[1];
+				$count=$p->viewCount;
+				$db->create(
+					array(
+						"id"=>$id,
+						"link" => $link,
+						"time" => $time,
+						"title" => $title,
+						"count" => $count
+					)
+				);
+				$id++;
+			}
+		}
+	}
 }

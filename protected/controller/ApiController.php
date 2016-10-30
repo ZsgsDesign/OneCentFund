@@ -708,6 +708,11 @@ class ApiController extends BaseController {
 			exit;
 		}
 	}
+
+	function actionGetimmortalwork() {
+		$db=new Model("read");
+		echo json_encode($db->findAll(null));
+	}
 	
 }
 

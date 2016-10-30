@@ -114,5 +114,7 @@ class MainController extends BaseController {
 		);
 		$this->userscore=$result['score'];
 	}
+
+	
 	
 }
