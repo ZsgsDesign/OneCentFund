@@ -228,7 +228,7 @@ class AjaxController extends BaseController {
 			$list=json_decode($file);
 			$db=new Model("read");
 			//dump($list);
-			//$db->delete(null);
+			$db->delete(null);
 			$id=1;
 			foreach ($list->Posts as $p) {
 				$link="http://immortal.work/p/".$p->_id;

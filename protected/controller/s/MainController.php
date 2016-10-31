@@ -3,6 +3,7 @@ class MainController extends BaseController {
 	
 	function actionIndex(){ //首页
 		weixinapp();
+		if (date("m")=="11" && date("d")=="1") exit("活动已结束");
 		$this->tested=0;
 		$this->school="";
 		$this->name="";
