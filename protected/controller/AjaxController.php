@@ -226,9 +226,9 @@ class AjaxController extends BaseController {
 		$file=file_get_contents("http://immortal.work/api/restful/posts/hottest/10");
 		if ($file) {
 			$list=json_decode($file);
-			$db=new Model("read");
+			$db=new Model("immortalwork");
 			//dump($list);
-			$db->delete(null);
+			$db->execute("truncate immortalwork;",null);
 			$id=1;
 			foreach ($list->Posts as $p) {
 				$link="http://immortal.work/p/".$p->_id;
