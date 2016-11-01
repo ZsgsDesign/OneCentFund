@@ -710,7 +710,7 @@ class ApiController extends BaseController {
 	}
 
 	function actionGetimmortalwork() {
-		$db=new Model("read");
+		$db=new Model("immortalwork");
 		echo json_encode($db->findAll(null));
 	}
 	
