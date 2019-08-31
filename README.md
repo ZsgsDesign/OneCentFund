@@ -1,8 +1,8 @@
-#API说明
-####请求地址：https://1cf.co/api/API名称
+# API说明
+#### 请求地址：https://1cf.co/api/API名称
 注：如果请求不成功，则不会返回任何内容(null)
 注2：请开启cookies存储，并且在第一次传入时传入用户的loginid
-##授权参数和Secret生成方式
+## 授权参数和Secret生成方式
 sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 
 |参数名|描述|类型|
@@ -10,12 +10,12 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |time|请求时间(格式和生成sha1用的格式一样即可)|time|
 |secret|生成的sha1串|string|
 
-##Getquestion 抽题
-###传入参数
+## Getquestion 抽题
+### 传入参数
 |参数名|描述|类型|
 |---|---|---|
 |cat|题库名（可选）|string|
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |description|题目描述|string|
@@ -28,57 +28,57 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |ans3|C选项对应的ans代码（回答时用）|string|
 |ans4|D选项对应的ans代码（回答时用）|string|
 
-##Getanswer 答题
-###传入参数
+## Getanswer 答题
+### 传入参数
 |参数名|描述|类型|
 |---|---|---|
 |ans|选项的ans代码|string|
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |result|积分变动(0即为答错)|int|
 |ans|正确答案|string|
 |reward|连续答对题数|int|
 
-##Verifyaccount 验证loginid有效性
-###传入参数
+## Verifyaccount 验证loginid有效性
+### 传入参数
 |参数名|描述|类型|
 |---|---|---|
 |loginid|sha1(邮箱+"1cf.co"+密码md5)|string|
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |result|有效性(0,1)|int|
 |info|用户信息(无效loginid则为null)|array|
 
-##Register 注册
-###传入参数
+## Register 注册
+### 传入参数
 |参数名|描述|类型|
 |---|---|---|
 |name|用户名|string|
 |pass|密码md5|string|
 |email|邮箱|string|
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |result|结果(1,0)|int|
 |info|username/email: 用户名/邮箱被占用(仅result=0时)|string|
 |uid|新用户uid(result=1时)|int|
 
-##Checkin 签到
-###传入参数
+## Checkin 签到
+### 传入参数
 无
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |result|积分变动|int|
 |reward|连续签到天数|int|
 
 
-##Getranklist 获取排行榜
-###传入参数
+## Getranklist 获取排行榜
+### 传入参数
 无
-###传出参数
+### 传出参数
 返回一个长度为20的数组，参数如下：
 
 |参数名|描述|类型|
@@ -89,10 +89,10 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |credit|爱心值|int|
 |rank|排名数|int|
 
-##Getbases 获取题库
-###传入参数
+## Getbases 获取题库
+### 传入参数
 无
-###传出参数
+### 传出参数
 返回一个长度为题库总数的数组，参数如下：
 
 |参数名|描述|类型|
@@ -105,10 +105,10 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |num|题目数|string|
 |date|最后更新日期|string|
 
-##Getgrantees 获取受众列表
-###传入参数
+## Getgrantees 获取受众列表
+### 传入参数
 无
-###传出参数
+### 传出参数
 返回一个长度为受众总数的数组，参数如下：
 
 |参数名|描述|类型|
@@ -125,12 +125,12 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |rate|完成率(%)|float|
 |count|参与人数|int|
 
-##Getgranteeinfo 获取单个受众信息
-###传入参数
+## Getgranteeinfo 获取单个受众信息
+### 传入参数
 |参数名|描述|类型|
 |---|---|---|
 |gid|受众id|int|
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |gid|受众id|int|
@@ -154,8 +154,8 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |rate|完成度(%)|float|
 
 
-##Modifyuserinfo 修改用户信息（不包括头像）
-###传入参数
+## Modifyuserinfo 修改用户信息（不包括头像）
+### 传入参数
 注：只需传入需要修改的内容
 
 |参数名|描述|类型|
@@ -168,29 +168,29 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |qq|QQ号(可选)|string|
 |weibo|微博(可选)|string|
 |intro|自我介绍(可选)|string|
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |result|修改成功的信息条数(相同视为未修改)|int|
 
-##Changeavatar 更换头像
-###传入参数
+## Changeavatar 更换头像
+### 传入参数
 |参数名|描述|类型|
 |---|---|---|
 |avatar|头像图片的base64代码(包含文件头)|string|
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |result|状态(0,1)|int|
 |url|头像地址|string|
 
-##Donate 捐助积分
-###传入参数
+## Donate 捐助积分
+### 传入参数
 |参数名|描述|类型|
 |---|---|---|
 |gid|项目id|int|
 |score|捐助积分(10的整数倍)|int|
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |current|项目当前积分|int|
@@ -198,12 +198,12 @@ sha1(API名称+"7d3cfe8c4ecbdad6539e0b8d50d91215"+时间)
 |score|用户积分余额|int|
 |credit|用户爱心值余额|int|
 
-##SendActivateMail 发送验证邮件
-###传入参数
+## SendActivateMail 发送验证邮件
+### 传入参数
 |参数名|描述|类型|
 |---|---|---|
 |loginid|40位的sha1串|string|
-###传出参数
+### 传出参数
 |参数名|描述|类型|
 |---|---|---|
 |result|发送结果(0,1)|int|
